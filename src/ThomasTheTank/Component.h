@@ -6,10 +6,16 @@
 
 namespace ThomasTheTank
 {
+	class Entity;
 
 	class Component
 	{
+	public:
+		void kill();
+
 	private:
+		friend class Entity;
+
 		virtual void onTick();
 		virtual void onDisplay();
 

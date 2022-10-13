@@ -1,5 +1,5 @@
 #include <memory>
-#include <vector>
+#include <list>
 
 
 #define Shared std::shared_ptr
@@ -17,8 +17,10 @@ namespace ThomasTheTank
 		void stop();
 
 		Shared<Entity> addEntity();
+
+
 	private:
-		std::vector<Shared<Entity>> m_entities;
+		std::list<Shared<Entity>> m_entities;
 		bool m_running = false;
 		Weak<Core> m_self;
 	};

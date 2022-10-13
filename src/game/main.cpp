@@ -6,11 +6,16 @@
 using namespace ThomasTheTank;
 #define Shared std::shared_ptr
 
-struct Player
+struct Player : Component
 {
 	void onTick()
 	{
 		std::cout << "ticking" << std::endl;
+	}
+
+	void onDisplay()
+	{
+		std::cout << "display" << std::endl;
 	}
 };
 
@@ -23,7 +28,9 @@ int main()
 
 	Shared<Entity> e = core->addEntity();
 
-	//e->addComponent<Player>();
+	e->addComponent<Player>();
+	e->addComponent<Player>();
+	e->addComponent<Player>();
 
 	core->start();
 

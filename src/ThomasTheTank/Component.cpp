@@ -2,6 +2,9 @@
 
 namespace ThomasTheTank
 {
+	void Component::kill()
+	{
+	}
 	void Component::onTick()
 	{
 	}

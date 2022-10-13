@@ -1,5 +1,5 @@
 #include <memory>
-#include <vector>
+#include <list>
 
 
 #define Shared std::shared_ptr
@@ -7,6 +7,9 @@
 
 namespace ThomasTheTank
 {
+
+	class Core;
+
 	class Component;
 
 	class Entity
@@ -22,11 +25,15 @@ namespace ThomasTheTank
 			return rtn;
 		}
 
+		void kill();
+		bool alive() {return m_alive};
 
 	private:
-
-		std::vector<Shared<Component>> m_components;
-
+		friend class Core;
+		void tick();
+		void display();
+		std::list<Shared<Component>> m_components;
+		bool m_alive;
 		
 	};
 }

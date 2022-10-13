@@ -16,7 +16,24 @@ namespace ThomasTheTank
 
 		while (m_running)
 		{
+			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+			{
+				(*it)->tick();
+			}
 
+			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+			{
+				(*it)->display();
+			}
+
+			/*for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+			{
+				if (!(*it)->alive())
+				{
+					m_entities.erase(it);
+					--it;
+				}
+			}*/
 		}
 	}
 
