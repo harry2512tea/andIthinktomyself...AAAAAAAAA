@@ -11,8 +11,14 @@ add_executable(game
 
 add_library(ThomasTheTank
 src/ThomasTheTank/ThomasTheTank.h
-src/ThomasTheTank/core.cpp
-src/ThomasTheTank/core.h
+src/ThomasTheTank/Core.cpp
+src/ThomasTheTank/Core.h
+src/ThomasTheTank/Entity.h
+src/ThomasTheTank/Entity.cpp
+src/ThomasTheTank/Component.h
+src/ThomasTheTank/Component.cpp
+src/ThomasTheTank/Components/Transform.h
+src/ThomasTheTank/Components/Transform.cpp
 )
 
 target_link_libraries(game ThomasTheTank)
