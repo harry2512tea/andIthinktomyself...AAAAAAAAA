@@ -19,6 +19,8 @@ src/ThomasTheTank/Component.h
 src/ThomasTheTank/Component.cpp
 src/ThomasTheTank/Components/Transform.h
 src/ThomasTheTank/Components/Transform.cpp
+src/ThomasTheTank/Components/MeshRenderer.h
+src/ThomasTheTank/Components/MeshRenderer.cpp
 )
 
 target_link_libraries(game ThomasTheTank)
