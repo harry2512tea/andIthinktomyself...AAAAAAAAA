@@ -7,7 +7,7 @@
 
 namespace ThomasTheTank
 {
-
+	
 	class Core;
 
 	class Component;
@@ -26,7 +26,7 @@ namespace ThomasTheTank
 		}
 
 		void kill();
-		bool alive() {return m_alive};
+		bool alive() { return m_alive; };
 
 	private:
 		friend class Core;

@@ -3,6 +3,7 @@ project(MYENGINE)
 
 include_directories(
 	src
+	contrib/include
 )
 
 add_executable(game
@@ -24,3 +25,8 @@ src/ThomasTheTank/Components/MeshRenderer.cpp
 )
 
 target_link_libraries(game ThomasTheTank)
+
+
+
+find_package(glew REQUIRED)
+link_libraries(contrib/lib/glew32)

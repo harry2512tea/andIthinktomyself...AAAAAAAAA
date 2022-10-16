@@ -14,8 +14,13 @@ namespace ThomasTheTank
 	{
 		m_running = true;
 
+
+
+
 		while (m_running)
 		{
+			
+
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
 				(*it)->tick();
@@ -26,6 +31,8 @@ namespace ThomasTheTank
 				(*it)->display();
 			}
 
+
+			
 			/*for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
 				if (!(*it)->alive())
