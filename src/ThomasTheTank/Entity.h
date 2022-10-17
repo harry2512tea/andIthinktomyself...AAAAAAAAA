@@ -1,5 +1,6 @@
 #include <memory>
 #include <list>
+#include <stdexcept>
 
 
 #define Shared std::shared_ptr
@@ -24,6 +25,56 @@ namespace ThomasTheTank
 
 			return rtn;
 		}
+
+		template<typename T>
+		Shared<T> getComponent()
+		{
+			Shared<T> rtn = NULL;
+
+			int i = 0;
+			for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+			{
+				i++;
+				Shared<T> test = std::dynamic_pointer_cast<T>(*it);
+				if (test)
+				{
+					std::cout << typeid(*test).name() << std::endl;
+					rtn = test;
+					break;
+				}
+			}
+			if (!rtn)
+			{
+				std::cout << "component doesn't exist" << std::endl;
+				throw std::runtime_error("Component doesn't exist");
+			}
+			return rtn;
+		}
+
+		template<typename T>
+		std::list<Shared<T>> getComponents()
+		{
+			std::list<Shared<T>> rtn;
+
+			int i = 0;
+			for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+			{
+				i++;
+				Shared<T> test = std::dynamic_pointer_cast<T>(*it);
+				if (test)
+				{
+					std::cout << typeid(*test).name() << std::endl;
+					rtn.push_back(test);
+				}
+			}
+			if (rtn < 1)
+			{
+				std::cout << "component doesn't exist" << std::endl;
+				throw std::runtime_error("Component doesn't exist");
+			}
+			return rtn;
+		}
+
 
 		void kill();
 		bool alive() { return m_alive; };

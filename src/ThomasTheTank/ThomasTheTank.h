@@ -5,5 +5,6 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Components/Transform.h"
+#include "Components/MeshRenderer.h"
 
 #endif

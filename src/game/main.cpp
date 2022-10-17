@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <typeinfo>
 #include <ThomasTheTank/ThomasTheTank.h>
 
 
@@ -10,12 +11,25 @@ struct Player : Component
 {
 	void onTick()
 	{
-		std::cout << "ticking" << std::endl;
+		//std::cout << "ticking" << std::endl;
 	}
 
 	void onDisplay()
 	{
-		std::cout << "display" << std::endl;
+		//std::cout << "display" << std::endl;
+	}
+};
+
+struct Test : Component
+{
+	void onTick()
+	{
+
+	}
+
+	void onDisplay()
+	{
+
 	}
 };
 
@@ -29,8 +43,15 @@ int main()
 	Shared<Entity> e = core->addEntity();
 
 	e->addComponent<Player>();
+	e->addComponent<Test>();
 	e->addComponent<Player>();
-	e->addComponent<Player>();
+	//e->addComponent<Player>();
+
+	Shared<Player> p = e->getComponent<Player>();
+	//std::cout << typeid(*p).name() << std::endl;
+
+	Shared<Test> t = e->getComponent<Test>();
+	//std::cout << typeid(*t).name() << std::endl;
 
 	core->start();
 
