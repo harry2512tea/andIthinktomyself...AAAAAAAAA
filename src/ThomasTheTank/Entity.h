@@ -29,26 +29,18 @@ namespace ThomasTheTank
 		template<typename T>
 		Shared<T> getComponent()
 		{
-			Shared<T> rtn = NULL;
-
-			int i = 0;
 			for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 			{
-				i++;
-				Shared<T> test = std::dynamic_pointer_cast<T>(*it);
-				if (test)
+				Shared<T> rtn = std::dynamic_pointer_cast<T>(*it);
+				if (rtn)
 				{
-					std::cout << typeid(*test).name() << std::endl;
-					rtn = test;
-					break;
+					std::cout << typeid(*rtn).name() << std::endl;
+					return rtn;
 				}
 			}
-			if (!rtn)
-			{
-				std::cout << "component doesn't exist" << std::endl;
-				throw std::runtime_error("Component doesn't exist");
-			}
-			return rtn;
+			
+			std::cout << "component doesn't exist" << std::endl;
+			throw std::runtime_error("Component doesn't exist");
 		}
 
 		template<typename T>

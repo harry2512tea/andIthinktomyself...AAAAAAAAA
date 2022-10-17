@@ -23,14 +23,10 @@ struct Player : Component
 struct Test : Component
 {
 	void onTick()
-	{
-
-	}
+	{}
 
 	void onDisplay()
-	{
-
-	}
+	{}
 };
 
 int main()
