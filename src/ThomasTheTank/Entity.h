@@ -1,6 +1,7 @@
 #include <memory>
 #include <list>
 #include <stdexcept>
+#include <string>
 
 
 #define Shared std::shared_ptr
@@ -73,6 +74,7 @@ namespace ThomasTheTank
 
 	private:
 		friend class Core;
+		std::string name;
 		void tick();
 		void display();
 		std::list<Shared<Component>> m_components;
