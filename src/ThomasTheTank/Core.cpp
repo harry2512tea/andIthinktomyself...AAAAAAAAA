@@ -1,5 +1,6 @@
 #include "Core.h"
 #include "Entity.h"
+#include "Components/Transform.h"
 
 namespace ThomasTheTank
 {
@@ -26,17 +27,15 @@ namespace ThomasTheTank
 			{
 				(*it)->display();
 			}
-
-
 			
-			/*for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
 				if (!(*it)->alive())
 				{
 					m_entities.erase(it);
 					--it;
 				}
-			}*/
+			}
 		}
 	}
 
@@ -48,6 +47,13 @@ namespace ThomasTheTank
 	Shared<Entity> Core::addEntity()
 	{
 		Shared<Entity> rtn = std::make_shared<Entity>();
+
+		rtn->m_core = m_self;
+		rtn->m_self = rtn;
+
+		rtn->Transform = rtn->addComponent<Transform>();
+		
+
 		m_entities.push_back(rtn);
 		return rtn;
 	}

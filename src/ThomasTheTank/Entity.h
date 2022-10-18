@@ -2,6 +2,7 @@
 #include <list>
 #include <stdexcept>
 #include <string>
+#include "Components/Transform.h"
 
 
 #define Shared std::shared_ptr
@@ -75,10 +76,12 @@ namespace ThomasTheTank
 	private:
 		friend class Core;
 		std::string name;
+		Shared<Transform> Transform;
 		void tick();
 		void display();
 		std::list<Shared<Component>> m_components;
-		bool m_alive;
-		
+		bool m_alive = true;
+		Weak<Core> m_core;
+		Weak<Entity> m_self;
 	};
 }

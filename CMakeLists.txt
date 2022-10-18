@@ -22,11 +22,10 @@ src/ThomasTheTank/Components/Transform.h
 src/ThomasTheTank/Components/Transform.cpp
 src/ThomasTheTank/Components/MeshRenderer.h
 src/ThomasTheTank/Components/MeshRenderer.cpp
+src/ThomasTheTank/Wrapping/ThomasMath.h
 )
 
 target_link_libraries(game ThomasTheTank)
-
-
 
 find_package(glew REQUIRED)
 link_libraries(contrib/lib/glew32)
