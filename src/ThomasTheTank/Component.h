@@ -8,9 +8,8 @@ namespace ThomasTheTank
 {
 	class Entity;
 
-	class Component
+	struct Component
 	{
-	public:
 		void kill();
 
 	private:

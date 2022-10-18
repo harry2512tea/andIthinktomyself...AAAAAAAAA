@@ -5,9 +5,8 @@ include_directories(
 	src
 	contrib/include
 )
-
-add_executable(game
-  src/game/main.cpp
+link_directories(
+	${PROJECT_SOURCE_DIR}/contrib/lib
 )
 
 add_library(ThomasTheTank
@@ -25,7 +24,16 @@ src/ThomasTheTank/Components/MeshRenderer.cpp
 src/ThomasTheTank/Wrapping/ThomasMath.h
 )
 
-target_link_libraries(game ThomasTheTank)
+target_link_libraries(ThomasTheTank
+glew32
+)
 
-find_package(glew REQUIRED)
+add_executable(game
+  src/game/main.cpp
+)
+
+target_link_libraries(game 
+ThomasTheTank 
+)
+
 link_libraries(contrib/lib/glew32)

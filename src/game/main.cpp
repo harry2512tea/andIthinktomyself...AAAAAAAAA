@@ -37,6 +37,7 @@ int main()
 	Shared<Core> core = Core::Initialise();
 
 	Shared<Entity> e = core->addEntity();
+	Shared<Entity> e2 = core->addEntity();
 
 	e->addComponent<Player>();
 	e->addComponent<Test>();
@@ -44,10 +45,10 @@ int main()
 	//e->addComponent<Player>();
 
 	Shared<Player> p = e->getComponent<Player>();
-	//std::cout << typeid(*p).name() << std::endl;
+	std::cout << typeid(*p).name() << std::endl;
 
 	Shared<Test> t = e->getComponent<Test>();
-	//std::cout << typeid(*t).name() << std::endl;
+	std::cout << typeid(*t).name() << std::endl;
 
 	core->start();
 

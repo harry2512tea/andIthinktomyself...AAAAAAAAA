@@ -1,6 +1,8 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Components/Transform.h"
+#include <string>
+#include <iostream>
 
 namespace ThomasTheTank
 {
@@ -14,6 +16,11 @@ namespace ThomasTheTank
 	void Core::start()
 	{
 		m_running = true;
+
+		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+		{
+			std::cout << (*it)->name << std::endl;
+		}
 
 		while (m_running)
 		{
@@ -52,6 +59,7 @@ namespace ThomasTheTank
 		rtn->m_self = rtn;
 
 		rtn->Transform = rtn->addComponent<Transform>();
+		rtn->name = std::string("Entity ") + std::to_string(m_entities.size() + 1);
 		
 
 		m_entities.push_back(rtn);

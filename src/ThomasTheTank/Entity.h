@@ -13,7 +13,7 @@ namespace ThomasTheTank
 	
 	class Core;
 
-	class Component;
+	struct Component;
 
 	class Entity
 	{
@@ -36,7 +36,7 @@ namespace ThomasTheTank
 				Shared<T> rtn = std::dynamic_pointer_cast<T>(*it);
 				if (rtn)
 				{
-					std::cout << typeid(*rtn).name() << std::endl;
+					//std::cout << typeid(*rtn).name() << std::endl;
 					return rtn;
 				}
 			}
@@ -73,9 +73,11 @@ namespace ThomasTheTank
 		void kill();
 		bool alive() { return m_alive; };
 
+
+		std::string name;
 	private:
 		friend class Core;
-		std::string name;
+		
 		Shared<Transform> Transform;
 		void tick();
 		void display();
