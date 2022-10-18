@@ -1,6 +1,8 @@
 #ifndef THOMASTHETANK_COMPONENT_H
 #define THOMASTHETANK_COMPONENT_H
 
+#include <memory>
+
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
 
@@ -20,6 +22,9 @@ namespace ThomasTheTank
 
 		void tick();
 		void display();
+
+		Weak<Entity> m_Entity;
+		Weak<Component> m_self;
 	};
 }
 

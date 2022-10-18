@@ -22,7 +22,8 @@ namespace ThomasTheTank
 		Shared<T> addComponent()
 		{
 			Shared<T> rtn = std::make_shared<T>();
-
+			rtn->m_self = rtn;
+			rtn->m_Entity = m_self;
 			m_components.push_back(rtn);
 
 			return rtn;
