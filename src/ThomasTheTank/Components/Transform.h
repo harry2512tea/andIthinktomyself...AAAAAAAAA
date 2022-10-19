@@ -1,8 +1,8 @@
 #ifndef THOMASTHETANK_TRANSFORM_H
 #define THOMASTHETANK_TRANSFORM_H
 
-#include "ThomasTheTank/Wrapping/ThomasMath.h"
-#include "ThomasTheTank/Component.h"
+#include "Wrapping/ThomasMath.h"
+#include "Component.h"
 
 namespace ThomasTheTank
 {

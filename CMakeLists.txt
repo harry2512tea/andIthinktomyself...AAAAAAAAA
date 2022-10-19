@@ -2,9 +2,11 @@ cmake_minimum_required(VERSION 3.0)
 project(MYENGINE)
 
 include_directories(
-	src
+	src/game
+	src/ThomasTheTank
 	contrib/include
 )
+
 link_directories(
 	${PROJECT_SOURCE_DIR}/contrib/lib
 )

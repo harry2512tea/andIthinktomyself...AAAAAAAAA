@@ -2,7 +2,6 @@
 #include <list>
 #include <stdexcept>
 #include <string>
-#include "Components/Transform.h"
 
 
 #define Shared std::shared_ptr
@@ -14,6 +13,8 @@ namespace ThomasTheTank
 	class Core;
 
 	struct Component;
+
+	struct Transform;
 
 	class Entity
 	{
