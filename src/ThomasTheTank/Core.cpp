@@ -3,6 +3,7 @@
 #include "Components/Transform.h"
 #include <string>
 #include <iostream>
+#include <stdexcept>
 
 namespace ThomasTheTank
 {
@@ -16,6 +17,17 @@ namespace ThomasTheTank
 	void Core::start()
 	{
 		m_running = true;
+
+		
+
+		window = SDL_CreateWindow("ThomasTheTank",
+			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+			1440, 810, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+
+		if (!SDL_GL_CreateContext(window))
+		{
+			throw std::runtime_error("failed to create OpenGL Context");
+		}
 
 		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{

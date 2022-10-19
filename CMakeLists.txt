@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 3.0)
 project(MYENGINE)
 
 include_directories(
-	src/game
-	src/ThomasTheTank
+	src
 	contrib/include
+	
 )
 
 link_directories(
 	${PROJECT_SOURCE_DIR}/contrib/lib
+	${PROJECT_SOURCE_DIR}/contrib/bin
 )
 
 add_library(ThomasTheTank
@@ -24,10 +25,13 @@ src/ThomasTheTank/Components/Transform.cpp
 src/ThomasTheTank/Components/MeshRenderer.h
 src/ThomasTheTank/Components/MeshRenderer.cpp
 src/ThomasTheTank/Wrapping/ThomasMath.h
+src/ThomasTheTank/Time.h
+src/ThomasTheTank/Time.cpp
 )
 
 target_link_libraries(ThomasTheTank
 glew32
+SDL2
 )
 
 add_executable(game
@@ -35,7 +39,6 @@ add_executable(game
 )
 
 target_link_libraries(game 
-ThomasTheTank 
+ThomasTheTank
 )
 
-link_libraries(contrib/lib/glew32)

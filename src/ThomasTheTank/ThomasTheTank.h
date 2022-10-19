@@ -7,5 +7,6 @@
 #include "Components/Transform.h"
 #include "Components/MeshRenderer.h"
 #include "Wrapping/ThomasMath.h"
+#include "Time.h"
 
 #endif
