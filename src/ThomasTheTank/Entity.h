@@ -75,7 +75,7 @@ namespace ThomasTheTank
 		void kill();
 		bool alive() { return m_alive; };
 
-
+		Shared<Transform> getTransform() { return Transform; };
 		std::string name;
 	private:
 		friend class Core;

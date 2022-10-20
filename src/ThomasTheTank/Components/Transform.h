@@ -20,6 +20,8 @@ namespace ThomasTheTank
 		vec3 getRotation() { return rotation; };
 		vec3 getScale() { return scale; };
 
+		mat4 getModel();
+
 	private:
 		quat generateRotQuat(vec3 _rotation);
 		void onTick();

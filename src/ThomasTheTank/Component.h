@@ -14,7 +14,7 @@ namespace ThomasTheTank
 	{
 		void kill();
 
-	private:
+	protected:
 		friend class Entity;
 
 		virtual void onTick();

@@ -1,4 +1,5 @@
 #include "Component.h"
+
 #include <rend/rend.h>
 
 namespace ThomasTheTank

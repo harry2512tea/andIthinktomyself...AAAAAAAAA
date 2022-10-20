@@ -15,7 +15,7 @@ namespace ThomasTheTank
 
 		rtn->m_window = SDL_CreateWindow("SDL2 Platform",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-			1920, 1080, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+			1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
 		if (!(rtn->m_context = SDL_GL_CreateContext(rtn->m_window)))
 		{
@@ -30,10 +30,6 @@ namespace ThomasTheTank
 	void Core::start()
 	{
 		m_running = true;
-
-		
-		
-		
 
 		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{
