@@ -7,9 +7,18 @@ include_directories(
 	
 )
 
+
+
 link_directories(
 	${PROJECT_SOURCE_DIR}/contrib/lib
 	${PROJECT_SOURCE_DIR}/contrib/bin
+)
+
+add_library(Render
+src/Render/Shader.h
+src/Render/Shader.cpp
+src/Render/Material.h
+src/Render/Material.cpp
 )
 
 add_library(ThomasTheTank
@@ -32,6 +41,7 @@ src/ThomasTheTank/Time.cpp
 target_link_libraries(ThomasTheTank
 glew32
 SDL2
+Render
 )
 
 add_executable(game
