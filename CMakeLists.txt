@@ -7,19 +7,24 @@ include_directories(
 	
 )
 
-
-
 link_directories(
 	${PROJECT_SOURCE_DIR}/contrib/lib
-	${PROJECT_SOURCE_DIR}/contrib/bin
 )
 
-add_library(Render
-src/Render/Shader.h
-src/Render/Shader.cpp
-src/Render/Material.h
-src/Render/Material.cpp
+add_library(rend
+ src/rend/Animation.cpp
+ src/rend/Buffer.cpp
+ src/rend/Mesh.cpp
+ src/rend/Model.cpp
+ src/rend/ModelRenderer.cpp
+ src/rend/RenderTexture.cpp
+ src/rend/Renderer.cpp
+ src/rend/Shader.cpp
+ src/rend/Texture.cpp
+ src/rend/rendmath.cpp
 )
+target_link_libraries(rend glew32 opengl32)
+
 
 add_library(ThomasTheTank
 src/ThomasTheTank/ThomasTheTank.h
@@ -36,12 +41,13 @@ src/ThomasTheTank/Components/MeshRenderer.cpp
 src/ThomasTheTank/Wrapping/ThomasMath.h
 src/ThomasTheTank/Time.h
 src/ThomasTheTank/Time.cpp
+src/ThomasTheTank/TriangleRenderer.h
+src/ThomasTheTank/TriangleRenderer.cpp
 )
 
 target_link_libraries(ThomasTheTank
-glew32
 SDL2
-Render
+rend
 )
 
 add_executable(game

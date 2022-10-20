@@ -19,7 +19,9 @@ namespace ThomasTheTank
 
 		virtual void onTick();
 		virtual void onDisplay();
+		virtual void onInitialize();
 
+		void initialize();
 		void tick();
 		void display();
 

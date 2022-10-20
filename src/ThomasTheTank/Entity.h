@@ -83,6 +83,7 @@ namespace ThomasTheTank
 		Shared<Transform> Transform;
 		void tick();
 		void display();
+		void initialize();
 		std::list<Shared<Component>> m_components;
 		bool m_alive = true;
 		Weak<Core> m_core;

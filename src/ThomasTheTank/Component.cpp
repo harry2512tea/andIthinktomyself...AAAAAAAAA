@@ -13,6 +13,9 @@ namespace ThomasTheTank
 	void Component::onDisplay()
 	{
 	}
+	void Component::onInitialize()
+	{
+	}
 
 	void Component::tick()
 	{
@@ -22,5 +25,10 @@ namespace ThomasTheTank
 	void Component::display()
 	{
 		onDisplay();
+	}
+
+	void Component::initialize()
+	{
+		onInitialize();
 	}
 }

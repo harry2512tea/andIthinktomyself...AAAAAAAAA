@@ -44,6 +44,7 @@ int main()
 	e->addComponent<Player>();
 	e->addComponent<Test>();
 	e->addComponent<Player>();
+	e->addComponent<TriangleRenderer>();
 	//e->addComponent<Player>();
 
 	Shared<Player> p = e->getComponent<Player>();
