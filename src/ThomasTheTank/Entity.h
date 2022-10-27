@@ -38,7 +38,6 @@ namespace ThomasTheTank
 				Shared<T> rtn = std::dynamic_pointer_cast<T>(*it);
 				if (rtn)
 				{
-					//std::cout << typeid(*rtn).name() << std::endl;
 					return rtn;
 				}
 			}
@@ -79,7 +78,7 @@ namespace ThomasTheTank
 		std::string name;
 	private:
 		friend class Core;
-		
+
 		Shared<Transform> Transform;
 		void tick();
 		void display();

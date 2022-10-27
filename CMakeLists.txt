@@ -22,6 +22,16 @@ add_library(rend
  src/rend/Shader.cpp
  src/rend/Texture.cpp
  src/rend/rendmath.cpp
+ src/rend/Animation.h
+ src/rend/Buffer.h
+ src/rend/Mesh.h
+ src/rend/Model.h
+ src/rend/ModelRenderer.h
+ src/rend/RenderTexture.h
+ src/rend/Renderer.h
+ src/rend/Shader.h
+ src/rend/Texture.h
+ src/rend/rendmath.h
 )
 target_link_libraries(rend glew32 opengl32)
 

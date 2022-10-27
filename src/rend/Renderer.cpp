@@ -191,12 +191,12 @@ void Renderer::view(const mat4& _view)
   m_view = _view;
 }
 
-mat4 Renderer::model()
+mat4 Renderer::modelMat()
 {
   return m_model;
 }
 
-void Renderer::model(const mat4& _model)
+void Renderer::modelMat(const mat4& _model)
 {
   m_model = _model;
 }

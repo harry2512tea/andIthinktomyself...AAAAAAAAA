@@ -5,7 +5,10 @@ namespace ThomasTheTank
 {
 	void Transform::onTick()
 	{
-		rotate(vec3(0.0f, 0.1f, 0.0f));
+		rotation = checkRoationValues(rotation);
+		rotate(vec3(0.0f, rotationSpeed, 0.0f));
+		rotationSpeed += 0.1f;
+		scale = vec3(0.2f, 0.2f, 0.2f);
 	}
 
 
@@ -38,7 +41,37 @@ namespace ThomasTheTank
 		translationMat = glm::translate(translationMat, position);
 		rotationMat = glm::mat4_cast(rotationQuat);
 		scaleMat = glm::scale(scaleMat, scale);
-
+		
 		return translationMat * rotationMat * scaleMat;
+	}
+
+	vec3 Transform::checkRoationValues(vec3 _rot)
+	{
+		if (_rot.x > 360)
+		{
+			_rot.x -= 360;
+		}
+		else if (_rot.x < -360)
+		{
+			_rot.x += 360;
+		}
+		if (_rot.y > 360)
+		{
+			_rot.y -= 360;
+		}
+		else if (_rot.y < -360)
+		{
+			_rot.y += 360;
+		}
+		if (_rot.z > 360)
+		{
+			_rot.z -= 360;
+		}
+		else if (_rot.z < -360)
+		{
+			_rot.z += 360;
+		}
+
+		return _rot;
 	}
 }

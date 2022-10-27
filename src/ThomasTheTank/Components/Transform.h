@@ -30,6 +30,10 @@ namespace ThomasTheTank
 		vec3 rotation = vec3(0.0f);
 		vec3 scale = vec3(1.0f);
 		quat rotationQuat = quat();
+
+		float rotationSpeed = 0.1f;
+
+		vec3 checkRoationValues(vec3 _rot);
 	};
 }
 

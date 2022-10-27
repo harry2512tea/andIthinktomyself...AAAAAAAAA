@@ -36,8 +36,8 @@ struct Renderer : sys::EnablePtr
   mat4 projection();
   void projection(const mat4& _projection);
 
-  mat4 model();
-  void model(const mat4& _model);
+  mat4 modelMat();
+  void modelMat(const mat4& _model);
 
   mat4 view();
   void view(const mat4& _view);
