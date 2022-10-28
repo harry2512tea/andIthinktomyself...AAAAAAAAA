@@ -6,9 +6,10 @@ namespace ThomasTheTank
 	void Transform::onTick()
 	{
 		rotation = checkRoationValues(rotation);
-		rotate(vec3(0.0f, rotationSpeed, 0.0f));
-		rotationSpeed += 0.1f;
-		scale = vec3(0.2f, 0.2f, 0.2f);
+		//rotate(vec3(0.0f, rotationSpeed, 0.0f));
+		//rotationSpeed += 0.1f;
+		//position = vec3(0.0f, 0.0f, 10.0f);
+		//scale = vec3(1.0f, 1.0f, 1.0f);
 	}
 
 
@@ -17,7 +18,7 @@ namespace ThomasTheTank
 		glm::quat x = glm::angleAxis(radians(_rotation.x), vec3(1.0f, 0.0f, 0.0f));
 		glm::quat y = glm::angleAxis(radians(_rotation.y), vec3(0.0f, 1.0f, 0.0f));
 		glm::quat z = glm::angleAxis(radians(_rotation.z), vec3(0.0f, 0.0f, 1.0f));
-
+	
 		return x * y * z;
 	}
 

@@ -6,6 +6,9 @@
 #include <iostream>
 #include <stdexcept>
 
+#define INITIAL_WIDTH 1920
+#define INITIAL_HEIGHT 1080
+
 namespace ThomasTheTank
 {
 	Shared<Core> Core::Initialise()
@@ -94,4 +97,6 @@ namespace ThomasTheTank
 		m_entities.push_back(rtn);
 		return rtn;
 	}
+
+	
 }

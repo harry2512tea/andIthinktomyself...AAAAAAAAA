@@ -53,6 +53,8 @@ src/ThomasTheTank/Time.h
 src/ThomasTheTank/Time.cpp
 src/ThomasTheTank/TriangleRenderer.h
 src/ThomasTheTank/TriangleRenderer.cpp
+src/ThomasTheTank/Components/Camera.h
+src/ThomasTheTank/Components/Camera.cpp
 )
 
 target_link_libraries(ThomasTheTank

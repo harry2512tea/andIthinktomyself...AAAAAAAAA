@@ -69,6 +69,14 @@ static void split_string(const sys::String& _input, char splitter,
   }
 }
 
+void Model::setModel(const sys::String& _path)
+{
+    m_textures.clear();
+    m_parts.clear();
+    m_faces.clear();
+    load(_path);
+}
+
 void Model::load(const sys::String& _path)
 {
   sys::String line;

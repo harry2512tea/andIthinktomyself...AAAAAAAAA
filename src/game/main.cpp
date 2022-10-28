@@ -13,19 +13,21 @@ struct Player : Component
 {
 	void onTick()
 	{
-		//std::cout << "ticking" << std::endl;
+		
 	}
 
 	void onDisplay()
 	{
-		//std::cout << "display" << std::endl;
+		
 	}
 };
 
 struct Test : Component
 {
 	void onTick()
-	{}
+	{
+		getEntity().lock()->getTransform()->rotate(vec3(0.0f, 0.5f, 0.0f));
+	}
 
 	void onDisplay()
 	{}
@@ -33,8 +35,8 @@ struct Test : Component
 
 int main()
 {
-
-	std::cout << "hello world" << std::endl;
+	
+	//std::cout << "hello world" << std::endl;
 
 	Shared<Core> core = Core::Initialise();
 
@@ -43,9 +45,13 @@ int main()
 
 	e->addComponent<Player>();
 	e->addComponent<Test>();
-	e->addComponent<Player>();
-	e->addComponent<TriangleRenderer>();
-	//e->addComponent<Player>();
+	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
+	curuthers->SetModel("../data/curuthers/curuthers.obj");
+	curuthers->SetTexture("../data/curuthers/Whiskers_diffuse.jpg");
+	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
+
+	Shared<Camera> cam = e2->addComponent<Camera>();
+	core->setMainCam(cam);
 
 	Shared<Player> p = e->getComponent<Player>();
 	std::cout << typeid(*p).name() << std::endl;

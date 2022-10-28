@@ -4,6 +4,8 @@
 #include <string>
 
 
+
+
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
 
@@ -16,6 +18,8 @@ namespace ThomasTheTank
 
 	struct Transform;
 
+	struct Camera;
+
 	class Entity
 	{
 	public:
@@ -25,8 +29,8 @@ namespace ThomasTheTank
 			Shared<T> rtn = std::make_shared<T>();
 			rtn->m_self = rtn;
 			rtn->m_Entity = m_self;
+			rtn->initialize();
 			m_components.push_back(rtn);
-
 			return rtn;
 		}
 
@@ -73,8 +77,10 @@ namespace ThomasTheTank
 
 		void kill();
 		bool alive() { return m_alive; };
+		void getWindowSize(int *w, int*h);
 
 		Shared<Transform> getTransform() { return Transform; };
+		Weak<Camera> getMainCam();
 		std::string name;
 	private:
 		friend class Core;

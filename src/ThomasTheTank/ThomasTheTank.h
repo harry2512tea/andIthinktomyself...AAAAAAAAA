@@ -3,11 +3,17 @@
 
 #include "Core.h"
 #include "Entity.h"
+#include "Time.h"
+
+#include "Wrapping/ThomasMath.h"
+
+
+
+//components
 #include "Component.h"
 #include "Components/Transform.h"
 #include "Components/MeshRenderer.h"
-#include "Wrapping/ThomasMath.h"
-#include "Time.h"
+#include "Components/Camera.h"
 #include "TriangleRenderer.h"
 
 #endif

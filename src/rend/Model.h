@@ -31,6 +31,8 @@ struct Model : sys::EnablePtr
 {
   Model(const sys::String& _path);
 
+  void setModel(const sys::String& _path);
+
   sys::List<Part>::Iterator partsBegin();
   sys::List<Part>::Iterator partsEnd();
 

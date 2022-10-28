@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "Component.h"
+#include "Core.h"
 
 namespace ThomasTheTank
 {
@@ -13,6 +14,11 @@ namespace ThomasTheTank
 		{
 			(*it)->kill();
 		}
+	}
+
+	void Entity::getWindowSize(int* w, int* h)
+	{
+		m_core.lock()->getWindowSize(w, h);
 	}
 
 	void Entity::tick()
@@ -37,5 +43,10 @@ namespace ThomasTheTank
 		{
 			(*it)->initialize();
 		}
+	}
+
+	Weak<Camera> Entity::getMainCam()
+	{
+		return m_core.lock()->getMainCam();
 	}
 }

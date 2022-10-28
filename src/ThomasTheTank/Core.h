@@ -4,7 +4,6 @@
 #include <list>
 #include <GL/glew.h>
 #include <rend/rend.h>
-//#include <Render/SDL_Window_Wrap.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -12,6 +11,8 @@
 namespace ThomasTheTank
 {
 	class Entity;
+
+	struct Camera;
 
 	class Core
 	{
@@ -21,10 +22,12 @@ namespace ThomasTheTank
 		void stop();
 
 		Shared<Entity> addEntity();
-
-
+		void getWindowSize(int* w, int* h) { SDL_GetWindowSize(m_window, w, h); };
+		Weak<Camera> getMainCam() { return mainCam; };
+		void setMainCam(Shared<Camera> _cam) { mainCam = _cam; };
 	private:
-		//Shared<Render::SDLWindow> SDLwindow = Render::SDLWindow::Initialise();
+
+		Shared<Camera> mainCam;
 		SDL_Window* m_window;
 		SDL_GLContext m_context;
 		std::list<Shared<Entity>> m_entities;

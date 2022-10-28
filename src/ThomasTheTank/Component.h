@@ -13,6 +13,7 @@ namespace ThomasTheTank
 	struct Component
 	{
 		void kill();
+		Weak<Entity> getEntity() { return m_Entity; };
 
 	protected:
 		friend class Entity;

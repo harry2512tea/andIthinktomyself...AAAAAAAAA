@@ -18,6 +18,7 @@ namespace ThomasTheTank
 
 		vec3 getPosition() { return position; };
 		vec3 getRotation() { return rotation; };
+		quat getRotationQuat() { return rotationQuat; };
 		vec3 getScale() { return scale; };
 
 		mat4 getModel();
