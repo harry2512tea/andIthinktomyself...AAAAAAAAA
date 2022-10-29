@@ -45,8 +45,8 @@ namespace ThomasTheTank
 		}
 	}
 
-	Weak<Camera> Entity::getMainCam()
+	/*Weak<Camera> Entity::getMainCam()
 	{
 		return m_core.lock()->getMainCam();
-	}
+	}*/
 }

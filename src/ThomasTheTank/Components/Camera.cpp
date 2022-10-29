@@ -4,11 +4,37 @@
 
 namespace ThomasTheTank
 {
+	Shared<Camera> Camera::mainCam = nullptr;
+	std::list<Weak<Camera>> Camera::cameras = {};
+
+	Shared<Camera> Camera::main()
+	{
+		return mainCam;
+	}
+
+	Camera::~Camera()
+	{
+		Weak<Camera> cam = shared_from_this();
+		Camera::cameras.remove(cam);
+	}
+
+	void Camera::onInitialize()
+	{
+		if (cameras.size() < 1)
+		{
+			setMainCam(shared_from_this());
+			Weak<Camera> cam = shared_from_this();
+			AddCam(cam);
+		}
+	}
 
 	mat4 Camera::getProjection()
 	{
 		int w = 1920, h = 1080;
-		getEntity().lock()->getWindowSize(&w, &h);
+		if (getEntity().lock())
+		{
+			getEntity().lock()->getWindowSize(&w, &h);
+		}
 		return perspective(radians(FOV), (float)w/ (float)h, nearClip, farClip);
 	}
 

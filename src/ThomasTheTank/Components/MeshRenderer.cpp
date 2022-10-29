@@ -34,7 +34,7 @@ namespace ThomasTheTank
 	{
 		mat4 model = getEntity().lock()->getTransform()->getModel();
 		m_Renderer.modelMat(model);
-		Shared<Camera> cam = getEntity().lock()->getMainCam().lock();
+		Shared<Camera> cam = Camera::main();
 		if (cam)
 		{
 			m_Renderer.projection(cam->getProjection());

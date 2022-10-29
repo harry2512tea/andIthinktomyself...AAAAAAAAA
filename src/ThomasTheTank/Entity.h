@@ -80,7 +80,7 @@ namespace ThomasTheTank
 		void getWindowSize(int *w, int*h);
 
 		Shared<Transform> getTransform() { return Transform; };
-		Weak<Camera> getMainCam();
+		//Weak<Camera> getMainCam();
 		std::string name;
 	private:
 		friend class Core;

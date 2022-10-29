@@ -23,11 +23,11 @@ namespace ThomasTheTank
 
 		Shared<Entity> addEntity();
 		void getWindowSize(int* w, int* h) { SDL_GetWindowSize(m_window, w, h); };
-		Weak<Camera> getMainCam() { return mainCam; };
-		void setMainCam(Shared<Camera> _cam) { mainCam = _cam; };
+		//Weak<Camera> getMainCam() { return mainCam; };
+		//void setMainCam(Shared<Camera> _cam) { mainCam = _cam; };
 	private:
 
-		Shared<Camera> mainCam;
+		//Shared<Camera> mainCam;
 		SDL_Window* m_window;
 		SDL_GLContext m_context;
 		std::list<Shared<Entity>> m_entities;
