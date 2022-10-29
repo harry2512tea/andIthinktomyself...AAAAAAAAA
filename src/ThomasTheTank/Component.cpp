@@ -13,7 +13,12 @@ namespace ThomasTheTank
 	void Component::onDisplay()
 	{
 	}
+
 	void Component::onInitialize()
+	{
+	}
+	
+	void Component::onDestroy()
 	{
 	}
 
@@ -30,5 +35,10 @@ namespace ThomasTheTank
 	void Component::initialize()
 	{
 		onInitialize();
+	}
+	
+	void Component::destroy()
+	{
+		onDestroy();
 	}
 }

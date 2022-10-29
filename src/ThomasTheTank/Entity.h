@@ -89,6 +89,7 @@ namespace ThomasTheTank
 		void tick();
 		void display();
 		void initialize();
+		void destroy();
 		std::list<Shared<Component>> m_components;
 		bool m_alive = true;
 		Weak<Core> m_core;

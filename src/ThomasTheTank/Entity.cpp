@@ -45,8 +45,11 @@ namespace ThomasTheTank
 		}
 	}
 
-	/*Weak<Camera> Entity::getMainCam()
+	void Entity::destroy()
 	{
-		return m_core.lock()->getMainCam();
-	}*/
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		{
+			(*it)->destroy();
+		}
+	}
 }

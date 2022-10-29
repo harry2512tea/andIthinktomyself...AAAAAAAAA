@@ -21,10 +21,12 @@ namespace ThomasTheTank
 		virtual void onTick();
 		virtual void onDisplay();
 		virtual void onInitialize();
+		virtual void onDestroy();
 
 		void initialize();
 		void tick();
 		void display();
+		void destroy();
 
 		Weak<Entity> m_Entity;
 		Weak<Component> m_self;

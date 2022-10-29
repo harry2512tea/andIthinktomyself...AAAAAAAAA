@@ -12,15 +12,33 @@ namespace ThomasTheTank
 		return mainCam;
 	}
 
-	Camera::~Camera()
+	/*Camera::~Camera()
 	{
 		Weak<Camera> cam = shared_from_this();
 		Camera::cameras.remove(cam);
+	}*/
+
+	void Camera::onDestroy()
+	{
+		Weak<Camera> cam = shared_from_this();
+		Camera::cameras.remove(cam);
+
+		if (Camera::mainCam == shared_from_this())
+		{
+			if (Camera::cameras.size() > 0)
+			{
+				Camera::mainCam = (*Camera::cameras.begin()).lock();
+			}
+			else
+			{
+				Camera::mainCam = nullptr;
+			}
+		}
 	}
 
 	void Camera::onInitialize()
 	{
-		if (cameras.size() < 1)
+		if (Camera::cameras.size() < 1)
 		{
 			setMainCam(shared_from_this());
 			Weak<Camera> cam = shared_from_this();

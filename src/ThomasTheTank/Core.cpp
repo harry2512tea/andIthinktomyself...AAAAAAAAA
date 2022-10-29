@@ -71,6 +71,7 @@ namespace ThomasTheTank
 			{
 				if (!(*it)->alive())
 				{
+					(*it)->destroy();
 					m_entities.erase(it);
 					--it;
 				}

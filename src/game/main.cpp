@@ -51,7 +51,7 @@ int main()
 	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
 
 	Shared<Camera> cam = e2->addComponent<Camera>();
-	//cam->setMainCam(cam);
+	cam->setMainCam(cam);
 
 	Shared<Player> p = e->getComponent<Player>();
 	std::cout << typeid(*p).name() << std::endl;
