@@ -1,13 +1,30 @@
 #include "Time.h"
+#include "Core.h"
+#include <SDL2/SDL.h>
 
-SceneTime* SceneTime::instance = nullptr;
-
-SceneTime* SceneTime::getInstance()
+namespace ThomasTheTank
 {
-	if (!instance)
+
+	float SceneTime::deltaTime = 0;
+
+	void SceneTime::initialize()
 	{
-		instance = new SceneTime();
+		lastTime = SDL_GetTicks();
 	}
 
-	return instance;
+	void SceneTime::tick()
+	{
+		float time = SDL_GetTicks();
+		float diff = time - lastTime;
+		deltaTime = diff / 1000.0f;
+		lastTime = time;
+
+		float idealTime = 1.0f / 65.0f;
+
+		if (idealTime > deltaTime)
+		{
+			SDL_Delay((idealTime - deltaTime) * 1000.0f);
+			deltaTime = idealTime;
+		}
+	}
 }

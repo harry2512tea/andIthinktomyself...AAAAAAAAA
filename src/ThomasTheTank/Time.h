@@ -1,13 +1,26 @@
+#ifndef THOMASTHETANK_TIME_H
+#define THOMASTHETANK_TIME_H
 
+#include <memory>
 
-class SceneTime
+#define Shared std::shared_ptr
+#define Weak std::weak_ptr
+
+namespace ThomasTheTank
 {
-public:
-	static SceneTime* getInstance();
-	void setDeltaTime(float value) { deltaTime = value; };
-	float GetDeltaTime() { return deltaTime; };
 
-private:
-	static SceneTime* instance;
-	float deltaTime;
-};
+	class SceneTime
+	{
+	public:
+		static float DeltaTime() { return deltaTime; };
+
+	private:
+		friend class Core;
+		void tick();
+		void initialize();
+		static float deltaTime;
+		float lastTime;
+		Weak<SceneTime> m_self;
+	};
+}
+#endif

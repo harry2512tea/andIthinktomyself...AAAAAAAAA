@@ -21,9 +21,9 @@ namespace ThomasTheTank
 	void Camera::onDestroy()
 	{
 		Weak<Camera> cam = shared_from_this();
-		Camera::cameras.remove(cam);
+		//Camera::cameras.remove(cam);
 
-		if (Camera::mainCam == shared_from_this())
+		/*if (Camera::mainCam == shared_from_this())
 		{
 			if (Camera::cameras.size() > 0)
 			{
@@ -33,7 +33,7 @@ namespace ThomasTheTank
 			{
 				Camera::mainCam = nullptr;
 			}
-		}
+		}*/
 	}
 
 	void Camera::onInitialize()
@@ -41,9 +41,9 @@ namespace ThomasTheTank
 		if (Camera::cameras.size() < 1)
 		{
 			setMainCam(shared_from_this());
-			Weak<Camera> cam = shared_from_this();
-			AddCam(cam);
 		}
+		Weak<Camera> cam = shared_from_this();
+		AddCam(cam);
 	}
 
 	mat4 Camera::getProjection()

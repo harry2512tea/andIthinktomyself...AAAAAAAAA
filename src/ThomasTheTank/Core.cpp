@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Components/Transform.h"
 #include "TriangleRenderer.h"
+#include "Time.h"
+
 #include <string>
 #include <iostream>
 #include <stdexcept>
@@ -16,7 +18,7 @@ namespace ThomasTheTank
 		Shared<Core> rtn = std::make_shared<Core>();
 		rtn->m_self = rtn;
 
-		rtn->m_window = SDL_CreateWindow("SDL2 Platform",
+		rtn->m_window = SDL_CreateWindow("Thomas The Tank (game) Engine",
 			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 			1280, 720, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 
@@ -27,6 +29,7 @@ namespace ThomasTheTank
 			throw std::runtime_error("Failed to create OpenGL context");
 		}
 
+
 		return rtn;
 	}
 
@@ -34,22 +37,33 @@ namespace ThomasTheTank
 	{
 		m_running = true;
 
+		environment = std::make_shared<SceneTime>();
+		environment->initialize();
+
 		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{
 			std::cout << (*it)->name << std::endl;
 			(*it)->initialize();
 		}
 
+		
+
 		while (m_running)
 		{
+
 			SDL_Event event = { 0 };
 			while (SDL_PollEvent(&event))
 			{
-				if (event.type == SDL_QUIT)
+				switch (event.type)
 				{
+				case SDL_QUIT:
 					m_running = false;
+					break;
 				}
+				
 			}
+
+			environment->tick();
 
 			rend::Renderer r(1920, 1080);
 			
