@@ -26,11 +26,36 @@ struct Test : Component
 {
 	void onTick()
 	{
-		getEntity().lock()->getTransform()->rotate(vec3(0.0f, 0.5f, 0.0f));
+		Shared<Input> input = std::make_shared<Input>();
+		Shared<Transform> trans = getEntity()->getTransform();
+		if (input->getKey(SDLK_w))
+		{
+			trans->translate(vec3(0.0f, 0.0f, 1.0f * SceneTime::DeltaTime()));
+		}
+		if (input->getKey(SDLK_s))
+		{
+			trans->translate(vec3(0.0f, 0.0f, -1.0f * SceneTime::DeltaTime()));
+		}
+		if (input->getKey(SDLK_d))
+		{
+			trans->translate(vec3(1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
+		}
+		if (input->getKey(SDLK_a))
+		{
+			trans->translate(vec3(-1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
+		}
+
+		
+		//trans->setPosition(vec3();
+
+		rotationSpeed += 0.1f;
 	}
 
 	void onDisplay()
 	{}
+
+private:
+	float rotationSpeed = 0.1f;
 };
 
 int main()
@@ -51,7 +76,7 @@ int main()
 	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
 
 	Shared<Camera> cam = e2->addComponent<Camera>();
-	//cam->setMainCam(cam);
+	e2->getTransform()->setPosition(vec3(0.0f, 0.0f, 5.0f));
 
 	Shared<Camera> cam2 = e->addComponent<Camera>();
 

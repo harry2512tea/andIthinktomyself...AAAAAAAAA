@@ -49,9 +49,9 @@ namespace ThomasTheTank
 	mat4 Camera::getProjection()
 	{
 		int w = 1920, h = 1080;
-		if (getEntity().lock())
+		if (getEntity())
 		{
-			getEntity().lock()->getWindowSize(&w, &h);
+			getEntity()->getWindowSize(&w, &h);
 		}
 		return perspective(radians(FOV), (float)w/ (float)h, nearClip, farClip);
 	}
@@ -59,7 +59,7 @@ namespace ThomasTheTank
 	mat4 Camera::getView()
 	{
 		glm::mat4 viewMat;
-		Shared<Transform> trans = getEntity().lock()->getTransform();
+		Shared<Transform> trans = getEntity()->getTransform();
 		viewMat = mat4_cast(-trans->getRotationQuat());
 		viewMat = translate(viewMat, -trans->getPosition());
 		return viewMat;

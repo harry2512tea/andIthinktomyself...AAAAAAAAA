@@ -32,7 +32,7 @@ namespace ThomasTheTank
 
 	void MeshRenderer::onDisplay()
 	{
-		mat4 model = getEntity().lock()->getTransform()->getModel();
+		mat4 model = getEntity()->getTransform()->getModel();
 		m_Renderer.modelMat(model);
 		Shared<Camera> cam = Camera::main();
 		if (cam)

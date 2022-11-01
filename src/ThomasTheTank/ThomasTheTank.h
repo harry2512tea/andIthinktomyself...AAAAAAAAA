@@ -4,6 +4,7 @@
 #include "Core.h"
 #include "Entity.h"
 #include "Time.h"
+#include "Input.h"
 
 #include "Wrapping/ThomasMath.h"
 

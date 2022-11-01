@@ -13,7 +13,7 @@ namespace ThomasTheTank
 	struct Component
 	{
 		void kill();
-		Weak<Entity> getEntity() { return m_Entity; };
+		Shared<Entity> getEntity() { return m_Entity.lock(); };
 
 	protected:
 		friend class Entity;

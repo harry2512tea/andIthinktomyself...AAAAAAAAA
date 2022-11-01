@@ -14,6 +14,8 @@ namespace ThomasTheTank
 
 	struct Camera;
 
+	struct Input;
+
 	class SceneTime;
 
 	class Core
@@ -27,7 +29,7 @@ namespace ThomasTheTank
 		void getWindowSize(int* w, int* h) { SDL_GetWindowSize(m_window, w, h); };
 
 	private:
-
+		Shared<Input> input;
 		SDL_Window* m_window;
 		SDL_GLContext m_context;
 		std::list<Shared<Entity>> m_entities;

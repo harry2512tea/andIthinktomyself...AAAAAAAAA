@@ -55,6 +55,8 @@ src/ThomasTheTank/TriangleRenderer.h
 src/ThomasTheTank/TriangleRenderer.cpp
 src/ThomasTheTank/Components/Camera.h
 src/ThomasTheTank/Components/Camera.cpp
+src/ThomasTheTank/Input.h
+src/ThomasTheTank/Input.cpp
 )
 
 target_link_libraries(ThomasTheTank

@@ -3,6 +3,7 @@
 #include "Components/Transform.h"
 #include "TriangleRenderer.h"
 #include "Time.h"
+#include "Input.h"
 
 #include <string>
 #include <iostream>
@@ -39,6 +40,7 @@ namespace ThomasTheTank
 
 		environment = std::make_shared<SceneTime>();
 		environment->initialize();
+		input = std::make_shared<Input>();
 
 		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{
@@ -46,10 +48,10 @@ namespace ThomasTheTank
 			(*it)->initialize();
 		}
 
-		
-
 		while (m_running)
 		{
+			input->keyDown.clear();
+			input->keyUp.clear();
 
 			SDL_Event event = { 0 };
 			while (SDL_PollEvent(&event))
@@ -59,8 +61,23 @@ namespace ThomasTheTank
 				case SDL_QUIT:
 					m_running = false;
 					break;
+				case SDL_KEYDOWN:
+					if (!input->getKey(event.key.keysym.sym))
+					{
+						std::cout << "keydown" << std::endl;
+						input->keyDown.push_back(event.key.keysym.sym);
+						input->keys.push_back(event.key.keysym.sym);
+					}
+					break;
+				case SDL_KEYUP:
+					if (input->getKey(event.key.keysym.sym))
+					{
+						std::cout << "keyup" << std::endl;
+						input->keys.remove(event.key.keysym.sym);
+						input->keyUp.push_back(event.key.keysym.sym);
+					}
+					break;
 				}
-				
 			}
 
 			environment->tick();
