@@ -30,21 +30,33 @@ struct Test : Component
 		Shared<Transform> trans = getEntity()->getTransform();
 		if (input->getKey(SDLK_w))
 		{
-			trans->translate(vec3(0.0f, 0.0f, 1.0f * SceneTime::DeltaTime()));
+			trans->translate(vec3(0.0f, 0.0f, -1.0f * SceneTime::DeltaTime()));
+			trans->setRotation(vec3(0.0f, 180.0f, 0.0f));
 		}
 		if (input->getKey(SDLK_s))
 		{
-			trans->translate(vec3(0.0f, 0.0f, -1.0f * SceneTime::DeltaTime()));
+			trans->translate(vec3(0.0f, 0.0f, 1.0f * SceneTime::DeltaTime()));
+			trans->setRotation(vec3(0.0f, 0.0f, 0.0f));
 		}
 		if (input->getKey(SDLK_d))
 		{
 			trans->translate(vec3(1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
+			trans->setRotation(vec3(0.0f, 90.0f, 0.0f));
 		}
 		if (input->getKey(SDLK_a))
 		{
 			trans->translate(vec3(-1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
+			trans->setRotation(vec3(0.0f, -90.0f, 0.0f));
 		}
-
+		if (input->getKey(SDLK_f))
+		{
+			trans->rotate(vec3(0.0f, 1.0f, 0.0f));
+		}
+		if (input->getKey(SDLK_g))
+		{
+			trans->rotate(vec3(0.0f, rotationSpeed, 0.0f));
+			rotationSpeed += 0.5f;
+		}
 		
 		//trans->setPosition(vec3();
 
