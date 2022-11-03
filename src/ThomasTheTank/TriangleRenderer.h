@@ -9,10 +9,10 @@ namespace ThomasTheTank
 		TriangleRenderer();
 		
 	private:
-		rend::ModelRenderer m_Renderer;
-		rend::Model m_Mesh;
+
+		rend::Mesh m_Mesh;
 		rend::Shader m_Shader;
-		rend::Texture m_Texture;
+		rend::Renderer m_Renderer;
 		void onInitialize();
 		void onDisplay();
 	};

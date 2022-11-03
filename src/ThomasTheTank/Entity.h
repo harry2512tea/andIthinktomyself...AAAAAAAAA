@@ -3,9 +3,6 @@
 #include <stdexcept>
 #include <string>
 
-
-
-
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
 

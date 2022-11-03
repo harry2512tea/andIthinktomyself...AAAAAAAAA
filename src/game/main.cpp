@@ -28,7 +28,7 @@ struct Test : Component
 	{
 		Shared<Input> input = std::make_shared<Input>();
 		Shared<Transform> trans = getEntity()->getTransform();
-		if (input->getKey(SDLK_w))
+		if (input->getKey(Keys::W))
 		{
 			trans->translate(vec3(0.0f, 0.0f, -1.0f * SceneTime::DeltaTime()));
 			trans->setRotation(vec3(0.0f, 180.0f, 0.0f));
@@ -82,13 +82,14 @@ int main()
 
 	e->addComponent<Player>();
 	e->addComponent<Test>();
+	//e->addComponent<TriangleRenderer>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
 	curuthers->SetModel("../data/curuthers/curuthers.obj");
 	curuthers->SetTexture("../data/curuthers/Whiskers_diffuse.jpg");
 	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
 
 	Shared<Camera> cam = e2->addComponent<Camera>();
-	e2->getTransform()->setPosition(vec3(0.0f, 0.0f, 5.0f));
+	//e2->getTransform()->setPosition(vec3(0.0f, 0.0f, 5.0f));
 
 	Shared<Camera> cam2 = e->addComponent<Camera>();
 

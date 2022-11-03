@@ -81,14 +81,13 @@ namespace ThomasTheTank
 			}
 
 			environment->tick();
-
-			rend::Renderer r(1920, 1080);
 			
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
 				(*it)->tick();
 			}
 
+			rend::Renderer r(1920, 1080);
 			r.clear();
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)

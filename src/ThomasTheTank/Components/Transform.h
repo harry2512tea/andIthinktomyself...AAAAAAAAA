@@ -6,6 +6,9 @@
 
 namespace ThomasTheTank
 {
+	/**
+	* Component containing information about the state of the entity
+	*/
 	struct Transform : Component
 	{
 	public:
@@ -27,8 +30,8 @@ namespace ThomasTheTank
 		quat generateRotQuat(vec3 _rotation);
 		void onTick();
 
-		vec3 position = vec3(0.0f);
-		vec3 rotation = vec3(0.0f);
+		vec3 position = vec3(0.0f); ///< X, Y, Z location of the Entity
+		vec3 rotation = vec3(0.0f); ///
 		vec3 scale = vec3(1.0f);
 		quat rotationQuat = quat();
 

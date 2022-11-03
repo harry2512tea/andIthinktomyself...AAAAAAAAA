@@ -28,6 +28,8 @@ namespace ThomasTheTank
 		void display();
 		void destroy();
 
+		bool m_alive = true;
+
 		Weak<Entity> m_Entity;
 		Weak<Component> m_self;
 	};

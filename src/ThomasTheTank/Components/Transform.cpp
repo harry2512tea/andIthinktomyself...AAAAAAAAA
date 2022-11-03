@@ -6,18 +6,14 @@ namespace ThomasTheTank
 	void Transform::onTick()
 	{
 		rotation = checkRoationValues(rotation);
-		//rotate(vec3(0.0f, rotationSpeed, 0.0f));
-		//rotationSpeed += 0.1f;
-		//position = vec3(0.0f, 0.0f, 10.0f);
-		//scale = vec3(1.0f, 1.0f, 1.0f);
 	}
 
 
 	quat Transform::generateRotQuat(vec3 _rotation)
 	{
-		glm::quat x = glm::angleAxis(radians(_rotation.x), vec3(1.0f, 0.0f, 0.0f));
-		glm::quat y = glm::angleAxis(radians(_rotation.y), vec3(0.0f, 1.0f, 0.0f));
-		glm::quat z = glm::angleAxis(radians(_rotation.z), vec3(0.0f, 0.0f, 1.0f));
+		quat x = glm::angleAxis(radians(_rotation.x), vec3(1.0f, 0.0f, 0.0f));
+		quat y = glm::angleAxis(radians(_rotation.y), vec3(0.0f, 1.0f, 0.0f));
+		quat z = glm::angleAxis(radians(_rotation.z), vec3(0.0f, 0.0f, 1.0f));
 	
 		return x * y * z;
 	}
@@ -34,13 +30,13 @@ namespace ThomasTheTank
 
 	mat4 Transform::getModel()
 	{
-		glm::mat4 rotationMat = glm::mat4(1.0f);
-		glm::mat4 translationMat = glm::mat4(1.0f);
-		glm::mat4 scaleMat = glm::mat4(1.0f);
+		mat4 rotationMat = mat4(1.0f);
+		mat4 translationMat = mat4(1.0f);
+		mat4 scaleMat = mat4(1.0f);
 
 
 		translationMat = glm::translate(translationMat, position);
-		rotationMat = glm::mat4_cast(rotationQuat);
+		rotationMat = mat4_cast(rotationQuat);
 		scaleMat = glm::scale(scaleMat, scale);
 		
 		return translationMat * rotationMat * scaleMat;

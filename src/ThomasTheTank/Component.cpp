@@ -4,6 +4,9 @@ namespace ThomasTheTank
 {
 	void Component::kill()
 	{
+		if (!m_alive) return;
+
+		m_alive = false;
 	}
 
 	void Component::onTick()
