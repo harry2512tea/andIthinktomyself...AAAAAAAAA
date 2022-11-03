@@ -4,16 +4,19 @@
 
 namespace ThomasTheTank
 {
+	/**
+	* Render black 2D triangle.
+	*/
 	struct TriangleRenderer : Component
 	{
-		TriangleRenderer();
+		TriangleRenderer(); ///< Constructor for the component.
 		
 	private:
 
-		rend::Mesh m_Mesh;
-		rend::Shader m_Shader;
-		rend::Renderer m_Renderer;
-		void onInitialize();
-		void onDisplay();
+		rend::Mesh m_Mesh; ///< Mesh to render.
+		rend::Shader m_Shader; ///< Shader to use.
+		rend::Renderer m_Renderer; ///< Renderer to use.
+		void onInitialize(); ///< Function called on creation of the component.
+		void onDisplay(); ///< Function called on every display tick of the program.
 	};
 }

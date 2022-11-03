@@ -9,18 +9,26 @@
 namespace ThomasTheTank
 {
 
+	/**
+	* Environment manager class.
+	*/
 	class SceneTime
 	{
 	public:
-		static float DeltaTime() { return deltaTime; };
+		/**
+		* Get the time between the current frame and the last frame.
+		* 
+		* \return deltaTime time between frames.
+		*/
+		static float DeltaTime() { return deltaTime; }; 
 
 	private:
 		friend class Core;
-		void tick();
-		void initialize();
-		static float deltaTime;
-		float lastTime;
-		Weak<SceneTime> m_self;
+		void tick(); ///< Function called on program tick.
+		void initialize(); ///< Function called on creation of the class.
+		static float deltaTime; ///< stored value of the time between frames.
+		float lastTime; ///< the last time the tick function was called.
+		Weak<SceneTime> m_self; ///< pointer to self.
 	};
 }
 #endif

@@ -16,10 +16,19 @@ namespace ThomasTheTank
 	struct Transform;
 
 	struct Camera;
-
+	/**
+	* Main entity class.
+	*/
 	class Entity
 	{
 	public:
+		/**
+		* Add a component to the entity.
+		* 
+		* \param T Component class type.
+		* 
+		* \return Pointer to the new component.
+		*/
 		template<typename T>
 		Shared<T> addComponent()
 		{
@@ -31,6 +40,13 @@ namespace ThomasTheTank
 			return rtn;
 		}
 
+		/**
+		* Get a component attached to the entity.
+		* 
+		* \param T Component class type.
+		* 
+		* \return Pointer to the attached Component.
+		*/
 		template<typename T>
 		Shared<T> getComponent()
 		{
@@ -47,6 +63,13 @@ namespace ThomasTheTank
 			throw std::runtime_error("Component doesn't exist");
 		}
 
+		/**
+		* Get all components attached to the entity.
+		*
+		* \param T Component class type.
+		*
+		* \return list of pointers to the attached components.
+		*/
 		template<typename T>
 		std::list<Shared<T>> getComponents()
 		{
@@ -72,24 +95,41 @@ namespace ThomasTheTank
 		}
 
 
-		void kill();
+		void kill(); ///< Function to destroy the entity.
+
+		/**
+		* Get the current state of the entity.
+		* 
+		* \return bool of the current state of the entity.
+		*/
 		bool alive() { return m_alive; };
+
+		/**
+		* Get size of the window.
+		*
+		* \param w pointer to output variable for width.
+		* \param h pointer to output variable for height.
+		*/
 		void getWindowSize(int *w, int*h);
 
+		/**
+		* Get the transform of the entity.
+		*
+		* \return Pointer to the entity's transform component.
+		*/
 		Shared<Transform> getTransform() { return Transform; };
-		//Weak<Camera> getMainCam();
-		std::string name;
+		std::string name; ///< Name of the entity.
 	private:
 		friend class Core;
 
-		Shared<Transform> Transform;
-		void tick();
-		void display();
-		void initialize();
-		void destroy();
-		std::list<Shared<Component>> m_components;
-		bool m_alive = true;
-		Weak<Core> m_core;
-		Weak<Entity> m_self;
+		Shared<Transform> Transform; ///< Pointer to transform component.
+		void initialize(); ///< Function called to trigger onInitialize.
+		void tick(); ///< Function called to trigger onTick.
+		void display(); ///< Function called to trigger onDisplay. 
+		void destroy(); ///< Function called to trigger onDestroy.
+		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
+		bool m_alive = true; ///< Current state of the entity.
+		Weak<Core> m_core; ///< Pointer to the core class.
+		Weak<Entity> m_self; ///< Pointer to self.
 	};
 }
