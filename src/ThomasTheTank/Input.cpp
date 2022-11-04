@@ -10,13 +10,13 @@ namespace ThomasTheTank
 	std::list<int> Input::buttons = {};
 	std::list<int> Input::buttonDown = {};
 	std::list<int> Input::buttonUp = {};
-	vec3 Input::mousePos = vec3(0.0f);
-	vec2 Input::mouseInp = vec2(0.0f);
+	vect3 Input::mousePos = vect3(0, 0, 0);
+	vect2 Input::mouseInp = vect2(0, 0);
 
 
 	bool Input::getKeyDown(SDL_Keycode code)
 	{
-		for (auto it = Input::keys.begin(); it != keys.end(); it++)
+		for (auto it = Input::keyDown.begin(); it != keyDown.end(); it++)
 		{
 			if ((*it) == code)
 			{
@@ -30,7 +30,7 @@ namespace ThomasTheTank
 
 	bool Input::getKeyUp(SDL_Keycode code)
 	{
-		for (auto it = keys.begin(); it != keys.end(); it++)
+		for (auto it = keyUp.begin(); it != keyUp.end(); it++)
 		{
 			if ((*it) == code)
 			{
@@ -48,23 +48,45 @@ namespace ThomasTheTank
 		{
 			if ((*it) == code)
 			{
-				//std::cout << "true" << std::endl;
 				return true;
 			}
 		}
-		//std::cout << "false" << std::endl;
 		return false;
 	}
+
 	bool Input::getButton(int _button)
 	{
+		for (auto it = Input::buttons.begin(); it != Input::buttons.end(); it++)
+		{
+			if ((*it) == _button)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
+
 	bool Input::getButtonDown(int _button)
 	{
+		for (auto it = Input::buttonDown.begin(); it != Input::buttonDown.end(); it++)
+		{
+			if ((*it) == _button)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
+
 	bool Input::getButtonUp(int _button)
 	{
+		for (auto it = Input::buttonUp.begin(); it != Input::buttonUp.end(); it++)
+		{
+			if ((*it) == _button)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 }
