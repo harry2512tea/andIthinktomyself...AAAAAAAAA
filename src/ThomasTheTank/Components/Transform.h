@@ -15,70 +15,70 @@ namespace ThomasTheTank
 		/**
 		* Set the position.
 		* 
-		* \param pos The new position.
+		* \param VEC3 pos The new position.
 		*/
 		void setPosition(vec3 pos) { position = pos; };
 
 		/**
 		* Set the rotation.
 		*
-		* \param rot The new rotation.
+		* \param VEC3 rot The new rotation.
 		*/
 		void setRotation(vec3 rot);
 
 		/**
 		* Set the scale.
 		*
-		* \param _scale The new scale.
+		* \param VEC3 _scale The new scale.
 		*/
 		void setScale(vec3 _scale) { scale = _scale; };
 
 		/**
 		* Rotate the object.
 		* 
-		* \param rot How far to rotate the object.
+		* \param VEC3 rot How far to rotate the object.
 		*/
 		void rotate(vec3 rot);
 
 		/**
 		* Translate the object.
 		*
-		* \param translation How far to translate the object.
+		* \param VEC3 translation How far to translate the object.
 		*/
 		void translate(vec3 translation) { position += translation; };
 
 		/**
 		* Get the position.
 		* 
-		* \return The position of the object.
+		* \return VEC3 The position of the object.
 		*/
 		vec3 getPosition() { return position; };
 
 		/**
 		* Get the rotation.
 		*
-		* \return The rotation of the object.
+		* \return VEC3 The rotation of the object.
 		*/
 		vec3 getRotation() { return rotation; };
 
 		/**
 		* Get the quaternion for the object's rotation.
 		*
-		* \return The rotation quaternion of the object.
+		* \return QUAT The rotation quaternion of the object.
 		*/
 		quat getRotationQuat() { return rotationQuat; };
 
 		/**
 		* Get the scale.
 		*
-		* \return The scale of the object.
+		* \return VEC3 The scale of the object.
 		*/
 		vec3 getScale() { return scale; };
 
 		/**
 		* Generate the model matrix based on the position, rotation and scale.
 		* 
-		* \return The generated model matrix.
+		* \return MAT4 The generated model matrix.
 		*/
 		mat4 getModel();
 

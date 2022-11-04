@@ -21,14 +21,14 @@ namespace ThomasTheTank
 		/**
 		* Set the texture to use for rendering.
 		* 
-		* \param _path Path to texture file.
+		* \param STRING _path Path to texture file.
 		*/
 		void SetTexture(std::string _path);
 
 		/**
 		* Set the model to use for rendering.
 		*
-		* \param _path Path to model file.
+		* \param STRING _path Path to model file.
 		*/
 		void SetModel(std::string _path);
 	private:

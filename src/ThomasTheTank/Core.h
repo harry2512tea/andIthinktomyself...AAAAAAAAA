@@ -10,6 +10,9 @@
 
 namespace ThomasTheTank
 {
+	/** \mainpage notitle
+	* The official documentation regarding the ThomasTheTank game engine.
+	*/
 	class Entity;
 
 	struct Camera;
@@ -42,12 +45,14 @@ namespace ThomasTheTank
 		/**
 		* Get size of the window.
 		* 
-		* \param w pointer to output variable for width.
-		* \param h pointer to output variable for height.
+		* \param INT w Pointer to output variable for width.
+		* \param INT h Pointer to output variable for height.
 		*/
 		void getWindowSize(int* w, int* h) { SDL_GetWindowSize(m_window, w, h); };
 
 	private:
+		void eventManager();
+
 		Shared<Input> input; ///< Pointer to the input manager class.
 		SDL_Window* m_window; ///< The window of the program
 		SDL_GLContext m_context; ///< OpenGL context

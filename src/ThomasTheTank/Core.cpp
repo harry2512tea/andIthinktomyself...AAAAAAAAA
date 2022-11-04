@@ -50,35 +50,8 @@ namespace ThomasTheTank
 
 		while (m_running)
 		{
-			input->keyDown.clear();
-			input->keyUp.clear();
 
-			SDL_Event event = { 0 };
-			while (SDL_PollEvent(&event))
-			{
-				switch (event.type)
-				{
-				case SDL_QUIT:
-					m_running = false;
-					break;
-				case SDL_KEYDOWN:
-					if (!input->getKey(event.key.keysym.sym))
-					{
-						std::cout << "keydown" << std::endl;
-						input->keyDown.push_back(event.key.keysym.sym);
-						input->keys.push_back(event.key.keysym.sym);
-					}
-					break;
-				case SDL_KEYUP:
-					if (input->getKey(event.key.keysym.sym))
-					{
-						std::cout << "keyup" << std::endl;
-						input->keys.remove(event.key.keysym.sym);
-						input->keyUp.push_back(event.key.keysym.sym);
-					}
-					break;
-				}
-			}
+			eventManager();
 
 			environment->tick();
 			
@@ -129,5 +102,72 @@ namespace ThomasTheTank
 		return rtn;
 	}
 
-	
+	void Core::eventManager()
+	{
+		/*
+		* LMB = 1
+		* MMB = 3
+		* RMB = 2
+		* BACK = 4
+		* FORWARD = 5
+		*/
+		input->keyDown.clear();
+		input->keyUp.clear();
+		input->buttonDown.clear();
+		input->buttonUp.clear();
+
+		SDL_GetRelativeMouseState((int*)& input->mouseInp.x, (int*)&input->mouseInp.y);
+		SDL_GetMouseState((int*)&input->mousePos.x, (int*)&input->mousePos.y);
+
+		SDL_Event event = { 0 };
+		while (SDL_PollEvent(&event))
+		{
+			int button;
+			switch (event.type)
+			{
+			case SDL_QUIT:
+				m_running = false;
+				break;
+
+			case SDL_KEYDOWN:
+				if (!input->getKey(event.key.keysym.sym))
+				{
+					std::cout << "keydown" << std::endl;
+					input->keyDown.push_back(event.key.keysym.sym);
+					input->keys.push_back(event.key.keysym.sym);
+				}
+				break;
+
+			case SDL_KEYUP:
+				if (input->getKey(event.key.keysym.sym))
+				{
+					std::cout << "keyup" << std::endl;
+					input->keys.remove(event.key.keysym.sym);
+					input->keyUp.push_back(event.key.keysym.sym);
+				}
+				break;
+
+			case SDL_MOUSEBUTTONDOWN:
+				button = (int)event.button.button;
+				std::cout << event.button.button << std::endl;
+				if (input->getButton(button))
+				{
+					std::cout << event.button.button << std::endl;
+					input->buttons.push_back(button);
+					input->buttonDown.push_back(button);
+				}
+				break;
+
+			case SDL_MOUSEBUTTONUP:
+				button = (int)event.button.button;
+				if (input->getButton(button))
+				{
+					std::cout << "mouseButtonUp" << std::endl;
+					input->buttons.remove(button);
+					input->buttonUp.push_back(button);
+				}
+				break;
+			}
+		}
+	}
 }

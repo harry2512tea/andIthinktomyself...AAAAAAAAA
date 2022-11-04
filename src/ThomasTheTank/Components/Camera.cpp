@@ -12,11 +12,7 @@ namespace ThomasTheTank
 		return mainCam;
 	}
 
-	/*Camera::~Camera()
-	{
-		Weak<Camera> cam = shared_from_this();
-		Camera::cameras.remove(cam);
-	}*/
+
 
 	void Camera::onDestroy()
 	{

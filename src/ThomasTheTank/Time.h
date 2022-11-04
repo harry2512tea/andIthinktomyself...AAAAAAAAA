@@ -18,7 +18,7 @@ namespace ThomasTheTank
 		/**
 		* Get the time between the current frame and the last frame.
 		* 
-		* \return deltaTime time between frames.
+		* \return FLOAT deltaTime time between frames.
 		*/
 		static float DeltaTime() { return deltaTime; }; 
 

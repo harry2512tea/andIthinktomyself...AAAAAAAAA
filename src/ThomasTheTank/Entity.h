@@ -68,7 +68,7 @@ namespace ThomasTheTank
 		*
 		* \param T Component class type.
 		*
-		* \return list of pointers to the attached components.
+		* \return List of pointers to the attached components.
 		*/
 		template<typename T>
 		std::list<Shared<T>> getComponents()
@@ -100,15 +100,15 @@ namespace ThomasTheTank
 		/**
 		* Get the current state of the entity.
 		* 
-		* \return bool of the current state of the entity.
+		* \return BOOL Current state of the entity.
 		*/
 		bool alive() { return m_alive; };
 
 		/**
 		* Get size of the window.
 		*
-		* \param w pointer to output variable for width.
-		* \param h pointer to output variable for height.
+		* \param INT w Pointer to output variable for width.
+		* \param INT h Pointer to output variable for height.
 		*/
 		void getWindowSize(int *w, int*h);
 
