@@ -57,6 +57,8 @@ src/ThomasTheTank/Components/Camera.h
 src/ThomasTheTank/Components/Camera.cpp
 src/ThomasTheTank/Input.h
 src/ThomasTheTank/Input.cpp
+src/ThomasTheTank/Cursor.h
+src/ThomasTheTank/Cursor.cpp
 )
 
 target_link_libraries(ThomasTheTank

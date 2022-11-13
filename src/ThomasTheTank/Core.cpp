@@ -4,6 +4,7 @@
 #include "TriangleRenderer.h"
 #include "Time.h"
 #include "Input.h"
+#include "Cursor.h"
 
 #include <string>
 #include <iostream>
@@ -104,6 +105,9 @@ namespace ThomasTheTank
 
 	void Core::eventManager()
 	{
+		int x, y;
+		getWindowSize(&x, &y);
+
 		/*
 		* LMB = 1
 		* MMB = 3
@@ -116,8 +120,13 @@ namespace ThomasTheTank
 		input->buttonDown.clear();
 		input->buttonUp.clear();
 
-		SDL_GetRelativeMouseState((int*)& input->mouseInp.x, (int*)&input->mouseInp.y);
-		SDL_GetMouseState((int*)&input->mousePos.x, (int*)&input->mousePos.y);
+		//SDL_GetRelativeMouseState(& input->mouseInp.x, &input->mouseInp.y);
+		//SDL_GetMouseState(&input->mousePos.x, &input->mousePos.y);
+
+		input->mouseInp.x = 0;
+		input->mouseInp.y = 0;
+
+		//std::cout << input->mouseInp.x << " " << input->mouseInp.y << std::endl;
 
 		SDL_Event event = { 0 };
 		while (SDL_PollEvent(&event))
@@ -167,6 +176,38 @@ namespace ThomasTheTank
 					input->buttonUp.push_back(button);
 				}
 				break;
+
+			case SDL_MOUSEMOTION:
+				
+				input->mousePos.x = event.motion.x;
+				input->mousePos.y = event.motion.y;
+
+				input->mouseInp.x += event.motion.xrel;
+				input->mouseInp.y += event.motion.yrel;
+				break;
+			}
+		}
+
+		if (Cursor::lockState == Locked)
+		{
+			SDL_WarpMouseInWindow(m_window, x / 2, y / 2);
+			if (SDL_GetRelativeMouseMode)
+			{
+				SDL_SetRelativeMouseMode(SDL_FALSE);
+			}
+		}
+		else if (Cursor::lockState == Confined)
+		{
+			if (!SDL_GetRelativeMouseMode)
+			{
+				SDL_SetRelativeMouseMode(SDL_TRUE);
+			}
+		}
+		else if (Cursor::lockState == None)
+		{
+			if (SDL_GetRelativeMouseMode)
+			{
+				SDL_SetRelativeMouseMode(SDL_FALSE);
 			}
 		}
 	}

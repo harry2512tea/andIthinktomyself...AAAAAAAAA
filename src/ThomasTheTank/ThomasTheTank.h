@@ -5,10 +5,9 @@
 #include "Entity.h"
 #include "Time.h"
 #include "Input.h"
+#include "Cursor.h"
 
 #include "Wrapping/ThomasMath.h"
-
-
 
 //components
 #include "Component.h"

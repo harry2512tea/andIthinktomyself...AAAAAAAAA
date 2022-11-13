@@ -36,9 +36,9 @@ namespace ThomasTheTank
 		void onDisplay(); ///< Function called on the render tick of the program.
 
 		rend::Model m_Model; ///< Model to render.
-		rend::ModelRenderer m_Renderer; ///< Renderer to use.
 		rend::Shader m_Shader; ///< Shader to use.
 		rend::Texture m_Texture; ///< Texture to use.
+		rend::ModelRenderer m_Renderer; ///< Renderer to use.
 	};
 }
 
