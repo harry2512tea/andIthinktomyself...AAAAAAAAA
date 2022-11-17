@@ -64,6 +64,7 @@ src/ThomasTheTank/Cursor.cpp
 target_link_libraries(ThomasTheTank
 SDL2
 rend
+reactphysics3d
 )
 
 add_executable(game
