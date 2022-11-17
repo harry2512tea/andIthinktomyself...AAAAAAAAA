@@ -15,7 +15,7 @@ struct Player : Component
 		Shared<Transform> trans = getEntity()->getTransform();
 		if (input->getKey(Keys::W))
 		{
-			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 200.0f * trans->getRotationQuat())*SceneTime::DeltaTime())));
+			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 20.0f * trans->getRotationQuat())*SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::S))
 		{

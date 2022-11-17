@@ -99,7 +99,7 @@ namespace ThomasTheTank
 
 		if (loop && state != AL_PLAYING)
 		{
-			Play();
+			//Play();
 		}
 	}
 

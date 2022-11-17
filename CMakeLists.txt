@@ -50,8 +50,8 @@ src/ThomasTheTank/Components/MeshRenderer.h
 src/ThomasTheTank/Components/MeshRenderer.cpp
 src/ThomasTheTank/Components/AudioSource.h
 src/ThomasTheTank/Components/AudioSource.cpp
-src/ThomasTheTank/Components/AudioListener.h
-src/ThomasTheTank/Components/AudioListener.cpp
+src/ThomasTheTank/Components/Resource.h
+src/ThomasTheTank/Components/Resource.cpp
 src/ThomasTheTank/Wrapping/ThomasMath.h
 src/ThomasTheTank/Time.h
 src/ThomasTheTank/Time.cpp
@@ -68,7 +68,6 @@ src/ThomasTheTank/Cursor.cpp
 target_link_libraries(ThomasTheTank
 SDL2
 rend
-reactphysics3d
 OpenAL32
 )
 
