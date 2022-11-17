@@ -4,6 +4,8 @@
 #include <list>
 #include <GL/glew.h>
 #include <rend/rend.h>
+#include <AL/al.h>
+#include <AL/alc.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -52,6 +54,9 @@ namespace ThomasTheTank
 
 	private:
 		void eventManager();
+
+		ALCdevice* device;
+		ALCcontext* context;
 
 		Shared<Input> input; ///< Pointer to the input manager class.
 		SDL_Window* m_window; ///< The window of the program

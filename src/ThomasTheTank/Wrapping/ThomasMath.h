@@ -7,7 +7,7 @@
 namespace ThomasTheTank
 {
 	using namespace glm;
-	using namespace reactphysics3d;
+	//using namespace reactphysics3d;
 }
 
 #endif

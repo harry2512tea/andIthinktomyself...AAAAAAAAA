@@ -5,6 +5,7 @@
 #include "Time.h"
 #include "Input.h"
 #include "Cursor.h"
+#include "Components/Camera.h"
 
 #include <string>
 #include <iostream>
@@ -31,6 +32,29 @@ namespace ThomasTheTank
 			throw std::runtime_error("Failed to create OpenGL context");
 		}
 
+		rtn->device = alcOpenDevice(NULL);
+
+		if (!rtn->device)
+		{
+			throw std::runtime_error("Failed to open audio device");
+		}
+
+		rtn->context = alcCreateContext(rtn->device, NULL);
+
+		if (!rtn->context)
+		{
+			alcCloseDevice(rtn->device);
+			throw std::runtime_error("Failed to create audio context");
+		}
+
+		if (!alcMakeContextCurrent(rtn->context))
+		{
+			alcDestroyContext(rtn->context);
+			alcCloseDevice(rtn->device);
+			throw std::runtime_error("Failed to make context current");
+		}
+
+		
 
 		return rtn;
 	}
@@ -55,7 +79,10 @@ namespace ThomasTheTank
 			eventManager();
 
 			environment->tick();
-			
+			vec3 temp = Camera::main()->getEntity()->getTransform()->getPosition();
+			std::cout << temp.x << " " << temp.y << " " << temp.z << std::endl;
+			alListener3f(AL_POSITION, temp.x, temp.y, temp.z); 
+
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
 				(*it)->tick();

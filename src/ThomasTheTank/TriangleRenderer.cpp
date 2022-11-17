@@ -18,7 +18,7 @@ namespace ThomasTheTank
 
 	void TriangleRenderer::onDisplay()
 	{
-		//mat4 model = m_Entity.lock()->getTransform()->getModel();
+		mat4 model = m_Entity.lock()->getTransform()->getModel();
 		//m_Renderer.depthTest(true);
 		m_Renderer.shader(&m_Shader);
 		m_Renderer.mesh(&m_Mesh);

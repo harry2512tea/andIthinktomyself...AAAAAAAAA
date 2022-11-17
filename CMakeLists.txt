@@ -48,6 +48,10 @@ src/ThomasTheTank/Components/Transform.h
 src/ThomasTheTank/Components/Transform.cpp
 src/ThomasTheTank/Components/MeshRenderer.h
 src/ThomasTheTank/Components/MeshRenderer.cpp
+src/ThomasTheTank/Components/AudioSource.h
+src/ThomasTheTank/Components/AudioSource.cpp
+src/ThomasTheTank/Components/AudioListener.h
+src/ThomasTheTank/Components/AudioListener.cpp
 src/ThomasTheTank/Wrapping/ThomasMath.h
 src/ThomasTheTank/Time.h
 src/ThomasTheTank/Time.cpp
@@ -65,6 +69,7 @@ target_link_libraries(ThomasTheTank
 SDL2
 rend
 reactphysics3d
+OpenAL32
 )
 
 add_executable(game
