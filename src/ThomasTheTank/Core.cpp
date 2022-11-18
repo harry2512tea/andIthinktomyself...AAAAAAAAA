@@ -80,7 +80,7 @@ namespace ThomasTheTank
 
 			environment->tick();
 			vec3 temp = Camera::main()->getEntity()->getTransform()->getPosition();
-			std::cout << temp.x << " " << temp.y << " " << temp.z << std::endl;
+			//std::cout << temp.x << " " << temp.y << " " << temp.z << std::endl;
 			alListener3f(AL_POSITION, temp.x, temp.y, temp.z); 
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
