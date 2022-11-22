@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include "../Entity.h"
 #include "Transform.h"
+#include "Camera.h"
 #include <iostream>
 
 #include "stb_vorbis.c"
@@ -89,17 +90,29 @@ namespace ThomasTheTank
 	void AudioSource::onTick()
 	{
 		vec3 temp = getEntity()->getTransform()->getPosition();
+		vec3 tempListener = Camera::main()->getEntity()->getTransform()->getPosition();
+
+		float vol = 1 / distance(temp, tempListener) * m_volume;
+		if (vol < 0.001f)
+		{
+			alSourcef(m_sourceId, AL_GAIN, 0.0f);
+		}
+		else
+		{
+			alSourcef(m_sourceId, AL_GAIN, 1.0f);
+		}
+
 		//std::cout << temp.x << " " << temp.y << " " << temp.z << std::endl;
 		alSource3f(m_sourceId, AL_POSITION, temp.x, temp.y, temp.z);
 		alSourcef(m_sourceId, AL_PITCH, 2);
-		//alSourcef(sourceId, AL_GAIN, vol);
+		//alSourcef(m_sourceId, AL_GAIN, vol);
 
 		int state = 0;
 		alGetSourcei(m_sourceId, AL_SOURCE_STATE, &state);
 
 		if (loop && state != AL_PLAYING)
 		{
-			//Play();
+			Play();
 		}
 	}
 

@@ -24,6 +24,7 @@ namespace ThomasTheTank
 		bool loop = true;
 		ALenum m_format;
 		ALsizei m_freq;
+		ALint m_volume = 1.0f;
 		ALuint m_bufferId;
 		ALuint m_sourceId;
 	};
