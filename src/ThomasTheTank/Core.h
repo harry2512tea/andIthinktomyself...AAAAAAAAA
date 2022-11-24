@@ -48,6 +48,7 @@ namespace ThomasTheTank
 		* \return Pointer to the new entity.
 		*/
 		Shared<Entity> addEntity();
+		Shared<Physics> getPhysics() { return m_Physics; };
 		/**
 		* Get size of the window.
 		* 
@@ -62,7 +63,7 @@ namespace ThomasTheTank
 		ALCdevice* device;
 		ALCcontext* context;
 
-		Physics m_Physics;
+		Shared<Physics> m_Physics;
 
 		Shared<Input> input; ///< Pointer to the input manager struct.
 		SDL_Window* m_window; ///< The window of the program

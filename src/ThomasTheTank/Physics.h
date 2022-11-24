@@ -8,6 +8,7 @@ namespace ThomasTheTank
 	{
 		Physics();
 		Shared<btDiscreteDynamicsWorld> getPhysics() { return dynamicsWorld; };
+		void addCollider(Shared<btCollisionShape> _shape);
 	private:
 		btDefaultCollisionConfiguration collisionConfiguration;
 		btCollisionDispatcher dispatcher;
@@ -15,6 +16,6 @@ namespace ThomasTheTank
 		btSequentialImpulseConstraintSolver solver;
 		Shared<btDiscreteDynamicsWorld> dynamicsWorld;
 
-		btAlignedObjectArray<btCollisionShape*> collisionShapes;
+		btAlignedObjectArray<Shared<btCollisionShape>> collisionShapes;
 	};
 }

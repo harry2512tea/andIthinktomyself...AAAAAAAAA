@@ -8,4 +8,9 @@ namespace ThomasTheTank
 	{
 
 	}
+
+	void Physics::addCollider(Shared<btCollisionShape> _shape)
+	{
+		collisionShapes.push_back(_shape);
+	}
 }

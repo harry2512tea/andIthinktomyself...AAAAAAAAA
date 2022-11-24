@@ -71,6 +71,7 @@ namespace ThomasTheTank
 
 		//rtn->dynamicsWorld->setGravity(btVector3(0.0f, -9.81f, 0.0f));
 
+		rtn->m_Physics = std::make_shared<Physics>();
 		return rtn;
 	}
 
