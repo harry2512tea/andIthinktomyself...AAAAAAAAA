@@ -8,10 +8,12 @@
 
 namespace ThomasTheTank
 {
-	class Entity;
+	struct Entity;
+
+	struct Core;
 
 	/**
-	* Base class inherited by all components
+	* Base struct inherited by all components
 	*/
 	struct Component
 	{
@@ -25,7 +27,7 @@ namespace ThomasTheTank
 		Shared<Entity> getEntity() { return m_Entity.lock(); };
 
 	private:
-		friend class Entity;
+		friend struct Entity;
 
 		virtual void onTick(); ///< Overwriteable funciton called on every tick of the program
 		virtual void onDisplay(); ///< Overwriteable Function called on every render tick of the program
@@ -40,6 +42,8 @@ namespace ThomasTheTank
 		bool m_alive = true; ///< Current state of the component
 
 	protected:
+
+		Shared<Core> getCore();
 		Weak<Entity> m_Entity; ///< Pointer to the component's parent entity
 		Weak<Component> m_self; ///< Pointer to self
 	};

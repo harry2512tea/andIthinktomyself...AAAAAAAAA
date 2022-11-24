@@ -8,13 +8,13 @@
 
 namespace ThomasTheTank
 {
-	class Core;
+	struct Core;
 
 	struct Resource;
 
 	struct Resources
 	{
-		friend class Core;
+		friend struct Core;
 
 		template<typename T> static Shared<T> load(std::string _path)
 		{

@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "Cursor.h"
 #include "Components/Camera.h"
+#include "Physics.h"
 
 #include <string>
 #include <iostream>
@@ -16,6 +17,14 @@
 
 namespace ThomasTheTank
 {
+
+	/*Core::Core() :
+		dispatcher(&collisionConfiguration),
+		dynamicsWorld(&dispatcher, &overlappingPairCache, &solver, &collisionConfiguration)
+	{
+
+	}*/
+
 	Shared<Core> Core::Initialise()
 	{
 		Shared<Core> rtn = std::make_shared<Core>();
@@ -54,7 +63,13 @@ namespace ThomasTheTank
 			throw std::runtime_error("Failed to make context current");
 		}
 
-		
+		//rtn->collisionConfiguration = new btDefaultCollisionConfiguration();
+		//rtn->dispatcher = new btCollisionDispatcher(rtn->collisionConfiguration);
+		//rtn->overlappingPairCache = new btDbvtBroadphase();
+		//rtn->solver = new btSequentialImpulseConstraintSolver;
+		//rtn->dynamicsWorld = new btDiscreteDynamicsWorld(rtn->dispatcher, rtn->overlappingPairCache, rtn->solver, rtn->collisionConfiguration);
+
+		//rtn->dynamicsWorld->setGravity(btVector3(0.0f, -9.81f, 0.0f));
 
 		return rtn;
 	}

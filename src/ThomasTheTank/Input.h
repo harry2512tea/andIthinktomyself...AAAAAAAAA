@@ -21,7 +21,7 @@ namespace ThomasTheTank
 		int x, y, z;
 	};
 	/**
-	* Input manager class
+	* Input manager struct
 	*/
 	struct Input
 	{
@@ -95,7 +95,7 @@ namespace ThomasTheTank
 		glm::vec2 mouseInput() { return glm::vec2((float)mouseInp.x, (float)mouseInp.y); };
 
 	private:
-		friend class Core;
+		friend struct Core;
 		static std::list<SDL_Keycode> keys; ///< List of all keys currently pressed.
 		static std::list<SDL_Keycode> keyDown; ///< List of all keys pressed this frame.
 		static std::list<SDL_Keycode> keyUp; ///< List of all keys released this frame.

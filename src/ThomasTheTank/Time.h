@@ -10,9 +10,9 @@ namespace ThomasTheTank
 {
 
 	/**
-	* Environment manager class.
+	* Environment manager struct.
 	*/
-	class SceneTime
+	struct SceneTime
 	{
 	public:
 		/**
@@ -23,9 +23,9 @@ namespace ThomasTheTank
 		static float DeltaTime() { return deltaTime; }; 
 
 	private:
-		friend class Core;
+		friend struct Core;
 		void tick(); ///< Function called on program tick.
-		void initialize(); ///< Function called on creation of the class.
+		void initialize(); ///< Function called on creation of the struct.
 		static float deltaTime; ///< stored value of the time between frames.
 		float lastTime; ///< the last time the tick function was called.
 		Weak<SceneTime> m_self; ///< pointer to self.

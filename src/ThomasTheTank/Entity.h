@@ -2,6 +2,7 @@
 #include <list>
 #include <stdexcept>
 #include <string>
+#include <pellet/btBulletCollisionCommon.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -9,7 +10,7 @@
 namespace ThomasTheTank
 {
 	
-	class Core;
+	struct Core;
 
 	struct Component;
 
@@ -17,15 +18,15 @@ namespace ThomasTheTank
 
 	struct Camera;
 	/**
-	* Main entity class.
+	* Main entity struct.
 	*/
-	class Entity
+	struct Entity
 	{
 	public:
 		/**
 		* Add a component to the entity.
 		* 
-		* \param T Component class type.
+		* \param T Component struct type.
 		* 
 		* \return Pointer to the new component.
 		*/
@@ -43,7 +44,7 @@ namespace ThomasTheTank
 		/**
 		* Get a component attached to the entity.
 		* 
-		* \param T Component class type.
+		* \param T Component struct type.
 		* 
 		* \return Pointer to the attached Component.
 		*/
@@ -66,7 +67,7 @@ namespace ThomasTheTank
 		/**
 		* Get all components attached to the entity.
 		*
-		* \param T Component class type.
+		* \param T Component struct type.
 		*
 		* \return List of pointers to the attached components.
 		*/
@@ -118,9 +119,10 @@ namespace ThomasTheTank
 		* \return Pointer to the entity's transform component.
 		*/
 		Shared<Transform> getTransform() { return Transform; };
+		Shared<Core> getCore() { return m_core.lock(); };
 		std::string name; ///< Name of the entity.
 	private:
-		friend class Core;
+		friend struct Core;
 
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
@@ -129,7 +131,7 @@ namespace ThomasTheTank
 		void destroy(); ///< Function called to trigger onDestroy.
 		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
 		bool m_alive = true; ///< Current state of the entity.
-		Weak<Core> m_core; ///< Pointer to the core class.
+		Weak<Core> m_core; ///< Pointer to the core struct.
 		Weak<Entity> m_self; ///< Pointer to self.
 	};
 }

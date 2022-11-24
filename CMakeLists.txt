@@ -40,6 +40,8 @@ add_library(ThomasTheTank
 src/ThomasTheTank/ThomasTheTank.h
 src/ThomasTheTank/Core.cpp
 src/ThomasTheTank/Core.h
+src/ThomasTheTank/Physics.h
+src/ThomasTheTank/Physics.cpp
 src/ThomasTheTank/Entity.h
 src/ThomasTheTank/Entity.cpp
 src/ThomasTheTank/Component.h
@@ -63,12 +65,19 @@ src/ThomasTheTank/Input.h
 src/ThomasTheTank/Input.cpp
 src/ThomasTheTank/Cursor.h
 src/ThomasTheTank/Cursor.cpp
+src/ThomasTheTank/Components/Collider.h
+src/ThomasTheTank/Components/Collider.cpp
+src/ThomasTheTank/Components/Colliders/BoxCollider.h
+src/ThomasTheTank/Components/Colliders/BoxCollider.cpp
+src/ThomasTheTank/Components/Colliders/SphereCollider.h
+src/ThomasTheTank/Components/Colliders/SphereCollider.cpp
 )
 
 target_link_libraries(ThomasTheTank
 SDL2
 rend
 OpenAL32
+pellet
 )
 
 add_executable(game

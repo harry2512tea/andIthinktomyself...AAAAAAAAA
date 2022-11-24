@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Entity.h"
 
 namespace ThomasTheTank
 {
@@ -43,5 +44,11 @@ namespace ThomasTheTank
 	void Component::destroy()
 	{
 		onDestroy();
+	}
+
+
+	Shared<Core> Component::getCore()
+	{
+		return m_Entity.lock()->getCore();
 	}
 }

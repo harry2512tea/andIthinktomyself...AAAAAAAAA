@@ -51,7 +51,7 @@ namespace ThomasTheTank
 		}
 		return perspective(radians(FOV), (float)w/ (float)h, nearClip, farClip);
 	}
-
+	
 	mat4 Camera::getView()
 	{
 		glm::mat4 viewMat;
