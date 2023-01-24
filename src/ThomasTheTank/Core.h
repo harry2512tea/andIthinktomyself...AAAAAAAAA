@@ -3,10 +3,9 @@
 #include <memory>
 #include <list>
 #include <GL/glew.h>
-#include <rend/rend.h>
+//#include <rend/rend.h>
 #include <AL/al.h>
 #include <AL/alc.h>
-#include <pellet/btBulletDynamicsCommon.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -21,6 +20,8 @@ namespace ThomasTheTank
 	struct Camera;
 
 	struct Input;
+
+	struct Cache;
 
 	struct SceneTime;
 
@@ -49,6 +50,7 @@ namespace ThomasTheTank
 		*/
 		Shared<Entity> addEntity();
 		Shared<Physics> getPhysics() { return m_Physics; };
+		Shared<Cache> getCache() { return m_cache; };
 		/**
 		* Get size of the window.
 		* 
@@ -65,7 +67,8 @@ namespace ThomasTheTank
 
 		Shared<Physics> m_Physics;
 
-		Shared<Input> input; ///< Pointer to the input manager struct.
+		Shared<Input> m_input; ///< Pointer to the input manager struct.
+		Shared<Cache> m_cache;
 		SDL_Window* m_window; ///< The window of the program
 		SDL_GLContext m_context; ///< OpenGL context
 		std::list<Shared<Entity>> m_entities; ///< List of every entity in the scene

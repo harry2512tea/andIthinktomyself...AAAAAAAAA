@@ -1,3 +1,6 @@
+#ifndef THOMASTHETANK_INPUT_H
+#define THOMASTHETANK_INPUT_H
+
 #include <SDL2/SDL.h>
 #include <list>
 #include <memory>
@@ -23,8 +26,15 @@ namespace ThomasTheTank
 	/**
 	* Input manager struct
 	*/
-	struct Input
+	struct Input : std::enable_shared_from_this<Input>
 	{
+		/**
+		* Check if specified key was pressed between frames.
+		*
+		* \return INPUT the instance of the input class.
+		*/
+		static Shared<Input> getInstance();
+
 		/**
 		* Check if specified key was pressed between frames.
 		* 
@@ -96,6 +106,10 @@ namespace ThomasTheTank
 
 	private:
 		friend struct Core;
+
+		static Shared<Input> Initialise();
+
+		static Shared<Input> m_self; ///< the instance of the input class
 		static std::list<SDL_Keycode> keys; ///< List of all keys currently pressed.
 		static std::list<SDL_Keycode> keyDown; ///< List of all keys pressed this frame.
 		static std::list<SDL_Keycode> keyUp; ///< List of all keys released this frame.
@@ -213,3 +227,5 @@ namespace ThomasTheTank
 		static const int ESCAPE = SDLK_ESCAPE; ///< Escape key
 	};
 }
+
+#endif

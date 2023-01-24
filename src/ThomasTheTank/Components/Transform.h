@@ -7,6 +7,8 @@
 
 namespace ThomasTheTank
 {
+	struct Collider;
+
 	/**
 	* Component containing information about the state of the entity.
 	*/
@@ -87,6 +89,7 @@ namespace ThomasTheTank
 
 	private:
 		friend struct Transform;
+		friend struct Collider;
 		Weak<Transform> Parent;
 		std::list<Weak<Transform>> Children;
 

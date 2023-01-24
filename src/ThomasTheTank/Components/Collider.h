@@ -3,11 +3,16 @@
 
 namespace ThomasTheTank
 {
+	struct Transform;
+
 	struct Collider : Component
 	{
-		void setOffset(vec3 _offset);
+		Collider();
+
+		void setOffset(vec3 _offset) { m_offset = _offset; };
 		vec3 getOffset() { return m_offset; };
 	protected:
 		vec3 m_offset;
+		Shared<Transform> m_trans;
 	};
 }

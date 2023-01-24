@@ -3,7 +3,6 @@
 
 namespace ThomasTheTank
 {
-
 	std::list<SDL_Keycode> Input::keys = {};
 	std::list<SDL_Keycode> Input::keyDown = {};
 	std::list<SDL_Keycode> Input::keyUp = {};
@@ -12,7 +11,20 @@ namespace ThomasTheTank
 	std::list<int> Input::buttonUp = {};
 	vect3 Input::mousePos = vect3(0, 0, 0);
 	vect2 Input::mouseInp = vect2(0, 0);
+	Shared<Input> Input::m_self = nullptr;
 
+	Shared<Input> Input::Initialise()
+	{
+		Shared<Input> rtn = std::make_shared<Input>();
+		Input::m_self = rtn;
+
+		return rtn;
+	}
+
+	Shared<Input> Input::getInstance()
+	{
+		return Input::m_self;
+	}
 
 	bool Input::getKeyDown(SDL_Keycode code)
 	{

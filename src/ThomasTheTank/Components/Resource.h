@@ -1,3 +1,6 @@
+#ifndef THOMASTHETANK_RESOURCE_H
+#define THOMASTHETANK_RESOURCE_H
+
 #include <memory>
 #include <string>
 #include <list>
@@ -10,19 +13,18 @@ namespace ThomasTheTank
 {
 	struct Core;
 
-	struct Resource;
+	struct Cache;
 
-	struct Resources
+	struct Resource
 	{
-		friend struct Core;
+		virtual void OnLoad() = 0;
 
-		template<typename T> static Shared<T> load(std::string _path)
-		{
-
-		}
-
+		std::string GetPath() const;
 	private:
-		static std::list<std::string> paths;
-		static std::list<Shared<Resource>> m_Resources;
+		friend struct Cache;
+		std::string m_path;
+
+		void Load();
 	};
 }
+#endif

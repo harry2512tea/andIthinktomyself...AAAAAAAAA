@@ -3,10 +3,10 @@
 #include "Components/Transform.h"
 #include "TriangleRenderer.h"
 #include "Time.h"
-#include "Input.h"
 #include "Cursor.h"
 #include "Components/Camera.h"
-#include "Physics.h"
+#include "Input.h"
+#include "Cache.h"
 
 #include <string>
 #include <iostream>
@@ -18,12 +18,6 @@
 namespace ThomasTheTank
 {
 
-	/*Core::Core() :
-		dispatcher(&collisionConfiguration),
-		dynamicsWorld(&dispatcher, &overlappingPairCache, &solver, &collisionConfiguration)
-	{
-
-	}*/
 
 	Shared<Core> Core::Initialise()
 	{
@@ -63,15 +57,10 @@ namespace ThomasTheTank
 			throw std::runtime_error("Failed to make context current");
 		}
 
-		//rtn->collisionConfiguration = new btDefaultCollisionConfiguration();
-		//rtn->dispatcher = new btCollisionDispatcher(rtn->collisionConfiguration);
-		//rtn->overlappingPairCache = new btDbvtBroadphase();
-		//rtn->solver = new btSequentialImpulseConstraintSolver;
-		//rtn->dynamicsWorld = new btDiscreteDynamicsWorld(rtn->dispatcher, rtn->overlappingPairCache, rtn->solver, rtn->collisionConfiguration);
-
-		//rtn->dynamicsWorld->setGravity(btVector3(0.0f, -9.81f, 0.0f));
-
-		rtn->m_Physics = std::make_shared<Physics>();
+		//rtn->m_input = std::make_shared<Input>();
+		//rtn->m_input->m_self = rtn->m_input;
+		rtn->m_input = Input::Initialise();
+		rtn->m_cache = Cache::Initialise();
 		return rtn;
 	}
 
@@ -81,7 +70,7 @@ namespace ThomasTheTank
 
 		environment = std::make_shared<SceneTime>();
 		environment->initialize();
-		input = std::make_shared<Input>();
+		//input = std::make_shared<Input>();
 
 		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{
@@ -158,16 +147,16 @@ namespace ThomasTheTank
 		* BACK = 4
 		* FORWARD = 5
 		*/
-		input->keyDown.clear();
-		input->keyUp.clear();
-		input->buttonDown.clear();
-		input->buttonUp.clear();
+		m_input->keyDown.clear();
+		m_input->keyUp.clear();
+		m_input->buttonDown.clear();
+		m_input->buttonUp.clear();
 
 		//SDL_GetRelativeMouseState(& input->mouseInp.x, &input->mouseInp.y);
 		//SDL_GetMouseState(&input->mousePos.x, &input->mousePos.y);
 
-		input->mouseInp.x = 0;
-		input->mouseInp.y = 0;
+		m_input->mouseInp.x = 0;
+		m_input->mouseInp.y = 0;
 
 		//std::cout << input->mouseInp.x << " " << input->mouseInp.y << std::endl;
 
@@ -182,51 +171,51 @@ namespace ThomasTheTank
 				break;
 
 			case SDL_KEYDOWN:
-				if (!input->getKey(event.key.keysym.sym))
+				if (!m_input->getKey(event.key.keysym.sym))
 				{
 					std::cout << "keydown" << std::endl;
-					input->keyDown.push_back(event.key.keysym.sym);
-					input->keys.push_back(event.key.keysym.sym);
+					m_input->keyDown.push_back(event.key.keysym.sym);
+					m_input->keys.push_back(event.key.keysym.sym);
 				}
 				break;
 
 			case SDL_KEYUP:
-				if (input->getKey(event.key.keysym.sym))
+				if (m_input->getKey(event.key.keysym.sym))
 				{
 					std::cout << "keyup" << std::endl;
-					input->keys.remove(event.key.keysym.sym);
-					input->keyUp.push_back(event.key.keysym.sym);
+					m_input->keys.remove(event.key.keysym.sym);
+					m_input->keyUp.push_back(event.key.keysym.sym);
 				}
 				break;
 
 			case SDL_MOUSEBUTTONDOWN:
 				button = (int)event.button.button;
 				std::cout << event.button.button << std::endl;
-				if (input->getButton(button))
+				if (m_input->getButton(button))
 				{
 					std::cout << event.button.button << std::endl;
-					input->buttons.push_back(button);
-					input->buttonDown.push_back(button);
+					m_input->buttons.push_back(button);
+					m_input->buttonDown.push_back(button);
 				}
 				break;
 
 			case SDL_MOUSEBUTTONUP:
 				button = (int)event.button.button;
-				if (input->getButton(button))
+				if (m_input->getButton(button))
 				{
 					std::cout << "mouseButtonUp" << std::endl;
-					input->buttons.remove(button);
-					input->buttonUp.push_back(button);
+					m_input->buttons.remove(button);
+					m_input->buttonUp.push_back(button);
 				}
 				break;
 
 			case SDL_MOUSEMOTION:
 				
-				input->mousePos.x = event.motion.x;
-				input->mousePos.y = event.motion.y;
-
-				input->mouseInp.x += event.motion.xrel;
-				input->mouseInp.y += event.motion.yrel;
+				m_input->mousePos.x = event.motion.x;
+				m_input->mousePos.y = event.motion.y;
+				
+				m_input->mouseInp.x += event.motion.xrel;
+				m_input->mouseInp.y += event.motion.yrel;
 				break;
 			}
 		}

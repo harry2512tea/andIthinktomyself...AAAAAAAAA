@@ -71,6 +71,14 @@ src/ThomasTheTank/Components/Colliders/BoxCollider.h
 src/ThomasTheTank/Components/Colliders/BoxCollider.cpp
 src/ThomasTheTank/Components/Colliders/SphereCollider.h
 src/ThomasTheTank/Components/Colliders/SphereCollider.cpp
+src/ThomasTheTank/Cache.h
+src/ThomasTheTank/Cache.cpp
+src/ThomasTheTank/Resources/Model.h
+src/ThomasTheTank/Resources/Model.cpp
+src/ThomasTheTank/Resources/Texture.h
+src/ThomasTheTank/Resources/Texture.cpp
+src/ThomasTheTank/Resources/AudioClip.h
+src/ThomasTheTank/Resources/AudioClip.cpp
 )
 
 target_link_libraries(ThomasTheTank
