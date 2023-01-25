@@ -17,6 +17,13 @@ namespace ThomasTheTank
 
 	struct Cache
 	{
+		/*
+		* Open a resource file and load it. resources include textures, models, audio clips etc.
+		* 
+		* 
+		* \param STRING _path file path to the resource to open.
+		* \return pointer to the loaded resource.
+		*/
 		template <typename T>
 		Shared<T> load(const std::string& _path)
 		{
@@ -35,6 +42,13 @@ namespace ThomasTheTank
 			return rtn;
 		}
 
+		/*
+		*
+		*
+		*
+		*
+		*
+		*/
 		static Shared<Cache> getInstance();
 
 	private:
@@ -42,6 +56,14 @@ namespace ThomasTheTank
 		std::vector<Shared<Resource>> m_resources = {};
 
 		static Shared<Cache> m_self;
+
+		/*
+		*
+		*
+		*
+		*
+		*
+		*/
 		static Shared<Cache> Initialise();
 	};
 }
