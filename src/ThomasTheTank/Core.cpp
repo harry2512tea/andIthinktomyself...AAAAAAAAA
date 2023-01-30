@@ -61,6 +61,7 @@ namespace ThomasTheTank
 		//rtn->m_input->m_self = rtn->m_input;
 		rtn->m_input = Input::Initialise();
 		rtn->m_cache = Cache::Initialise();
+		rtn->m_Physics = PhysB::PhysicsWorld::initialise(rtn->m_running, false);
 		return rtn;
 	}
 
@@ -76,6 +77,11 @@ namespace ThomasTheTank
 		{
 			std::cout << (*it)->name << std::endl;
 			(*it)->initialize();
+		}
+
+		if (PhysMultiThreading)
+		{
+			m_Physics->Start();
 		}
 
 		while (m_running)
@@ -111,6 +117,10 @@ namespace ThomasTheTank
 					m_entities.erase(it);
 					--it;
 				}
+			}
+			if (!PhysMultiThreading)
+			{
+				m_Physics->Tick();
 			}
 		}
 	}

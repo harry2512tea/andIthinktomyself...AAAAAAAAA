@@ -6,6 +6,7 @@
 //#include <rend/rend.h>
 #include <AL/al.h>
 #include <AL/alc.h>
+#include <PhysB/PhysB.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -24,8 +25,6 @@ namespace ThomasTheTank
 	struct Cache;
 
 	struct SceneTime;
-
-	struct Physics;
 
 	/**
 	* Main struct of the game engine.
@@ -49,7 +48,7 @@ namespace ThomasTheTank
 		* \return Pointer to the new entity.
 		*/
 		Shared<Entity> addEntity();
-		Shared<Physics> getPhysics() { return m_Physics; };
+		Shared<PhysB::PhysicsWorld> getPhysics() { return m_Physics; };
 		Shared<Cache> getCache() { return m_cache; };
 		/**
 		* Get size of the window.
@@ -65,7 +64,7 @@ namespace ThomasTheTank
 		ALCdevice* device;
 		ALCcontext* context;
 
-		Shared<Physics> m_Physics;
+		Shared<PhysB::PhysicsWorld> m_Physics;
 
 		Shared<Input> m_input; ///< Pointer to the input manager struct.
 		Shared<Cache> m_cache;
@@ -75,5 +74,6 @@ namespace ThomasTheTank
 		Shared<SceneTime> environment; ///< Pointer to the environment manager struct
 		bool m_running = false; ///< Current state of the program
 		Weak<Core> m_self; ///< Pointer to self
+		bool PhysMultiThreading = false;
 	};
 }

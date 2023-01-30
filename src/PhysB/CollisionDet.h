@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
+#include "GLMWrapping.h"
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -11,28 +12,30 @@
 
 namespace PhysB
 {
-	struct Collider;
+	struct PhysCollider;
 
 	struct PhysTransform;
 
 	struct PhysRigidBody;
 
-	struct Physics;
+	struct PhysicsWorld;
 
 	struct CollisionDet
 	{
 		void Tick();
 
-		void AddCollider(Shared<Collider> _col);
+		void AddCollider(Shared<PhysCollider> _col);
 		Shared<PhysTransform> AddTransform();
 		Shared<PhysRigidBody> AddRigidBody(Shared<PhysTransform> _trans);
+		Shared<PhysicsWorld> getPhysicsWorld() { return m_Phys.lock(); };
+		void runCollisionDetection();
 
 	private:
 		std::vector<Shared<PhysRigidBody>> RigidBodies;
-		std::vector <Shared<Collider>> Colliders;
+		std::vector <Shared<PhysCollider>> Colliders;
 		std::vector <Shared<PhysTransform>> Transforms;
 		Weak<CollisionDet> m_self;
-		Weak<Physics> m_Phys;
+		Weak<PhysicsWorld> m_Phys;
 	};
 }
 #endif

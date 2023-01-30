@@ -35,7 +35,7 @@ namespace ThomasTheTank
 		*/
 		void SetModel(Shared<Model> _Model);
 	private:
-		void onInitialize(); ///< Function called on the creation of the component.
+		void onInitialize(){}; ///< Function called on the creation of the component.
 		void onDisplay(); ///< Function called on the render tick of the program.
 
 		Shared<Model> m_Model; ///< Model to render.

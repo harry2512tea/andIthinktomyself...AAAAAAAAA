@@ -38,7 +38,7 @@ add_library(rend
 target_link_libraries(rend glew32 opengl32)
 
 add_library(PhysB
-src/PhysB/
+src/PhysB/PhysB.h
 src/PhysB/Physics.cpp
 src/PhysB/Physics.h
 src/PhysB/Collider.cpp
@@ -53,8 +53,11 @@ src/PhysB/PhysTransform.cpp
 src/PhysB/PhysTransform.h
 src/PhysB/PhysTime.cpp
 src/PhysB/PhysTime.h
+src/PhysB/Collisions.cpp
+src/PhysB/Collisions.h
+src/PhysB/GLMWrapping.h
 )
-target_link_libraries(PhysB glew32)
+target_link_libraries(PhysB rend)
 
 add_library(ThomasTheTank
 src/ThomasTheTank/ThomasTheTank.h

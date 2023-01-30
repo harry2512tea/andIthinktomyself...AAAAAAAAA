@@ -4,10 +4,11 @@
 #include "../Wrapping/ThomasMath.h"
 #include "../Component.h"
 #include <list>
+#include <PhysB/PhysB.h>
 
 namespace ThomasTheTank
 {
-	struct Collider;
+	
 
 	/**
 	* Component containing information about the state of the entity.
@@ -87,9 +88,13 @@ namespace ThomasTheTank
 
 		Shared<Transform> getParent() { return Parent.lock(); };
 
+		Shared<PhysB::PhysTransform> addPhysicsTransform();
+
+		Shared<PhysB::PhysTransform> getPhysicsTransform() { return m_PhysTransform; };
+
 	private:
 		friend struct Transform;
-		friend struct Collider;
+		friend struct BoxCollider;
 		Weak<Transform> Parent;
 		std::list<Weak<Transform>> Children;
 
@@ -115,6 +120,8 @@ namespace ThomasTheTank
 		mat4 getParentMatrix();
 
 		vec3 checkRoationValues(vec3 _rot); ///< Confine Euler angle rotation between 360 and -360 degrees.
+
+		Shared<PhysB::PhysTransform> m_PhysTransform;
 	};
 }
 

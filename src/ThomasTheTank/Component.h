@@ -39,6 +39,7 @@ namespace ThomasTheTank
 		void display(); ///< Function called to trigger onDisplay 
 		void destroy(); ///< Function called to trigger onDestroy 
 
+
 		bool m_alive = true; ///< Current state of the component
 
 	protected:

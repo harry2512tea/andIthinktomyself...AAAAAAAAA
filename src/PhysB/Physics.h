@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
+#include "GLMWrapping.h"
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -16,13 +17,13 @@ namespace PhysB
 
 	struct CollisionDet;
 
-	struct Collider;
+	struct PhysCollider;
 
 	struct PhysTransform;
 
 	struct PhysicsWorld
 	{
-		static Shared<PhysicsWorld> initialise(bool* _running, bool _multiThreaded);
+		static Shared<PhysicsWorld> initialise(bool& _running, bool _multiThreaded);
 
 		void Start();
 		void Tick();

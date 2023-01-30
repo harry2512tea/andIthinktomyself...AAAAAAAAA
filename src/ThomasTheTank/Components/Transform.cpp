@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../Components/Transform.h"
+#include "../Core.h"
 
 namespace ThomasTheTank
 {
@@ -23,6 +24,23 @@ namespace ThomasTheTank
 	{
 		localRotation += _rotation;
 		rotationQuat = generateRotQuat(localRotation);
+	}
+
+	Shared<PhysB::PhysTransform> Transform::addPhysicsTransform()
+	{
+		Shared<PhysB::PhysTransform> temp;
+		if (!m_PhysTransform)
+		{
+			m_PhysTransform = getCore()->getPhysics()->AddTransform();
+			temp = m_PhysTransform;
+		}
+		else
+		{
+			temp = m_PhysTransform;
+		}
+
+		return temp;
+
 	}
 
 	mat4 Transform::generateModel(vec3 _position, vec3 _rotation, vec3 _scale)

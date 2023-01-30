@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include <glm/glm.hpp>
+//#include <glm/glm.hpp>
+#include "GLMWrapping.h"
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -22,7 +23,7 @@ namespace PhysB
 
 	struct PhysCollider
 	{
-		virtual void onTick();
+		virtual void onTick(){};
 		void tick();
 		glm::vec3 offset;
 		glm::vec3 rotation;

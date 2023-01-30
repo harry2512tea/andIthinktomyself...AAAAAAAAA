@@ -20,6 +20,10 @@
 #include "Components/AudioSource.h"
 #include "TriangleRenderer.h"
 
+//Physics
+#include "Components/Collider.h"
+#include "Components/Colliders/BoxCollider.h"
+
 //Resources
 #include "Resources/AudioClip.h"
 #include "Resources/Model.h"

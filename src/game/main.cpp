@@ -107,9 +107,6 @@ private:
 
 int main()
 {
-	
-	
-	//std::cout << "hello world" << std::endl;
 
 	Shared<Core> core = Core::Initialise();
 
@@ -120,13 +117,15 @@ int main()
 	Shared<Model> Curuthers =  Resources->load<Model>("../data/curuthers/curuthers.obj");
 	Shared<Texture> CuruthersTexture = Resources->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
 
-	e->addComponent<Player>();
+	e->addComponent<Player>(); std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
 	//e->addComponent<TriangleRenderer>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
 	curuthers->SetModel(Curuthers);
 	curuthers->SetTexture(CuruthersTexture);
 	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
+
+	e->addComponent<BoxCollider>();
 
 	//e->addComponent<AudioSource>();
 
