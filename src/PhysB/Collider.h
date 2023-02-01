@@ -21,6 +21,14 @@ namespace PhysB
 		Sphere
 	};
 
+	struct Plane
+	{
+		Plane(vec3 min, vec3 max, vec3 P2);
+	protected:
+		vec3 m_min, m_P2, m_max, m_normal;
+		vec3 calculateNormal();
+	};
+
 	struct PhysCollider
 	{
 		virtual void onTick(){};
@@ -31,7 +39,9 @@ namespace PhysB
 
 	protected:
 		friend struct PhysicsWorld;
+		friend struct CollisionDet;
 		ColType colliderType;
+		bool isTrigger;
 		Weak<PhysCollider> m_self;
 		Weak<CollisionDet> m_ColDet;
 		Shared<PhysTransform> m_trans;

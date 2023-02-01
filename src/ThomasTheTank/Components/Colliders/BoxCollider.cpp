@@ -15,7 +15,7 @@ namespace ThomasTheTank
 			m_trans->addPhysicsTransform();
 			m_trans->m_PhysTransform->initialise(glm::vec3(0.0f, 0.0f, 0.0f));
 		}
-		getCore()->getPhysics()->AddCollider<PhysB::PhysCollider>(m_Entity.lock()->getTransform()->getPhysicsTransform());
+		getCore()->getPhysics()->AddCollider<PhysB::PhysAABB>(m_Entity.lock()->getTransform()->getPhysicsTransform());
 	}
 	void BoxCollider::onTick()
 	{

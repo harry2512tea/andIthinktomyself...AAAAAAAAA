@@ -40,13 +40,45 @@ namespace PhysB
 
 	Shared<PhysRigidBody> CollisionDet::AddRigidBody(Shared<PhysTransform> _trans)
 	{
-		Shared<PhysRigidBody> temp = std::make_shared<PhysRigidBody>();
-		temp->m_trans = _trans;
-		temp->m_colDet = m_self.lock();
-		RigidBodies.push_back(temp);
-		return temp;
+		if (!_trans->dynamic)
+		{
+			Shared<PhysRigidBody> temp = std::make_shared<PhysRigidBody>();
+			temp->m_trans = _trans;
+			temp->m_colDet = m_self.lock();
+			RigidBodies.push_back(temp);
+			return temp;
+		}
+		else
+		{
+			return _trans->m_body.lock();
+		}
 	}
 	void CollisionDet::runCollisionDetection()
 	{
+		for (size_t C1 = 0; C1 < Colliders.size(); C1++)
+		{
+			for (size_t C2 = C1 + 1; C2 < Colliders.size(); C2++)
+			{
+				if (!Colliders.at(C1)->isTrigger || !Colliders.at(C2)->isTrigger)
+				{
+					if (Colliders.at(C1)->m_trans->dynamic || Colliders.at(C2)->m_trans->dynamic)
+					{
+						dynamicCollisionDetection(Colliders.at(C1), Colliders.at(C2));
+					}
+					else
+					{
+						staticCollisionDetection(Colliders.at(C1), Colliders.at(C2));
+					}
+				}
+			}
+		}
+	}
+	bool CollisionDet::dynamicCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
+	{
+		return false;
+	}
+	bool CollisionDet::staticCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
+	{
+		return false;
 	}
 }

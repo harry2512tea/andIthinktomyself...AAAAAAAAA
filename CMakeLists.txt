@@ -55,6 +55,8 @@ src/PhysB/PhysTime.cpp
 src/PhysB/PhysTime.h
 src/PhysB/Collisions.cpp
 src/PhysB/Collisions.h
+src/PhysB/PhysAABB.cpp
+src/PhysB/PhysAABB.h
 src/PhysB/GLMWrapping.h
 )
 target_link_libraries(PhysB rend)

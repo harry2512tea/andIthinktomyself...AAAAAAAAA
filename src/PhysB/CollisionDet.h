@@ -29,6 +29,8 @@ namespace PhysB
 		Shared<PhysRigidBody> AddRigidBody(Shared<PhysTransform> _trans);
 		Shared<PhysicsWorld> getPhysicsWorld() { return m_Phys.lock(); };
 		void runCollisionDetection();
+		bool dynamicCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
+		bool staticCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
 
 	private:
 		std::vector<Shared<PhysRigidBody>> RigidBodies;

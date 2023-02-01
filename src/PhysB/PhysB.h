@@ -12,5 +12,8 @@
 #include "PhysTransform.h"
 #include "PhysRigidBody.h"
 
+//Colliders
+#include "PhysAABB.h"
+
 
 #endif // !PHYSB_PYSB_H

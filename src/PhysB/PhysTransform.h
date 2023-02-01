@@ -30,6 +30,7 @@ namespace PhysB
 	private:
 		friend struct CollisionDet;
 		void Tick();
+		bool dynamic = false;
 		glm::vec3 position;
 		glm::quat rotation;
 		Weak<PhysRigidBody> m_body;
