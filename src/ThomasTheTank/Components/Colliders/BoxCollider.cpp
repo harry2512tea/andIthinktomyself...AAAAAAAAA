@@ -8,14 +8,14 @@ namespace ThomasTheTank
 {
 	void BoxCollider::onInitialize()
 	{
-		std::cout << "collider init" << std::endl;
+		std::cout << "box collider init" << std::endl;
 		m_trans = getEntity()->getTransform();
 		if (!m_trans->m_PhysTransform)
 		{
 			m_trans->addPhysicsTransform();
 			m_trans->m_PhysTransform->initialise(glm::vec3(0.0f, 0.0f, 0.0f));
 		}
-		getCore()->getPhysics()->AddCollider<PhysB::PhysAABB>(m_Entity.lock()->getTransform()->getPhysicsTransform());
+		m_collider = getCore()->getPhysics()->AddCollider<PhysB::PhysAABB>(m_Entity.lock()->getTransform()->getPhysicsTransform());
 	}
 	void BoxCollider::onTick()
 	{

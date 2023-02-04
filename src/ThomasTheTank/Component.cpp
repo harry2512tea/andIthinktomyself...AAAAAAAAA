@@ -26,6 +26,18 @@ namespace ThomasTheTank
 	{
 	}
 
+	void Component::onCollisionEnter(Shared<CollisionInfo> collision)
+	{
+	}
+
+	void Component::onCollisionExit(Shared<CollisionInfo> collision)
+	{
+	}
+
+	void Component::onCollisionStay(Shared<CollisionInfo> collision)
+	{
+	}
+
 	void Component::tick()
 	{
 		onTick();
@@ -44,6 +56,21 @@ namespace ThomasTheTank
 	void Component::destroy()
 	{
 		onDestroy();
+	}
+
+	void Component::collisionEnter(Shared<CollisionInfo> collision)
+	{
+		onCollisionEnter(collision);
+	}
+
+	void Component::collisionExit(Shared<CollisionInfo> collision)
+	{
+		onCollisionExit(collision);
+	}
+
+	void Component::collisionStay(Shared<CollisionInfo> collision)
+	{
+		onCollisionStay(collision);
 	}
 
 

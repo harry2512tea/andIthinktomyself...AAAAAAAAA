@@ -35,6 +35,7 @@ namespace PhysB
 		{
 			Shared<T> rtn = mkShared<T>();
 			rtn->m_trans = _trans;
+			rtn->ID = collisonDetection->Colliders.size();
 			collisonDetection->AddCollider(rtn);
 			return rtn;
 		}

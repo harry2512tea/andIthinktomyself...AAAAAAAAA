@@ -17,6 +17,8 @@ namespace ThomasTheTank
 	struct Transform;
 
 	struct Camera;
+
+	struct CollisionInfo;
 	/**
 	* Main entity struct.
 	*/
@@ -123,12 +125,16 @@ namespace ThomasTheTank
 		std::string name; ///< Name of the entity.
 	private:
 		friend struct Core;
+		friend struct Collider;
 
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
 		void tick(); ///< Function called to trigger onTick.
 		void display(); ///< Function called to trigger onDisplay. 
 		void destroy(); ///< Function called to trigger onDestroy.
+		void collisionEnter(Shared<CollisionInfo> collision);
+		void collisionExit(Shared<CollisionInfo> collision);
+		void collisionStay(Shared<CollisionInfo> collision);
 		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
 		bool m_alive = true; ///< Current state of the entity.
 		Weak<Core> m_core; ///< Pointer to the core struct.

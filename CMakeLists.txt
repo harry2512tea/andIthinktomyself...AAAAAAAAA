@@ -45,8 +45,6 @@ src/PhysB/Collider.cpp
 src/PhysB/Collider.h
 src/PhysB/CollisionDet.cpp
 src/PhysB/CollisionDet.h
-src/PhysB/PhysEntity.cpp
-src/PhysB/PhysEntity.h
 src/PhysB/PhysRigidBody.cpp
 src/PhysB/PhysRigidBody.h
 src/PhysB/PhysTransform.cpp
@@ -58,6 +56,8 @@ src/PhysB/Collisions.h
 src/PhysB/PhysAABB.cpp
 src/PhysB/PhysAABB.h
 src/PhysB/GLMWrapping.h
+src/PhysB/CollisionEvent.h
+src/PhysB/CollisionEvent.cpp
 )
 target_link_libraries(PhysB rend)
 
@@ -90,6 +90,8 @@ src/ThomasTheTank/Input.h
 src/ThomasTheTank/Input.cpp
 src/ThomasTheTank/Cursor.h
 src/ThomasTheTank/Cursor.cpp
+src/ThomasTheTank/Components/RigidBody.h
+src/ThomasTheTank/Components/RigidBody.cpp
 src/ThomasTheTank/Components/Collider.h
 src/ThomasTheTank/Components/Collider.cpp
 src/ThomasTheTank/Components/Colliders/BoxCollider.h
@@ -110,7 +112,7 @@ target_link_libraries(ThomasTheTank
 SDL2
 rend
 OpenAL32
-pellet
+
 PhysB
 )
 

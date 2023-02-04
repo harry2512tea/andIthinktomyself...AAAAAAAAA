@@ -2,6 +2,7 @@
 #define THOMASTHETANK_COMPONENT_H
 
 #include <memory>
+#include <vector>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -12,6 +13,7 @@ namespace ThomasTheTank
 
 	struct Core;
 
+	struct CollisionInfo;
 	/**
 	* Base struct inherited by all components
 	*/
@@ -33,11 +35,19 @@ namespace ThomasTheTank
 		virtual void onDisplay(); ///< Overwriteable Function called on every render tick of the program
 		virtual void onInitialize(); ///< Overwriteable Function called on creation of component
 		virtual void onDestroy(); ///< Overwriteable Function called on destruction of component
+		virtual void onCollisionEnter(Shared<CollisionInfo> collision);
+		virtual void onCollisionExit(Shared<CollisionInfo> collision);
+		virtual void onCollisionStay(Shared<CollisionInfo> collision);
 
 		void initialize(); ///< Function called to trigger onInitialize 
 		void tick(); ///< Function called to trigger onTick 
 		void display(); ///< Function called to trigger onDisplay 
 		void destroy(); ///< Function called to trigger onDestroy 
+		void collisionEnter(Shared<CollisionInfo> collision);
+		void collisionExit(Shared<CollisionInfo> collision);
+		void collisionStay(Shared<CollisionInfo> collision);
+
+		std::vector<Shared<CollisionInfo>> colInfo;
 
 
 		bool m_alive = true; ///< Current state of the component

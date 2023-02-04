@@ -3,18 +3,19 @@
 
 #include "GLMWrapping.h"
 #include "PhysB/Collider.h"
+#include <vector>
 
 namespace PhysB
 {
 	struct PhysAABB : PhysCollider
 	{
-		vec3 getMin() { return m_min; };
-		vec3 getMax() { return m_max; };
-		void setMin(vec3(_min)) { m_min = _min; };
-		void setMax(vec3(_max)) { m_max = _max; };
+		PhysAABB();
 
 	private:
-		vec3 m_min = vec3(-0.5f), m_max = vec3(0.5f);
+		friend struct CollisionDet;
+		friend struct Collisions;
+		std::vector<Shared<Plane>> Planes;
+		std::vector<vec3> points;
 	};
 
 }

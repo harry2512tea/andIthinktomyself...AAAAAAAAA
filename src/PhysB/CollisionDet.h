@@ -20,6 +20,21 @@ namespace PhysB
 
 	struct PhysicsWorld;
 
+	struct Collisions;
+
+	struct CollisionPair
+	{
+		CollisionPair(Shared<PhysCollider> _Col1, Shared<PhysCollider> _Col2);
+		Shared<PhysCollider> Col1, Col2;
+	};
+
+	struct CollisionInfo
+	{
+		vec3 point;
+		Shared<PhysCollider> Col1, Col2;
+		bool colliding;
+	};
+
 	struct CollisionDet
 	{
 		void Tick();
@@ -29,15 +44,19 @@ namespace PhysB
 		Shared<PhysRigidBody> AddRigidBody(Shared<PhysTransform> _trans);
 		Shared<PhysicsWorld> getPhysicsWorld() { return m_Phys.lock(); };
 		void runCollisionDetection();
-		bool dynamicCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
-		bool staticCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
+		bool broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
+		bool narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
 
 	private:
+		friend struct PhysicsWorld;
 		std::vector<Shared<PhysRigidBody>> RigidBodies;
 		std::vector <Shared<PhysCollider>> Colliders;
 		std::vector <Shared<PhysTransform>> Transforms;
+		std::vector <CollisionPair> Potentials;
+		std::vector <Shared<PhysCollider>> Collision;
 		Weak<CollisionDet> m_self;
 		Weak<PhysicsWorld> m_Phys;
+		Shared<Collisions> m_collisions;
 	};
 }
 #endif
