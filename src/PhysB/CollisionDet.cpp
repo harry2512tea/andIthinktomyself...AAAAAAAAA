@@ -81,10 +81,18 @@ namespace PhysB
 			{
 				std::cout << "Narrow Collision True" << std::endl;
 				Collision.push_back(col);
+				if ((!col->Col1->isTrigger && !col->Col2->isTrigger) &&
+					(col->Col1->isDynamic || col->Col2->isDynamic))
+				{
+					collisionResponse(col);
+				}
 				col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
+				
 				std::cout << col->point.x << " " << col->point.y << " " << col->point.z << std::endl;
 			}
 		}
+
+		
 	}
 	bool CollisionDet::broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
 	{
@@ -165,7 +173,10 @@ namespace PhysB
 		return temp;
 	}
 
+	void CollisionDet::collisionResponse(Shared<CollisionInfo> colInfo)
+	{
 
+	}
 
 	CollisionPair::CollisionPair(Shared<PhysCollider> _Col1, Shared<PhysCollider> _Col2)
 	{

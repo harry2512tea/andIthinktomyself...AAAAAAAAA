@@ -1,4 +1,5 @@
 #include "Physics.h"
+#include "PhysTime.h"
 #include "CollisionDet.h"
 #include "PhysRigidBody.h"
 #include "PhysTransform.h"
@@ -17,6 +18,7 @@ namespace PhysB
 		rtn->m_running = &_running;
 		rtn->multiThreaded = _multiThreaded;
 		rtn->m_self = rtn;
+		rtn->m_time = std::make_shared<PhysTime>();
 		std::cout << "physics world initialised" << std::endl;
 		return rtn;
 	}
@@ -33,6 +35,8 @@ namespace PhysB
 
 	void PhysicsWorld::Start()
 	{
+		m_time->initialize();
+
 		if (multiThreaded)
 		{
 			while (m_running)
@@ -45,6 +49,7 @@ namespace PhysB
 	void PhysicsWorld::Tick()
 	{
 		collisonDetection->Tick();
+		m_time->tick(stepTime, multiThreaded);
 		//std::cout << "Physics World Tick" << std::endl;
 	}
 }

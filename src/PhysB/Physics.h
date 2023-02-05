@@ -21,6 +21,8 @@ namespace PhysB
 
 	struct PhysTransform;
 
+	struct PhysTime;
+
 	struct PhysicsWorld
 	{
 		static Shared<PhysicsWorld> initialise(bool& _running, bool _multiThreaded);
@@ -44,12 +46,13 @@ namespace PhysB
 		Shared<PhysTransform> AddTransform();
 
 	private:
-		int stepTime = 200;
+		float stepTime = 200;
 		Shared<CollisionDet> collisonDetection;
 		bool* m_running = false;
 		bool multiThreaded = false;
 		vec3 Gravity;
 		Weak<PhysicsWorld> m_self;
+		Shared<PhysTime> m_time;
 
 	};
 }

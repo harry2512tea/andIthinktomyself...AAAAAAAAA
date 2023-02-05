@@ -21,6 +21,15 @@ namespace PhysB
 	{
 
 		void AddForce(glm::vec3 force,  ForceMode _mode = Impulse);
+		float getMass() { return mass; };
+		void setMass(float _mass) { mass = _mass; };
+		bool getUseGravity() { return gravity; };
+		void setUseGravity(bool _gravity) { gravity = _gravity; };
+		vec3 getVelocity() { return velocity; };
+		void setVelocity(vec3 _vel) { velocity = _vel; };
+		vec3 getAngularVelocity() { return angularVelocity; };
+		void setAngularVelocity(vec3 _vel) { angularVelocity = _vel; };
+
 	private:
 		friend struct CollisionDet;
 		void tick();

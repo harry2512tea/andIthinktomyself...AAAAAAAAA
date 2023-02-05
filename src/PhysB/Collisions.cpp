@@ -103,7 +103,9 @@ namespace PhysB
 		Shared <PhysAABB> Col2 = std::dynamic_pointer_cast<PhysAABB>(colInfo->Col2);
 		vec3 col1Point = Col1->Transform()->getPosition();
 		vec3 col2Point = Col2->Transform()->getPosition();
-		vec3 intersect;
+		vec3 intersect, normal;
+		Shared<Plane> collisionPlane;
+		Shared<PhysCollider> ColliderToMove, ColliderPlane;
 		float dist = 0;
 		vec3 temp;
 		for (size_t Point = 0; Point < Col1->points.size(); Point++)
@@ -114,6 +116,10 @@ namespace PhysB
 				Col2->Planes.at(Plane)->getIntersect(ray, temp);
 				if (distance(col1Point, temp) < dist || Plane == 0)
 				{
+					normal = Col2->Planes.at(Plane)->getNormal();
+					ColliderPlane = Col2;
+					ColliderToMove = Col1;
+					collisionPlane = Col2->Planes.at(Plane);
 					intersect = temp;
 					dist = distance(col1Point, temp);
 				}
@@ -128,12 +134,20 @@ namespace PhysB
 				Col1->Planes.at(Plane)->getIntersect(ray, temp);
 				if (distance(col2Point, temp) < dist || Plane == 0)
 				{
+					normal = Col1->Planes.at(Plane)->getNormal();
+					ColliderPlane = Col1;
+					ColliderToMove = Col2;
+					collisionPlane = Col1->Planes.at(Plane);
 					intersect = temp;
 					dist = distance(col2Point, temp);
 				}
 			}
 		}
 		colInfo->point = intersect;
+		colInfo->normal = normal;
+		colInfo->ColliderPlane = ColliderPlane;
+		colInfo->ColliderToMove = ColliderToMove;
+		colInfo->CollisionPlane = collisionPlane;
 	}
 
 	Axis Collisions::projOntoAxis(std::vector<vec3> points, vec3 normal)

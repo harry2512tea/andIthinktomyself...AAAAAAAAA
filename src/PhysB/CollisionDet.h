@@ -22,6 +22,8 @@ namespace PhysB
 
 	struct Collisions;
 
+	struct Plane;
+
 	struct CollisionPair
 	{
 		CollisionPair(Shared<PhysCollider> _Col1, Shared<PhysCollider> _Col2);
@@ -31,8 +33,14 @@ namespace PhysB
 	struct CollisionInfo
 	{
 		vec3 point;
+		vec3 normal;
 		Shared<PhysCollider> Col1, Col2;
 		bool colliding;
+	private:
+		friend struct CollisionDet;
+		friend struct Collisions;
+		Shared<PhysCollider> ColliderPlane, ColliderToMove;
+		Weak<Plane> CollisionPlane;
 	};
 
 	struct CollisionDet
@@ -49,6 +57,7 @@ namespace PhysB
 		friend struct PhysicsWorld;
 		bool broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
 		Shared<CollisionInfo> narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
+		void collisionResponse(Shared<CollisionInfo> colInfo);
 		std::vector<Shared<PhysRigidBody>> RigidBodies;
 		std::vector <Shared<PhysCollider>> Colliders;
 		std::vector <Shared<PhysTransform>> Transforms;

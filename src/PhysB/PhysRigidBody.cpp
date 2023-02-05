@@ -2,6 +2,7 @@
 #include "PhysTransform.h"
 #include "CollisionDet.h"
 #include "Physics.h"
+#include "PhysTime.h"
 
 namespace PhysB
 {
@@ -21,11 +22,11 @@ namespace PhysB
 	void PhysRigidBody::tick()
 	{
 		Shared<PhysTransform> trans = m_trans.lock();
-		trans->Translate(velocity);
-		trans->Rotate(angularVelocity);
+		trans->Translate(velocity * PhysTime::DeltaTime());
+		trans->Rotate(angularVelocity * PhysTime::DeltaTime());
 		if (gravity)
 		{
-			velocity += m_colDet.lock()->getPhysicsWorld()->getGravity();
+			velocity += m_colDet.lock()->getPhysicsWorld()->getGravity() * PhysTime::DeltaTime();
 		}
 	}
 }
