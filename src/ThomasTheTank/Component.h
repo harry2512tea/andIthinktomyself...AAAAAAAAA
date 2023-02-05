@@ -32,6 +32,7 @@ namespace ThomasTheTank
 		friend struct Entity;
 
 		virtual void onTick(); ///< Overwriteable funciton called on every tick of the program
+		virtual void onLateTick();
 		virtual void onDisplay(); ///< Overwriteable Function called on every render tick of the program
 		virtual void onInitialize(); ///< Overwriteable Function called on creation of component
 		virtual void onDestroy(); ///< Overwriteable Function called on destruction of component
@@ -41,6 +42,7 @@ namespace ThomasTheTank
 
 		void initialize(); ///< Function called to trigger onInitialize 
 		void tick(); ///< Function called to trigger onTick 
+		void lateTick();
 		void display(); ///< Function called to trigger onDisplay 
 		void destroy(); ///< Function called to trigger onDestroy 
 		void collisionEnter(Shared<CollisionInfo> collision);

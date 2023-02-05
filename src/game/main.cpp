@@ -15,6 +15,7 @@ struct Player : Component
 	void onInitialize()
 	{
 		trans = getEntity()->getTransform();
+		//trans->setPosition(vec3(0.0f, 0.0f, -5.0f));
 	}
 
 	void onTick()
@@ -22,11 +23,11 @@ struct Player : Component
 		trans = getEntity()->getTransform();
 		if (input->getKey(Keys::W))
 		{
-			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 200.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
+			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 20.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::S))
 		{
-			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 200.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 20.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::A))
 		{
@@ -113,19 +114,28 @@ int main()
 
 	Shared<Entity> e = core->addEntity();
 	Shared<Entity> e2 = core->addEntity();
+	Shared<Entity> e3 = core->addEntity();
+
+	e->getTransform()->setPosition(vec3(-5.0f, 0.0f, -5.0f));
+	e3->getTransform()->setPosition(vec3(5.0f, 0.0f, -5.0f));
 
 	Shared<Model> Curuthers =  Resources->load<Model>("../data/curuthers/curuthers.obj");
 	Shared<Texture> CuruthersTexture = Resources->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
 
-	e->addComponent<Player>(); std::cout << "_onTick" << std::endl;
+	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
 	//e->addComponent<TriangleRenderer>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
 	curuthers->SetModel(Curuthers);
 	curuthers->SetTexture(CuruthersTexture);
-	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -5.0f));
+
+	Shared<MeshRenderer> curuthers2 = e3->addComponent<MeshRenderer>();
+	curuthers2->SetModel(Curuthers);
+	curuthers2->SetTexture(CuruthersTexture);
+	
 
 	e->addComponent<BoxCollider>();
+	e3->addComponent<BoxCollider>();
 
 	//e->addComponent<AudioSource>();
 

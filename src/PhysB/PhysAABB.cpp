@@ -1,4 +1,6 @@
 #include "PhysAABB.h"
+#include "PhysTransform.h"
+#include <iostream>
 
 namespace PhysB
 {
@@ -30,5 +32,14 @@ namespace PhysB
 		points.push_back(min);
 		points.push_back(vec3(max.x, min.y, min.z));
 
+		colliderType = Box;
+
+	}
+	void PhysAABB::onTick()
+	{
+		for (size_t I = 0; I < Planes.size(); I++)
+		{
+			Planes.at(I)->UpdatePos(m_trans->getPosition());
+		}
 	}
 }

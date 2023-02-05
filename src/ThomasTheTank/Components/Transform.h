@@ -49,15 +49,16 @@ namespace ThomasTheTank
 		*
 		* \param VEC3 translation How far to translate the object.
 		*/
-		void translate(vec3 translation) { localPosition += translation; };
+		void translate(vec3 translation) { position += translation; localPosition += translation; };
 
 		/**
 		* Get the position.
 		* 
 		* \return VEC3 The position of the object.
 		*/
-		vec3 getPosition();
+		vec3 getLocalPosition();
 
+		vec3 getPosition() { return position; };
 		/**
 		* Get the rotation.
 		*
@@ -101,6 +102,7 @@ namespace ThomasTheTank
 		mat4 generateModel(vec3 _position, vec3 _rotation, vec3 _scale);
 		quat generateRotQuat(vec3 _rotation); ///< Convert Euler angles to a quaternion.
 		void onTick(); ///< Function called on every program tick.
+		void onLateTick();
 		void onInitialize();
 
 		vec3 position = vec3(0.0f); ///< Global X, Y, Z location of the Entity.

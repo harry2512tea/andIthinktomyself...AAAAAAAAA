@@ -130,6 +130,7 @@ namespace ThomasTheTank
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
 		void tick(); ///< Function called to trigger onTick.
+		void lateTick();
 		void display(); ///< Function called to trigger onDisplay. 
 		void destroy(); ///< Function called to trigger onDestroy.
 		void collisionEnter(Shared<CollisionInfo> collision);

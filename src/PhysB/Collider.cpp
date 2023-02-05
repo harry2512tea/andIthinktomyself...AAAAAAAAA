@@ -1,11 +1,15 @@
 #include "PhysB/Collider.h"
+#include "PhysB/PhysTransform.h"
 namespace PhysB
 {
 
 	void PhysCollider::tick()
 	{
+		m_min = m_initialMin + m_trans->getPosition();
+		m_max = m_initialMax + m_trans->getPosition();
 		onTick();
 	}
+
 	Plane::Plane( vec3 max, vec3 min, vec3 P2)
 	{
 		m_min = min;
@@ -44,6 +48,7 @@ namespace PhysB
 	{
 		return normalize(cross((m_max - m_P2), (m_min - m_P2)));
 	}
+
 	Ray::Ray(vec3 _Direction, vec3 _Origin)
 	{
 		Direction = _Direction;

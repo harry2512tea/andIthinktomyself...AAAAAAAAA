@@ -13,9 +13,10 @@ namespace ThomasTheTank
 		if (!m_trans->m_PhysTransform)
 		{
 			m_trans->addPhysicsTransform();
-			m_trans->m_PhysTransform->initialise(glm::vec3(0.0f, 0.0f, 0.0f));
+			m_trans->m_PhysTransform->initialise(m_trans->getPosition());
 		}
 		m_collider = getCore()->getPhysics()->AddCollider<PhysB::PhysAABB>(m_Entity.lock()->getTransform()->getPhysicsTransform());
+		m_collider.lock()->setEventHandler(std::dynamic_pointer_cast<PhysB::CollisionEvent>(m_self.lock()));
 	}
 	void BoxCollider::onTick()
 	{

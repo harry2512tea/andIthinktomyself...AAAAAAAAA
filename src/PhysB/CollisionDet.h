@@ -44,16 +44,16 @@ namespace PhysB
 		Shared<PhysRigidBody> AddRigidBody(Shared<PhysTransform> _trans);
 		Shared<PhysicsWorld> getPhysicsWorld() { return m_Phys.lock(); };
 		void runCollisionDetection();
-		bool broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
-		bool narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
 
 	private:
 		friend struct PhysicsWorld;
+		bool broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
+		Shared<CollisionInfo> narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2);
 		std::vector<Shared<PhysRigidBody>> RigidBodies;
 		std::vector <Shared<PhysCollider>> Colliders;
 		std::vector <Shared<PhysTransform>> Transforms;
 		std::vector <CollisionPair> Potentials;
-		std::vector <Shared<PhysCollider>> Collision;
+		std::vector <Shared<CollisionInfo>> Collision;
 		Weak<CollisionDet> m_self;
 		Weak<PhysicsWorld> m_Phys;
 		Shared<Collisions> m_collisions;

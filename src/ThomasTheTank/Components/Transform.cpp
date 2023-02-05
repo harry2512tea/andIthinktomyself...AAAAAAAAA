@@ -7,8 +7,21 @@ namespace ThomasTheTank
 	void Transform::onTick()
 	{
 		rotation = checkRoationValues(rotation);
+		if (m_PhysTransform)
+		{
+			position = m_PhysTransform->getPosition();
+			rotationQuat = m_PhysTransform->getRotation();
+		}
 	}
 
+	void Transform::onLateTick()
+	{
+		if (m_PhysTransform)
+		{
+			m_PhysTransform->setPosition(position);
+			m_PhysTransform->setRotation(rotationQuat);
+		}
+	}
 
 	quat Transform::generateRotQuat(vec3 _rotation)
 	{
@@ -31,14 +44,18 @@ namespace ThomasTheTank
 		Shared<PhysB::PhysTransform> temp;
 		if (!m_PhysTransform)
 		{
-			m_PhysTransform = getCore()->getPhysics()->AddTransform();
-			temp = m_PhysTransform;
+			temp = getCore()->getPhysics()->AddTransform();
+			//temp = m_PhysTransform;
+			//temp->setPosition(position);
+			//temp->setRotation(rotation);
+			m_PhysTransform = temp;
 		}
 		else
 		{
 			temp = m_PhysTransform;
 		}
 
+		
 		return temp;
 
 	}
@@ -148,6 +165,8 @@ namespace ThomasTheTank
 		{
 			localPosition = _pos;
 		}
+		position = _pos;
+		std::cout;
 	}
 
 
@@ -167,7 +186,7 @@ namespace ThomasTheTank
 		}
 	}
 
-	vec3 Transform::getPosition()
+	vec3 Transform::getLocalPosition()
 	{
 		mat4 transMat = mat4(1.0f);
 		Shared<Transform> _parent = std::dynamic_pointer_cast<Transform>(m_self.lock());

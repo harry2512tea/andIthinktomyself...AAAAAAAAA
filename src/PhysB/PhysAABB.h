@@ -14,6 +14,7 @@ namespace PhysB
 	private:
 		friend struct CollisionDet;
 		friend struct Collisions;
+		void onTick();
 		std::vector<Shared<Plane>> Planes;
 		std::vector<vec3> points;
 	};

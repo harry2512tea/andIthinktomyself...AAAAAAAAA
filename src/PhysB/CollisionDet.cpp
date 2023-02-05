@@ -3,6 +3,7 @@
 #include "PhysRigidBody.h"
 #include "PhysTransform.h"
 #include "Collisions.h"
+#include "CollisionEvent.h"
 
 #include <iostream>
 
@@ -10,7 +11,7 @@ namespace PhysB
 {
 	void CollisionDet::Tick()
 	{
-		std::cout << "Collision Detect Tick" << std::endl;
+		//std::cout << "Collision Detect Tick" << std::endl;
 		runCollisionDetection();
 		for (size_t i = 0; i < RigidBodies.size(); i++)
 		{
@@ -66,6 +67,7 @@ namespace PhysB
 				{
 					if (broadCollisionDetection(Colliders.at(C1), Colliders.at(C2)))
 					{
+						std::cout << "Broad Collision True" << std::endl;
 						Potentials.push_back(CollisionPair(Colliders.at(C1), Colliders.at(C2)));
 					}
 				}
@@ -74,37 +76,92 @@ namespace PhysB
 
 		for (size_t I = 0; I < Potentials.size(); I++)
 		{
-			if (narrowCollisionDetection(Potentials.at(I).Col1, Potentials.at(I).Col1))
+			Shared<CollisionInfo> col = narrowCollisionDetection(Potentials.at(I).Col1, Potentials.at(I).Col2);
+			if (col->colliding)
 			{
-				Collision.push_back(Potentials.at(I).Col1);
-				Collision.push_back(Potentials.at(I).Col2);
+				std::cout << "Narrow Collision True" << std::endl;
+				Collision.push_back(col);
+				col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
 			}
 		}
 	}
 	bool CollisionDet::broadCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
 	{
-		vec3 Col1Max = Col1->getMax();
+		/*vec3 Col1Max = Col1->getMax();
 		vec3 Col1Min = Col1->getMin();
 		vec3 Col2Max = Col2->getMax();
-		vec3 Col2Min = Col2->getMin();
+		vec3 Col2Min = Col2->getMin();*/
 
-		if ((Col1Min.x <= Col2Max.x && Col1Max.x <= Col2Min.x) &&
-			(Col1Min.y <= Col2Max.y && Col1Max.y <= Col2Min.y) &&
-			(Col1Min.z <= Col2Max.z && Col1Max.z <= Col2Min.z))
+		vec3 Col1S = Col1->getSize();
+		vec3 Col2S = Col2->getSize();
+		vec3 Col1Pos = Col1->m_trans->getPosition();
+		vec3 Col2Pos = Col2->m_trans->getPosition();
+
+		if (Col1Pos.x > Col2Pos.x)
+		{
+			if (Col1Pos.x - Col1S.x > Col2Pos.x + Col2S.x)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (Col2Pos.x - Col2S.x > Col1Pos.x + Col1S.x)
+			{
+				return false;
+			}
+		}
+
+		if (Col1Pos.z > Col2Pos.z)
+		{
+			if (Col1Pos.z - Col1S.z > Col2Pos.z + Col2S.z)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (Col2Pos.z - Col2S.z > Col1Pos.z + Col1S.z)
+			{
+				return false;
+			}
+		}
+
+		if (Col1Pos.y > Col2Pos.y)
+		{
+			if (Col1Pos.y - Col1S.y > Col2Pos.y + Col2S.y)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if (Col2Pos.y - Col2S.y > Col1Pos.y + Col1S.y)
+			{
+				return false;
+			}
+		}
+
+		return true;
+
+		/*if ((Col1Min.x <= Col2Max.x && Col1Min.x >= Col2Max.x) &&
+			(Col1Min.y <= Col2Max.y && Col1Min.y >= Col2Max.y) &&
+			(Col1Min.z <= Col2Max.z && Col1Min.z >= Col2Max.z))
 		{
 			return true;
 		}
 		else
 		{
 			return false;
-		}
-
-		
-		return false;
+		}*/
 	}
-	bool CollisionDet::narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
+
+	Shared<CollisionInfo> CollisionDet::narrowCollisionDetection(Shared<PhysCollider> Col1, Shared<PhysCollider> Col2)
 	{
-		return false;
+
+		Shared<CollisionInfo> temp = m_collisions->CheckCollision(Col1, Col2);
+
+		return temp;
 	}
 
 

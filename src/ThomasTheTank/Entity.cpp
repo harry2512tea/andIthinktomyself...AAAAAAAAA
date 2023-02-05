@@ -29,6 +29,14 @@ namespace ThomasTheTank
 		}
 	}
 
+	void Entity::lateTick()
+	{
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		{
+			(*it)->lateTick();
+		}
+	}
+
 	void Entity::display()
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
@@ -39,10 +47,10 @@ namespace ThomasTheTank
 
 	void Entity::initialize()
 	{
-		/*for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->initialize();
-		}*/
+		}
 	}
 
 	void Entity::destroy()

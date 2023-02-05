@@ -45,6 +45,6 @@ namespace PhysB
 	void PhysicsWorld::Tick()
 	{
 		collisonDetection->Tick();
-		std::cout << "Physics World Tick" << std::endl;
+		//std::cout << "Physics World Tick" << std::endl;
 	}
 }

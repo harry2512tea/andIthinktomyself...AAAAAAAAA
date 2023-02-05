@@ -16,8 +16,8 @@ namespace PhysB
 	{
 		PhysTransform();
 		
-		void initialise(glm::vec3 _pos);
-		void setPosition(glm::vec3 _pos) { position = _pos; };
+		void initialise(vec3 _pos);
+		void setPosition(vec3 _pos) { position = _pos; };
 		void Translate(glm::vec3 _translation) { position += _translation; };
 		void Rotate(glm::vec3 _rotation) { rotation *= glm::quat(_rotation); };
 		void Rotate(glm::quat _rotation) { rotation *= _rotation; };
@@ -32,7 +32,7 @@ namespace PhysB
 		friend struct CollisionDet;
 		void Tick();
 		bool dynamic = false;
-		glm::vec3 position;
+		vec3 position;
 		glm::quat rotation;
 		glm::vec3 scale;
 		Weak<PhysRigidBody> m_body;

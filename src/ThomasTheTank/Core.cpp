@@ -73,11 +73,11 @@ namespace ThomasTheTank
 		environment->initialize();
 		//input = std::make_shared<Input>();
 
-		for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+		/*for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 		{
 			std::cout << (*it)->name << std::endl;
 			(*it)->initialize();
-		}
+		}*/
 
 		if (PhysMultiThreading)
 		{
@@ -104,10 +104,17 @@ namespace ThomasTheTank
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
+				(*it)->lateTick();
+			}
+
+			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
+			{
 				(*it)->display();
 			}
 			
+
 			SDL_GL_SwapWindow(m_window);
+
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
@@ -183,7 +190,7 @@ namespace ThomasTheTank
 			case SDL_KEYDOWN:
 				if (!m_input->getKey(event.key.keysym.sym))
 				{
-					std::cout << "keydown" << std::endl;
+					//std::cout << "keydown" << std::endl;
 					m_input->keyDown.push_back(event.key.keysym.sym);
 					m_input->keys.push_back(event.key.keysym.sym);
 				}
@@ -192,7 +199,7 @@ namespace ThomasTheTank
 			case SDL_KEYUP:
 				if (m_input->getKey(event.key.keysym.sym))
 				{
-					std::cout << "keyup" << std::endl;
+					//std::cout << "keyup" << std::endl;
 					m_input->keys.remove(event.key.keysym.sym);
 					m_input->keyUp.push_back(event.key.keysym.sym);
 				}
@@ -213,7 +220,7 @@ namespace ThomasTheTank
 				button = (int)event.button.button;
 				if (m_input->getButton(button))
 				{
-					std::cout << "mouseButtonUp" << std::endl;
+					//std::cout << "mouseButtonUp" << std::endl;
 					m_input->buttons.remove(button);
 					m_input->buttonUp.push_back(button);
 				}

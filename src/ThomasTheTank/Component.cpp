@@ -14,6 +14,10 @@ namespace ThomasTheTank
 	{
 	}
 
+	void Component::onLateTick()
+	{
+	}
+
 	void Component::onDisplay()
 	{
 	}
@@ -41,6 +45,11 @@ namespace ThomasTheTank
 	void Component::tick()
 	{
 		onTick();
+	}
+
+	void Component::lateTick()
+	{
+		onLateTick();
 	}
 
 	void Component::display()

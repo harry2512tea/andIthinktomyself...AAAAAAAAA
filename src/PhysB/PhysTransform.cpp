@@ -27,7 +27,8 @@ namespace PhysB
 
 	void PhysTransform::Tick()
 	{
-		std::cout << "Phys Transform Tick" << std::endl;
+		//std::cout << "Phys Transform Tick" << std::endl;
+		//std::cout << position.z << std::endl;
 	}
 
 }
