@@ -52,12 +52,17 @@ namespace ThomasTheTank
 		void translate(vec3 translation) { position += translation; localPosition += translation; };
 
 		/**
-		* Get the position.
+		* Get the local position of the object.
 		* 
-		* \return VEC3 The position of the object.
+		* \return VEC3 The local position of the object.
 		*/
 		vec3 getLocalPosition();
 
+		/**
+		* Get the position of the object.
+		*
+		* \return VEC3 The position of the object.
+		*/
 		vec3 getPosition() { return position; };
 		/**
 		* Get the rotation.

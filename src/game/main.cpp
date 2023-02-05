@@ -23,19 +23,19 @@ struct Player : Component
 		trans = getEntity()->getTransform();
 		if (input->getKey(Keys::W))
 		{
-			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 20.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
+			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 2.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::S))
 		{
-			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 20.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::A))
 		{
-			trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 20.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+			trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 		}
 		if (input->getKey(Keys::D))
 		{
-			trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 20.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+			trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 		}
 		if (input->getKeyDown(Keys::ESCAPE))
 		{
@@ -111,7 +111,6 @@ int main()
 
 	Shared<Core> core = Core::Initialise();
 
-
 	Shared<Entity> e = core->addEntity();
 	Shared<Entity> e2 = core->addEntity();
 	Shared<Entity> e3 = core->addEntity();
@@ -124,7 +123,6 @@ int main()
 
 	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
-	//e->addComponent<TriangleRenderer>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
 	curuthers->SetModel(Curuthers);
 	curuthers->SetTexture(CuruthersTexture);

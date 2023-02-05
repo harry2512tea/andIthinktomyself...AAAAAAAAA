@@ -82,6 +82,7 @@ namespace PhysB
 				std::cout << "Narrow Collision True" << std::endl;
 				Collision.push_back(col);
 				col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
+				std::cout << col->point.x << " " << col->point.y << " " << col->point.z << std::endl;
 			}
 		}
 	}
