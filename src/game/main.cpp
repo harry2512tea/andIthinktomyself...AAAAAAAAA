@@ -140,7 +140,7 @@ int main()
 	e3->addComponent<BoxCollider>();
 
 	Shared<RigidBody> e_body = e->addComponent<RigidBody>();
-	e_body->setUseGravity(false);
+	e_body->setUseGravity(true);
 
 	//e->addComponent<AudioSource>();
 

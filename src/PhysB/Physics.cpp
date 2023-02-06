@@ -14,6 +14,8 @@ namespace PhysB
 		Shared<PhysicsWorld> rtn = mkShared<PhysicsWorld>();
 
 		rtn->collisonDetection = mkShared<CollisionDet>();
+		rtn->collisonDetection->m_self = rtn->collisonDetection;
+		rtn->collisonDetection->m_Phys = rtn;
 		rtn->Gravity = vec3(0.0f, -9.81f, 0.0f);
 		rtn->m_running = &_running;
 		rtn->multiThreaded = _multiThreaded;

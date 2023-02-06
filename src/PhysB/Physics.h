@@ -50,7 +50,7 @@ namespace PhysB
 		Shared<CollisionDet> collisonDetection;
 		bool* m_running = false;
 		bool multiThreaded = false;
-		vec3 Gravity;
+		vec3 Gravity = vec3(0.0f, -9.81f, 0.0f);
 		Weak<PhysicsWorld> m_self;
 		Shared<PhysTime> m_time;
 
