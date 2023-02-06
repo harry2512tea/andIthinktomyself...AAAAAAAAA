@@ -21,24 +21,24 @@ struct Player : Component
 	void onTick()
 	{
 		trans = getEntity()->getTransform();
-		//if (input->getKey(Keys::W))
-		//{
-		//	trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 2.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
-		//}
-		//if (input->getKey(Keys::S))
-		//{
-		//	trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		//}
-		//if (input->getKey(Keys::A))
-		//{
-		//	trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		//}
-		//if (input->getKey(Keys::D))
-		//{
-		//	trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		//}
+		if (input->getKey(Keys::W))
+		{
+			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 2.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
+		}
+		if (input->getKey(Keys::S))
+		{
+			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		}
+		if (input->getKey(Keys::A))
+		{
+			trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		}
+		if (input->getKey(Keys::D))
+		{
+			trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		}
 
-		if (input->getKey(Keys::F))
+		if (input->getKeyDown(Keys::F))
 		{
 			m_Entity.lock()->getComponent<RigidBody>()->AddForce(vec3(0.0f, -0.1f, 0.0f));
 		}

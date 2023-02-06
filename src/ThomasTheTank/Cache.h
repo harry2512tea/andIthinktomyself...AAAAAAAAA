@@ -5,6 +5,7 @@
 #include <string>
 #include <list>
 #include <vector>
+#include "Exceptions.h"
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -27,6 +28,7 @@ namespace ThomasTheTank
 		template <typename T>
 		Shared<T> load(const std::string& _path)
 		{
+			
 			for (size_t i = 0; i < m_resources.size(); i++)
 			{
 				if (m_resources.at(i)->GetPath() == _path)
@@ -36,33 +38,35 @@ namespace ThomasTheTank
 				}
 			}
 			Shared<T> rtn = std::make_shared<T>();
-			rtn->m_path = _path;
-			rtn->Load();
-			m_resources.push_back(rtn);
-			return rtn;
+			try
+			{
+				rtn->m_path = _path;
+				rtn->Load();
+				m_resources.push_back(rtn);
+				return rtn;
+			}
+			catch (Exception& e)
+			{
+				std::cout << "Exception: " << e.what() << std::endl;
+			}
+			catch (std::exception)
+			{
+				std::cout << "An unknown exception was thrown" << std::endl;
+			}
 		}
-
-		/*
-		*
-		*
-		*
-		*
-		*
-		*/
-		//static Shared<Cache> getInstance();
 
 	private:
 		friend struct Core;
-		std::vector<Shared<Resource>> m_resources = {};
+		std::vector<Shared<Resource>> m_resources = {}; ///< list of every loaded resource
 
 		//static Shared<Cache> m_self;
 
 		/*
+		* Create an instance of the Cache struct
 		*
 		*
 		*
-		*
-		*
+		* \return Pointer to cache struct
 		*/
 		static Shared<Cache> Initialise();
 	};

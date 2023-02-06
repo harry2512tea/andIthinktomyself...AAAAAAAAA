@@ -7,6 +7,7 @@
 #include "Components/Camera.h"
 #include "Input.h"
 #include "Cache.h"
+#include "Exceptions.h"
 
 #include <string>
 #include <iostream>
@@ -96,7 +97,25 @@ namespace ThomasTheTank
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
-				(*it)->tick();
+				
+				if ((*it)->enabled)
+				{
+					try
+					{
+						(*it)->tick();
+					}
+					catch (Exception& e)
+					{
+						std::cout << "Exception: " << e.what() << std::endl;
+						(*it)->enabled = false;
+					}
+					catch (std::exception& e)
+					{
+						std::cout << "An unknown exception was thrown" << std::endl;
+						(*it)->enabled = false;
+					}
+				}
+				//(*it)->tick();
 			}
 
 			rend::Renderer r(1920, 1080);
@@ -104,12 +123,46 @@ namespace ThomasTheTank
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
-				(*it)->lateTick();
+				if ((*it)->enabled)
+				{
+					try
+					{
+						(*it)->lateTick();
+					}
+					catch (Exception& e)
+					{
+						std::cout << "Exception: " << e.what() << std::endl;
+						(*it)->enabled = false;
+					}
+					catch (std::exception& e)
+					{
+						std::cout << "An unknown exception was thrown" << std::endl;
+						(*it)->enabled = false;
+					}
+				}
+				
 			}
 
 			for (auto it = m_entities.begin(); it != m_entities.end(); it++)
 			{
-				(*it)->display();
+				if ((*it)->enabled)
+				{
+					try
+					{
+						(*it)->display();
+					}
+					catch (Exception& e)
+					{
+						std::cout << "Exception: " << e.what() << std::endl;
+						(*it)->enabled = false;
+					}
+					catch (std::exception& e)
+					{
+						std::cout << "An unknown exception was thrown" << std::endl;
+						(*it)->enabled = false;
+					}
+				}
+				
 			}
 			
 

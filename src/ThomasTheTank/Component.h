@@ -39,6 +39,9 @@ namespace ThomasTheTank
 		virtual void onCollisionEnter(Shared<CollisionInfo> collision);
 		virtual void onCollisionExit(Shared<CollisionInfo> collision);
 		virtual void onCollisionStay(Shared<CollisionInfo> collision);
+		virtual void onTriggerEnter(Shared<CollisionInfo> collision);
+		virtual void onTriggerExit(Shared<CollisionInfo> collision);
+		virtual void onTriggerStay(Shared<CollisionInfo> collision);
 
 		void initialize(); ///< Function called to trigger onInitialize 
 		void tick(); ///< Function called to trigger onTick 
@@ -48,6 +51,9 @@ namespace ThomasTheTank
 		void collisionEnter(Shared<CollisionInfo> collision);
 		void collisionExit(Shared<CollisionInfo> collision);
 		void collisionStay(Shared<CollisionInfo> collision);
+		void triggerEnter(Shared<CollisionInfo> collision);
+		void triggerExit(Shared<CollisionInfo> collision);
+		void triggerStay(Shared<CollisionInfo> collision);
 
 		std::vector<Shared<CollisionInfo>> colInfo;
 
@@ -55,7 +61,8 @@ namespace ThomasTheTank
 		bool m_alive = true; ///< Current state of the component
 
 	protected:
-
+		friend struct Entity;
+		bool enabled = true;
 		Shared<Core> getCore();
 		Weak<Entity> m_Entity; ///< Pointer to the component's parent entity
 		Weak<Component> m_self; ///< Pointer to self

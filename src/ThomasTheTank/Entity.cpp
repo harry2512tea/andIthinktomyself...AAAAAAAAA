@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Components/Collider.h"
 #include "Components/RigidBody.h"
+#include "Exceptions.h"
 
 namespace ThomasTheTank
 {
@@ -27,7 +28,23 @@ namespace ThomasTheTank
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
-			(*it)->tick();
+			if ((*it)->enabled)
+			{
+				try
+				{
+					(*it)->tick();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Exception: " << e.what() << std::endl;
+					(*it)->enabled = false;
+				}
+				catch (std::exception& e)
+				{
+					std::cout << "An unknown exception was thrown" << std::endl;
+					(*it)->enabled = false;
+				}
+			}
 		}
 	}
 
@@ -35,7 +52,23 @@ namespace ThomasTheTank
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
-			(*it)->lateTick();
+			if ((*it)->enabled)
+			{
+				try
+				{
+					(*it)->lateTick();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Exception: " << e.what() << std::endl;
+					(*it)->enabled = false;
+				}
+				catch (std::exception& e)
+				{
+					std::cout << "An unknown exception was thrown" << std::endl;
+					(*it)->enabled = false;
+				}
+			}
 		}
 	}
 
@@ -43,7 +76,23 @@ namespace ThomasTheTank
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
-			(*it)->display();
+			if ((*it)->enabled)
+			{
+				try
+				{
+					(*it)->display();
+				}
+				catch (Exception& e)
+				{
+					std::cout << "Exception: " << e.what() << std::endl;
+					(*it)->enabled = false;
+				}
+				catch (std::exception& e)
+				{
+					std::cout << "An unknown exception was thrown" << std::endl;
+					(*it)->enabled = false;
+				}
+			}
 		}
 	}
 
@@ -97,6 +146,27 @@ namespace ThomasTheTank
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->collisionStay(collision);
+		}
+	}
+	void Entity::triggerEnter(Shared<CollisionInfo> collision)
+	{
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		{
+			(*it)->triggerEnter(collision);
+		}
+	}
+	void Entity::triggerExit(Shared<CollisionInfo> collision)
+	{
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		{
+			(*it)->triggerExit(collision);
+		}
+	}
+	void Entity::triggerStay(Shared<CollisionInfo> collision)
+	{
+		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
+		{
+			(*it)->triggerStay(collision);
 		}
 	}
 }

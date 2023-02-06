@@ -47,4 +47,16 @@ namespace ThomasTheTank
 	{
 		m_Entity.lock()->collisionStay(collision);
 	}
+	void Collider::physOnTriggerEnter(Shared<CollisionInfo> collision)
+	{
+		m_Entity.lock()->triggerEnter(collision);
+	}
+	void Collider::physOnTriggerExit(Shared<CollisionInfo> collision)
+	{
+		m_Entity.lock()->triggerExit(collision);
+	}
+	void Collider::physOnTriggerStay(Shared<CollisionInfo> collision)
+	{
+		m_Entity.lock()->triggerStay(collision);
+	}
 }

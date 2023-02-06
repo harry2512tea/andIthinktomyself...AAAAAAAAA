@@ -2,7 +2,7 @@
 
 namespace PhysB
 {
-	void PhysB::CollisionEvent::physOnCollisionEnter(Shared<CollisionInfo> collision)
+	void CollisionEvent::physOnCollisionEnter(Shared<CollisionInfo> collision)
 	{}
 	void CollisionEvent::physOnCollisionExit(Shared<CollisionInfo> collision)
 	{}
@@ -22,5 +22,25 @@ namespace PhysB
 	void CollisionEvent::physCollisionStay(Shared<CollisionInfo> collision)
 	{
 		physOnCollisionStay(collision);
+	}
+	void CollisionEvent::physOnTriggerEnter(Shared<CollisionInfo> collision)
+	{}
+	void CollisionEvent::physOnTriggerExit(Shared<CollisionInfo> collision)
+	{}
+	void CollisionEvent::physOnTriggerStay(Shared<CollisionInfo> collision)
+	{}
+
+
+	void CollisionEvent::physTriggerEnter(Shared<CollisionInfo> collision)
+	{
+		physOnTriggerEnter(collision);
+	}
+	void CollisionEvent::physTriggerExit(Shared<CollisionInfo> collision)
+	{
+		physOnTriggerExit(collision);
+	}
+	void CollisionEvent::physTriggerStay(Shared<CollisionInfo> collision)
+	{
+		physOnTriggerStay(collision);
 	}
 }

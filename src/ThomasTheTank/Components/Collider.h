@@ -32,6 +32,9 @@ namespace ThomasTheTank
 		void physOnCollisionEnter(Shared<CollisionInfo> collision);
 		void physOnCollisionExit(Shared<CollisionInfo> collision);
 		void physOnCollisionStay(Shared<CollisionInfo> collision);
+		void physOnTriggerEnter(Shared<CollisionInfo> collision);
+		void physOnTriggerExit(Shared<CollisionInfo> collision);
+		void physOnTriggerStay(Shared<CollisionInfo> collision);
 	};
 }
 #endif // !THOMASTHETANK_COLLIDER_H

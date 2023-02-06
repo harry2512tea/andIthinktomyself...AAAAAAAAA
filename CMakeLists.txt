@@ -106,6 +106,8 @@ src/ThomasTheTank/Resources/Texture.h
 src/ThomasTheTank/Resources/Texture.cpp
 src/ThomasTheTank/Resources/AudioClip.h
 src/ThomasTheTank/Resources/AudioClip.cpp
+src/ThomasTheTank/Exceptions.h
+src/ThomasTheTank/Exceptions.cpp
 )
 
 target_link_libraries(ThomasTheTank

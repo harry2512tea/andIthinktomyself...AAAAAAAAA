@@ -1,5 +1,6 @@
 #include "AudioClip.h"
 #include "stb_vorbis.c"
+#include "../Exceptions.h"
 
 namespace ThomasTheTank
 {
@@ -15,7 +16,7 @@ namespace ThomasTheTank
 
 		if (samples == -1)
 		{
-			throw std::runtime_error("Failed to open file '" + _path + "' for decoding");
+			throw Exception("Failed to open file '" + _path + "' for decoding");
 		}
 
 		// Record the format required by OpenAL

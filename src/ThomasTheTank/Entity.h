@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include <PhysB/PhysB.h>
+#include "Exceptions.h"
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -66,7 +67,7 @@ namespace ThomasTheTank
 			}
 			
 			std::cout << "component doesn't exist" << std::endl;
-			throw std::runtime_error("Component doesn't exist");
+			throw Exception("Component doesn't exist");
 		}
 
 		/**
@@ -124,6 +125,12 @@ namespace ThomasTheTank
 		* \return Pointer to the entity's transform component.
 		*/
 		Shared<Transform> getTransform() { return Transform; };
+
+		/**
+		* Get a reference to the core structure
+		* 
+		* \return Pointer to the core structure
+		*/
 		Shared<Core> getCore() { return m_core.lock(); };
 		std::string name; ///< Name of the entity.
 	private:
@@ -131,18 +138,22 @@ namespace ThomasTheTank
 		friend struct BoxCollider;
 		friend struct RigidBody;
 		friend struct Collider;
-		void addRigidBody(Shared<PhysB::PhysRigidBody> body);
-		void removeRigidBody();
+		bool enabled = true; ///< Whether or not the entity is enabled.
+		void addRigidBody(Shared<PhysB::PhysRigidBody> body); ///< Function called to add rigidbody references to colliders
+		void removeRigidBody(); ///< Function called to remove rigidbody references from colliders
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
 		void tick(); ///< Function called to trigger onTick.
-		void lateTick();
+		void lateTick(); ///< Function called after tick and display functions.
 		void display(); ///< Function called to trigger onDisplay. 
 		void destroy(); ///< Function called to trigger onDestroy.
-		void collisionEnter(Shared<CollisionInfo> collision);
-		void collisionExit(Shared<CollisionInfo> collision);
-		void collisionStay(Shared<CollisionInfo> collision);
-		std::vector<Weak<Collider>>m_colliders;
+		void collisionEnter(Shared<CollisionInfo> collision); ///< Function called when entering colliders.
+		void collisionExit(Shared<CollisionInfo> collision); ///< Function called when exiting colliders.
+		void collisionStay(Shared<CollisionInfo> collision); ///< Function called while inside colliders.
+		void triggerEnter(Shared<CollisionInfo> collision); ///< Function called when entering triggers.
+		void triggerExit(Shared<CollisionInfo> collision); ///< Function called when exiting triggers.
+		void triggerStay(Shared<CollisionInfo> collision); ///< Function called while inside triggers.
+		std::vector<Weak<Collider>>m_colliders; ///< List of all colliders attached to the entity.
 		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
 		bool m_alive = true; ///< Current state of the entity.
 		Weak<Core> m_core; ///< Pointer to the core struct.

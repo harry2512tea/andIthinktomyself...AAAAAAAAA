@@ -23,6 +23,13 @@ namespace PhysB
 		void physCollisionEnter(Shared<CollisionInfo> collision);
 		void physCollisionExit(Shared<CollisionInfo> collision);
 		void physCollisionStay(Shared<CollisionInfo> collision);
+
+		virtual void physOnTriggerEnter(Shared<CollisionInfo> collision);
+		virtual void physOnTriggerExit(Shared<CollisionInfo> collision);
+		virtual void physOnTriggerStay(Shared<CollisionInfo> collision);
+		void physTriggerEnter(Shared<CollisionInfo> collision);
+		void physTriggerExit(Shared<CollisionInfo> collision);
+		void physTriggerStay(Shared<CollisionInfo> collision);
 	};
 
 }
