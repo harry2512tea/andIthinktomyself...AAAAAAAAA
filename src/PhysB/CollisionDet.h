@@ -40,6 +40,7 @@ namespace PhysB
 		friend struct CollisionDet;
 		friend struct Collisions;
 		Shared<PhysCollider> ColliderPlane, ColliderToMove;
+		vec3 collidingPoint;
 		Weak<Plane> CollisionPlane;
 	};
 

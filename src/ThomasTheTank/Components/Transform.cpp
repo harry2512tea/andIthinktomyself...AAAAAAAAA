@@ -165,6 +165,7 @@ namespace ThomasTheTank
 		{
 			localPosition = _pos;
 		}
+		localPosition = _pos;
 		position = _pos;
 		std::cout;
 	}

@@ -19,8 +19,10 @@ namespace ThomasTheTank
 	protected:
 		void onInitialize();
 		void onTick();
+		void onAddRigidBody(Shared<PhysB::PhysRigidBody> _body);
+		void onRemoveRigidBody();
 		vec3 size;
-		Weak<Transform> m_Transform;
+		//Weak<Transform> m_Transform;
 		Weak<PhysB::PhysAABB> m_collider;
 		//vec3 m_rotation;
 	};

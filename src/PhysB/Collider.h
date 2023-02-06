@@ -59,6 +59,8 @@ namespace PhysB
 		void setMin(vec3(_min)) { m_min = _min; };
 		void setMax(vec3(_max)) { m_max = _max; };
 		void setEventHandler(Shared< CollisionEvent> _event) { m_eventHandler = _event; };
+		void addRigidBody(Shared<PhysRigidBody> _body);
+		void removeRigidBody();
 
 		Shared<PhysTransform> Transform() { return m_trans; };
 		int getID() { return ID; };

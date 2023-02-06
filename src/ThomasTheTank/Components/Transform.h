@@ -90,7 +90,7 @@ namespace ThomasTheTank
 		* 
 		* \return MAT4 The model's transformation matrix.
 		*/
-		mat4 getModel() { return generateModel(localPosition, localRotation, localScale); };
+		mat4 getModel() { return generateModel(position, rotation, localScale); };
 
 		Shared<Transform> getParent() { return Parent.lock(); };
 
@@ -101,6 +101,7 @@ namespace ThomasTheTank
 	private:
 		friend struct Transform;
 		friend struct BoxCollider;
+		friend struct RigidBody;
 		Weak<Transform> Parent;
 		std::list<Weak<Transform>> Children;
 

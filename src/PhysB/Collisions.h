@@ -28,6 +28,9 @@ namespace PhysB
 		void BoxBox(Shared<CollisionInfo> colInfo);
 		Axis projOntoAxis(std::vector<vec3> points, vec3 normal);
 		void BoxBoxColPoint(Shared<CollisionInfo> colInfo);
+
+		void CheckResponse(Shared<CollisionInfo> colInfo);
+		void BoxBoxResponse(Shared<CollisionInfo> colInfo);
 	};
 
 }

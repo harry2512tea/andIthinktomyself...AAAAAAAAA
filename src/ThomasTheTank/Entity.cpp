@@ -1,6 +1,8 @@
 #include "Entity.h"
 #include "Component.h"
 #include "Core.h"
+#include "Components/Collider.h"
+#include "Components/RigidBody.h"
 
 namespace ThomasTheTank
 {
@@ -42,6 +44,22 @@ namespace ThomasTheTank
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->display();
+		}
+	}
+
+	void Entity::addRigidBody(Shared<PhysB::PhysRigidBody> body)
+	{
+		for (size_t I = 0; I < m_colliders.size(); I++)
+		{
+			m_colliders.at(I).lock()->AddRigidBody(body);
+		}
+	}
+
+	void Entity::removeRigidBody()
+	{
+		for (size_t I = 0; I < m_colliders.size(); I++)
+		{
+			m_colliders.at(I).lock()->RemoveRigidBody();
 		}
 	}
 

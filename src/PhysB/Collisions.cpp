@@ -3,6 +3,7 @@
 #include "CollisionDet.h"
 #include "PhysTransform.h"
 #include "PhysAABB.h"
+#include "PhysRigidBody.h"
 
 
 namespace PhysB
@@ -103,7 +104,7 @@ namespace PhysB
 		Shared <PhysAABB> Col2 = std::dynamic_pointer_cast<PhysAABB>(colInfo->Col2);
 		vec3 col1Point = Col1->Transform()->getPosition();
 		vec3 col2Point = Col2->Transform()->getPosition();
-		vec3 intersect, normal;
+		vec3 intersect, normal, collidingPoint;
 		Shared<Plane> collisionPlane;
 		Shared<PhysCollider> ColliderToMove, ColliderPlane;
 		float dist = 0;
@@ -120,6 +121,7 @@ namespace PhysB
 					ColliderPlane = Col2;
 					ColliderToMove = Col1;
 					collisionPlane = Col2->Planes.at(Plane);
+					collidingPoint = Col1->points.at(Point);
 					intersect = temp;
 					dist = distance(col1Point, temp);
 				}
@@ -138,6 +140,7 @@ namespace PhysB
 					ColliderPlane = Col1;
 					ColliderToMove = Col2;
 					collisionPlane = Col1->Planes.at(Plane);
+					collidingPoint = Col2->points.at(Point);
 					intersect = temp;
 					dist = distance(col2Point, temp);
 				}
@@ -148,6 +151,117 @@ namespace PhysB
 		colInfo->ColliderPlane = ColliderPlane;
 		colInfo->ColliderToMove = ColliderToMove;
 		colInfo->CollisionPlane = collisionPlane;
+		colInfo->collidingPoint = collidingPoint;
+	}
+
+	void Collisions::CheckResponse(Shared<CollisionInfo> colInfo)
+	{
+		switch (colInfo->Col1->getType())
+		{
+		case Box:
+			switch (colInfo->Col2->getType())
+			{
+			case Box:
+				BoxBoxResponse(colInfo);
+				break;
+			case Sphere:
+				break;
+			}
+			break;
+		case Sphere:
+			switch (colInfo->Col2->getType())
+			{
+			case Box:
+				break;
+			case Sphere:
+				break;
+			}
+			break;
+		}
+	}
+
+	void Collisions::BoxBoxResponse(Shared<CollisionInfo> colInfo)
+	{
+		Shared <PhysAABB> ColliderPlane = std::dynamic_pointer_cast<PhysAABB>(colInfo->ColliderPlane);
+		Shared <PhysAABB> ColliderToMove = std::dynamic_pointer_cast<PhysAABB>(colInfo->ColliderToMove);
+		Shared<Ray> ray;
+		vec3 intersect;
+		Shared<PhysRigidBody> Col1;
+		Shared<PhysRigidBody> Col2;
+		vec3 vel = vec3();
+		vec3 totalMomentum = vec3();
+		vec3 totalVelocity = vec3();
+		vec3 Col1vel = vec3();
+		vec3 Col2vel = vec3();
+		vec3 velocityPerMass;
+		vec3 velInDirection;
+		float dist;
+		float magInDirection;
+
+
+		switch (ColliderPlane->isDynamic)
+		{
+		case true:
+			switch (ColliderToMove->isDynamic)
+			{
+			case true:
+				vel = ColliderToMove->m_RigidBody.lock()->getVelocity();
+
+				ray = std::make_shared<Ray>(-vel, colInfo->collidingPoint);
+				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
+				dist = distance(intersect, colInfo->collidingPoint);
+				ColliderToMove->m_trans->Translate(-vel * dist);
+
+				Col1 = ColliderToMove->m_RigidBody.lock();
+				Col2 = ColliderPlane->m_RigidBody.lock();
+
+				totalMomentum = (Col1->getVelocity() * Col1->getMass()) + (Col2->getVelocity() * Col2->getMass());
+				totalVelocity = totalMomentum / (Col1->getMass() + Col2->getMass());
+				velocityPerMass = totalVelocity / (Col1->getMass() + Col2->getMass());
+				Col1vel = velocityPerMass * Col1->getMass();
+				Col2vel = velocityPerMass * Col2->getMass();
+
+				Col1->AddForce(Col1vel, VelocityChange);
+				Col2->AddForce(Col2vel, VelocityChange);
+
+				break;
+
+			case false:
+				vel = ColliderPlane->m_RigidBody.lock()->getVelocity();
+				ray = std::make_shared<Ray>(vel, colInfo->collidingPoint);
+				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
+				dist = distance(intersect, colInfo->collidingPoint);
+				ColliderPlane->m_trans->Translate(-vel * dist);
+
+				magInDirection = dot(vel, colInfo->CollisionPlane.lock()->getNormal());
+				velInDirection = colInfo->CollisionPlane.lock()->getNormal() * magInDirection;
+				ColliderPlane->m_RigidBody.lock()->AddForce(-velInDirection + (-velInDirection * ColliderPlane->m_RigidBody.lock()->getElasticity()));
+				break;
+			}
+			break;
+		case false:
+			switch (ColliderToMove->isDynamic)
+			{
+			case true:
+				vel = ColliderToMove->m_RigidBody.lock()->getVelocity();
+
+				ray = std::make_shared<Ray>(-vel, colInfo->collidingPoint);
+				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
+				dist = distance(intersect, colInfo->collidingPoint);
+				ColliderToMove->m_trans->Translate(-vel * dist);
+
+				magInDirection = dot(vel, -colInfo->CollisionPlane.lock()->getNormal());
+				velInDirection = -colInfo->CollisionPlane.lock()->getNormal() * magInDirection;
+
+				ColliderToMove->m_RigidBody.lock()->AddForce(-velInDirection + (-velInDirection * ColliderToMove->m_RigidBody.lock()->getElasticity()));
+				break;
+			case false:
+				break;
+			}
+			break;
+		}
+
+		
 	}
 
 	Axis Collisions::projOntoAxis(std::vector<vec3> points, vec3 normal)

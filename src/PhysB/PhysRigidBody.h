@@ -29,12 +29,17 @@ namespace PhysB
 		void setVelocity(vec3 _vel) { velocity = _vel; };
 		vec3 getAngularVelocity() { return angularVelocity; };
 		void setAngularVelocity(vec3 _vel) { angularVelocity = _vel; };
+		float getElasticity() { return elasticity; };
+		void setElasticity(float _elasticity) { elasticity = _elasticity; };
+		float getFriction() { return friction; };
+		void setFriction(float _friction) { friction = _friction; };
 
 	private:
 		friend struct CollisionDet;
 		void tick();
-		bool gravity;
+		bool gravity = true;
 		float mass = 1.0f;
+		float elasticity = 0.5f, friction = 0.5f;
 		glm::vec3 velocity = glm::vec3(0.0f);
 		glm::vec3 angularVelocity = glm::vec3(0.0f);
 		friend struct CollisionDet;

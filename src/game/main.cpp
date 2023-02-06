@@ -37,6 +37,12 @@ struct Player : Component
 		{
 			trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 		}
+
+		if (input->getKey(Keys::F))
+		{
+			m_Entity.lock()->getComponent<RigidBody>()->AddForce(vec3(1.0f, 0.0f, 0.0f));
+		}
+
 		if (input->getKeyDown(Keys::ESCAPE))
 		{
 			std::cout << "locking/unlocking" << std::endl;
@@ -117,9 +123,8 @@ int main()
 
 	e->getTransform()->setPosition(vec3(-5.0f, 0.0f, -5.0f));
 	e3->getTransform()->setPosition(vec3(5.0f, 0.0f, -5.0f));
-
-	Shared<Model> Curuthers =  Resources->load<Model>("../data/curuthers/curuthers.obj");
-	Shared<Texture> CuruthersTexture = Resources->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
+	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/curuthers/curuthers.obj");
+	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
 
 	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
@@ -131,9 +136,11 @@ int main()
 	curuthers2->SetModel(Curuthers);
 	curuthers2->SetTexture(CuruthersTexture);
 	
-
 	e->addComponent<BoxCollider>();
 	e3->addComponent<BoxCollider>();
+
+	Shared<RigidBody> e_body = e->addComponent<RigidBody>();
+	e_body->setUseGravity(false);
 
 	//e->addComponent<AudioSource>();
 

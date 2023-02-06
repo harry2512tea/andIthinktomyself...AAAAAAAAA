@@ -14,10 +14,18 @@ namespace ThomasTheTank
 
 		void setOffset(vec3 _offset) { m_offset = _offset; };
 		vec3 getOffset() { return m_offset; };
+		
 	protected:
+		friend struct RigidBody;
 		vec3 m_offset;
 		Shared<Transform> m_trans;
+		Weak<PhysB::PhysRigidBody> m_body;
 	private:
+		friend struct Entity;
+		virtual void onAddRigidBody(Shared<PhysB::PhysRigidBody> _body);
+		virtual void onRemoveRigidBody();
+		void AddRigidBody(Shared <PhysB::PhysRigidBody> _body);
+		void RemoveRigidBody();
 		void onInitialize();
 		void onTick();
 		void onDestroy();

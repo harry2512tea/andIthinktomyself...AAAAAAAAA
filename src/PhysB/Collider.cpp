@@ -2,6 +2,17 @@
 #include "PhysB/PhysTransform.h"
 namespace PhysB
 {
+	void PhysCollider::addRigidBody(Shared<PhysRigidBody> _body)
+	{
+		m_RigidBody = _body;
+		isDynamic = true;
+	}
+
+	void PhysCollider::removeRigidBody()
+	{
+		m_RigidBody = Weak<PhysRigidBody>();
+		isDynamic = false;
+	}
 
 	void PhysCollider::tick()
 	{

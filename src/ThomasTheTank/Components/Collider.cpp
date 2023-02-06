@@ -1,11 +1,26 @@
 #include "Collider.h"
 #include "../Entity.h"
 #include "Transform.h"
+#include "../Core.h"
 #include <PhysB/PhysB.h>
 #include <iostream>
 
 namespace ThomasTheTank
 {
+	void Collider::onAddRigidBody(Shared<PhysB::PhysRigidBody> _body)
+	{
+	}
+	void Collider::onRemoveRigidBody()
+	{
+	}
+	void Collider::AddRigidBody(Shared<PhysB::PhysRigidBody> _body)
+	{
+		onAddRigidBody(_body);
+	}
+	void Collider::RemoveRigidBody()
+	{
+		onRemoveRigidBody();
+	}
 	void Collider::onInitialize()
 	{
 	}

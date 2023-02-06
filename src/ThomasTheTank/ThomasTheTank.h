@@ -21,6 +21,7 @@
 #include "TriangleRenderer.h"
 
 //Physics
+#include "Components/RigidBody.h"
 #include "Components/Collider.h"
 #include "Components/Colliders/BoxCollider.h"
 
@@ -31,7 +32,7 @@
 
 
 #define input Input::getInstance()
-#define Resources Cache::getInstance()
+//#define Resources Cache::getInstance()
 
 
 #endif

@@ -49,13 +49,13 @@ namespace ThomasTheTank
 		*
 		*
 		*/
-		static Shared<Cache> getInstance();
+		//static Shared<Cache> getInstance();
 
 	private:
 		friend struct Core;
 		std::vector<Shared<Resource>> m_resources = {};
 
-		static Shared<Cache> m_self;
+		//static Shared<Cache> m_self;
 
 		/*
 		*

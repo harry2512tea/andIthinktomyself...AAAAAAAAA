@@ -2,7 +2,7 @@
 #include <list>
 #include <stdexcept>
 #include <string>
-#include <pellet/btBulletCollisionCommon.h>
+#include <PhysB/PhysB.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -19,6 +19,9 @@ namespace ThomasTheTank
 	struct Camera;
 
 	struct CollisionInfo;
+
+	struct Collider;
+
 	/**
 	* Main entity struct.
 	*/
@@ -125,8 +128,11 @@ namespace ThomasTheTank
 		std::string name; ///< Name of the entity.
 	private:
 		friend struct Core;
+		friend struct BoxCollider;
+		friend struct RigidBody;
 		friend struct Collider;
-
+		void addRigidBody(Shared<PhysB::PhysRigidBody> body);
+		void removeRigidBody();
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
 		void tick(); ///< Function called to trigger onTick.
@@ -136,6 +142,7 @@ namespace ThomasTheTank
 		void collisionEnter(Shared<CollisionInfo> collision);
 		void collisionExit(Shared<CollisionInfo> collision);
 		void collisionStay(Shared<CollisionInfo> collision);
+		std::vector<Weak<Collider>>m_colliders;
 		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
 		bool m_alive = true; ///< Current state of the entity.
 		Weak<Core> m_core; ///< Pointer to the core struct.

@@ -175,7 +175,7 @@ namespace PhysB
 
 	void CollisionDet::collisionResponse(Shared<CollisionInfo> colInfo)
 	{
-
+		m_collisions->CheckResponse(colInfo);
 	}
 
 	CollisionPair::CollisionPair(Shared<PhysCollider> _Col1, Shared<PhysCollider> _Col2)

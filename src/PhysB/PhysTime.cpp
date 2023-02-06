@@ -3,6 +3,7 @@
 
 namespace PhysB
 {
+	float PhysTime::deltaTime = 0;
 	void PhysTime::initialize()
 	{
 		lastTime = SDL_GetTicks();
