@@ -4,6 +4,7 @@
 #include "PhysTransform.h"
 #include "PhysAABB.h"
 #include "PhysRigidBody.h"
+#include <iostream>
 
 
 namespace PhysB
@@ -100,6 +101,7 @@ namespace PhysB
 
 	void Collisions::BoxBoxColPoint(Shared<CollisionInfo> colInfo)
 	{
+		float Epsilon = 0.00001f;
 		Shared <PhysAABB> Col1 = std::dynamic_pointer_cast<PhysAABB>(colInfo->Col1);
 		Shared <PhysAABB> Col2 = std::dynamic_pointer_cast<PhysAABB>(colInfo->Col2);
 		vec3 col1Point = Col1->Transform()->getPosition();
@@ -107,21 +109,124 @@ namespace PhysB
 		vec3 intersect, normal, collidingPoint;
 		Shared<Plane> collisionPlane;
 		Shared<PhysCollider> ColliderToMove, ColliderPlane;
-		float dist = 0;
+		float dist = -1;
 		vec3 temp;
-		for (size_t Point = 0; Point < Col1->points.size(); Point++)
+
+		if (Col1->isDynamic)
 		{
-			Shared<Ray> ray = std::make_shared<Ray>(Col1->points.at(Point) - col1Point, col1Point);
+			for (size_t Point = 0; Point < Col1->points.size(); Point++)
+			{
+				Shared<Ray> ray = std::make_shared<Ray>(-normalize(Col1->m_RigidBody.lock()->getVelocity()), Col1->points.at(Point));
+				for (size_t Plane = 0; Plane < Col2->Planes.size(); Plane++)
+				{
+					Col2->Planes.at(Plane)->getIntersect(ray, temp);
+					if (distance(col1Point, temp) /*+ distance(Col1->points.at(Point), temp)*/ < dist || dist == -1)
+					{
+						if (dot(temp - Col1->points.at(Point), -normalize(Col1->m_RigidBody.lock()->getVelocity())) > Epsilon)
+						{
+							normal = Col2->Planes.at(Plane)->getNormal();
+							ColliderPlane = Col2;
+							ColliderToMove = Col1;
+							collisionPlane = Col2->Planes.at(Plane);
+							collidingPoint = Col1->points.at(Point) + Col1->m_trans->getPosition();
+							intersect = temp;
+							dist = distance(col1Point, temp) /*+ distance(Col1->points.at(Point), temp)*/;
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			for (size_t Point = 0; Point < Col1->points.size(); Point++)
+			{
+				Shared<Ray> ray = std::make_shared<Ray>(normalize(Col2->m_RigidBody.lock()->getVelocity()), Col1->points.at(Point));
+				for (size_t Plane = 0; Plane < Col2->Planes.size(); Plane++)
+				{
+					Col2->Planes.at(Plane)->getIntersect(ray, temp);
+					if (distance(col1Point, temp) /*+ distance(Col1->points.at(Point), temp)*/ < dist || dist == -1)
+					{
+						if (dot(temp - Col1->points.at(Point), normalize(Col2->m_RigidBody.lock()->getVelocity())) > Epsilon)
+						{
+							normal = Col2->Planes.at(Plane)->getNormal();
+							ColliderPlane = Col2;
+							ColliderToMove = Col1;
+							collisionPlane = Col2->Planes.at(Plane);
+							collidingPoint = Col1->points.at(Point) + Col1->m_trans->getPosition();
+							intersect = temp;
+							dist = distance(col1Point, temp) /*+ distance(Col1->points.at(Point), temp)*/;
+						}
+					}
+				}
+			}
+		}
+
+		if (Col2->isDynamic)
+		{
+			for (size_t Point = 0; Point < Col2->points.size(); Point++)
+			{
+				Shared<Ray> ray = std::make_shared<Ray>(-normalize(Col2->m_RigidBody.lock()->getVelocity()), Col2->points.at(Point));
+				for (size_t Plane = 0; Plane < Col1->Planes.size(); Plane++)
+				{
+					Col1->Planes.at(Plane)->getIntersect(ray, temp);
+					if (distance(col2Point, temp) /*+ distance(Col2->points.at(Point), temp)*/ < dist || dist == -1)
+					{
+						if (dot(temp - Col1->points.at(Point), -normalize(Col2->m_RigidBody.lock()->getVelocity())) > Epsilon)
+						{
+							normal = Col1->Planes.at(Plane)->getNormal();
+							ColliderPlane = Col1;
+							ColliderToMove = Col2;
+							collisionPlane = Col1->Planes.at(Plane);
+							collidingPoint = Col2->points.at(Point) + Col2->m_trans->getPosition();
+							intersect = temp;
+							dist = distance(col2Point, temp) /*+ distance(Col2->points.at(Point), temp)*/;
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			for (size_t Point = 0; Point < Col2->points.size(); Point++)
+			{
+				Shared<Ray> ray = std::make_shared<Ray>(normalize(Col1->m_RigidBody.lock()->getVelocity()), Col2->points.at(Point));
+				for (size_t Plane = 0; Plane < Col1->Planes.size(); Plane++)
+				{
+					Col1->Planes.at(Plane)->getIntersect(ray, temp);
+					if (distance(col2Point, temp) /*+ distance(Col2->points.at(Point), temp)*/ < dist || dist == -1)
+					{
+						if (dot(temp - Col1->points.at(Point), normalize(Col1->m_RigidBody.lock()->getVelocity())) > Epsilon)
+						{
+							normal = Col1->Planes.at(Plane)->getNormal();
+							ColliderPlane = Col1;
+							ColliderToMove = Col2;
+							collisionPlane = Col1->Planes.at(Plane);
+							collidingPoint = Col2->points.at(Point) + Col2->m_trans->getPosition();
+							intersect = temp;
+							dist = distance(col2Point, temp) /*+ distance(Col2->points.at(Point), temp)*/;
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+
+		/*for (size_t Point = 0; Point < Col1->points.size(); Point++)
+		{
+			Shared<Ray> ray = std::make_shared<Ray>(normalize(Col1->points.at(Point) - col1Point), col1Point);
 			for (size_t Plane = 0; Plane < Col2->Planes.size(); Plane++)
 			{
 				Col2->Planes.at(Plane)->getIntersect(ray, temp);
-				if (distance(col1Point, temp) < dist || Plane == 0)
+				if (distance(col1Point, temp) < dist || dist == -1)
 				{
 					normal = Col2->Planes.at(Plane)->getNormal();
 					ColliderPlane = Col2;
 					ColliderToMove = Col1;
 					collisionPlane = Col2->Planes.at(Plane);
-					collidingPoint = Col1->points.at(Point);
+					collidingPoint = Col1->points.at(Point) + Col1->m_trans->getPosition();
 					intersect = temp;
 					dist = distance(col1Point, temp);
 				}
@@ -130,22 +235,22 @@ namespace PhysB
 
 		for (size_t Point = 0; Point < Col2->points.size(); Point++)
 		{
-			Shared<Ray> ray = std::make_shared<Ray>(Col2->points.at(Point) - col2Point, col2Point);
+			Shared<Ray> ray = std::make_shared<Ray>(normalize(Col2->points.at(Point) - col2Point), col2Point);
 			for (size_t Plane = 0; Plane < Col1->Planes.size(); Plane++)
 			{
 				Col1->Planes.at(Plane)->getIntersect(ray, temp);
-				if (distance(col2Point, temp) < dist || Plane == 0)
+				if (distance(col2Point, temp) < dist)
 				{
 					normal = Col1->Planes.at(Plane)->getNormal();
 					ColliderPlane = Col1;
 					ColliderToMove = Col2;
 					collisionPlane = Col1->Planes.at(Plane);
-					collidingPoint = Col2->points.at(Point);
+					collidingPoint = Col2->points.at(Point) + Col2->m_trans->getPosition();
 					intersect = temp;
 					dist = distance(col2Point, temp);
 				}
 			}
-		}
+		}*/
 		colInfo->point = intersect;
 		colInfo->normal = normal;
 		colInfo->ColliderPlane = ColliderPlane;
@@ -182,6 +287,7 @@ namespace PhysB
 
 	void Collisions::BoxBoxResponse(Shared<CollisionInfo> colInfo)
 	{
+		
 		Shared <PhysAABB> ColliderPlane = std::dynamic_pointer_cast<PhysAABB>(colInfo->ColliderPlane);
 		Shared <PhysAABB> ColliderToMove = std::dynamic_pointer_cast<PhysAABB>(colInfo->ColliderToMove);
 		Shared<Ray> ray;
@@ -198,6 +304,7 @@ namespace PhysB
 		float dist;
 		float magInDirection;
 
+		vec3 translation;
 
 		switch (ColliderPlane->isDynamic)
 		{
@@ -207,10 +314,11 @@ namespace PhysB
 			case true:
 				vel = ColliderToMove->m_RigidBody.lock()->getVelocity();
 
-				ray = std::make_shared<Ray>(-vel, colInfo->collidingPoint);
+				ray = std::make_shared<Ray>(-normalize(vel), colInfo->collidingPoint);
 				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
 				dist = distance(intersect, colInfo->collidingPoint);
-				ColliderToMove->m_trans->Translate(-vel * dist);
+				translation = normalize(-vel) * dist;
+				ColliderToMove->m_trans->Translate(translation);
 
 				Col1 = ColliderToMove->m_RigidBody.lock();
 				Col2 = ColliderPlane->m_RigidBody.lock();
@@ -228,10 +336,12 @@ namespace PhysB
 
 			case false:
 				vel = ColliderPlane->m_RigidBody.lock()->getVelocity();
-				ray = std::make_shared<Ray>(vel, colInfo->collidingPoint);
+				ray = std::make_shared<Ray>(normalize(-vel), colInfo->collidingPoint);
 				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
 				dist = distance(intersect, colInfo->collidingPoint);
-				ColliderPlane->m_trans->Translate(-vel * dist);
+				translation = normalize(-vel) * dist;
+				ColliderPlane->m_trans->Translate(translation);
+				//std::cout << translation.x << std::endl;
 
 				magInDirection = dot(vel, colInfo->CollisionPlane.lock()->getNormal());
 				velInDirection = colInfo->CollisionPlane.lock()->getNormal() * magInDirection;
@@ -245,10 +355,11 @@ namespace PhysB
 			case true:
 				vel = ColliderToMove->m_RigidBody.lock()->getVelocity();
 
-				ray = std::make_shared<Ray>(-vel, colInfo->collidingPoint);
+				ray = std::make_shared<Ray>(normalize(-vel), colInfo->collidingPoint);
 				colInfo->CollisionPlane.lock()->getIntersect(ray, intersect);
 				dist = distance(intersect, colInfo->collidingPoint);
-				ColliderToMove->m_trans->Translate(-vel * dist);
+				translation = normalize(-vel) * dist;
+				ColliderToMove->m_trans->Translate(translation);
 
 				magInDirection = dot(vel, -colInfo->CollisionPlane.lock()->getNormal());
 				velInDirection = -colInfo->CollisionPlane.lock()->getNormal() * magInDirection;

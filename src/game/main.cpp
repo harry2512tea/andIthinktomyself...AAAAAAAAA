@@ -21,26 +21,26 @@ struct Player : Component
 	void onTick()
 	{
 		trans = getEntity()->getTransform();
-		if (input->getKey(Keys::W))
-		{
-			trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 2.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
-		}
-		if (input->getKey(Keys::S))
-		{
-			trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		}
-		if (input->getKey(Keys::A))
-		{
-			trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		}
-		if (input->getKey(Keys::D))
-		{
-			trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
-		}
+		//if (input->getKey(Keys::W))
+		//{
+		//	trans->translate((((vec3(0.0f, 0.0f, -1.0f) * 2.0f /* * trans->getRotationQuat()*/)*SceneTime::DeltaTime())));
+		//}
+		//if (input->getKey(Keys::S))
+		//{
+		//	trans->translate((((vec3(0.0f, 0.0f, 1.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		//}
+		//if (input->getKey(Keys::A))
+		//{
+		//	trans->translate((((vec3(-1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		//}
+		//if (input->getKey(Keys::D))
+		//{
+		//	trans->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
+		//}
 
 		if (input->getKey(Keys::F))
 		{
-			m_Entity.lock()->getComponent<RigidBody>()->AddForce(vec3(1.0f, 0.0f, 0.0f));
+			m_Entity.lock()->getComponent<RigidBody>()->AddForce(vec3(0.0f, -0.1f, 0.0f));
 		}
 
 		if (input->getKeyDown(Keys::ESCAPE))
@@ -121,8 +121,8 @@ int main()
 	Shared<Entity> e2 = core->addEntity();
 	Shared<Entity> e3 = core->addEntity();
 
-	e->getTransform()->setPosition(vec3(-5.0f, 0.0f, -5.0f));
-	e3->getTransform()->setPosition(vec3(5.0f, 0.0f, -5.0f));
+	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -10.0f));
+	e3->getTransform()->setPosition(vec3(0.0f, -5.0f, -10.0f));
 	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/curuthers/curuthers.obj");
 	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
 

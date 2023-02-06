@@ -2,6 +2,7 @@
 //#include <glm/ext.hpp>
 #include <memory>
 #include "GLMWrapping.h"
+#include <iostream>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -18,7 +19,7 @@ namespace PhysB
 		
 		void initialise(vec3 _pos);
 		void setPosition(vec3 _pos) { position = _pos; };
-		void Translate(glm::vec3 _translation) { position += _translation; };
+		void Translate(vec3 _translation) { position += _translation; };
 		void Rotate(glm::vec3 _rotation) { rotation *= glm::quat(_rotation); };
 		void Rotate(glm::quat _rotation) { rotation *= _rotation; };
 		void setRotation(glm::vec3 _rotation) { rotation = glm::quat(_rotation); };
