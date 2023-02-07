@@ -4,6 +4,7 @@
 #include <string>
 #include <PhysB/PhysB.h>
 #include "Exceptions.h"
+#include <type_traits>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -39,11 +40,22 @@ namespace ThomasTheTank
 		template<typename T>
 		Shared<T> addComponent()
 		{
-			Shared<T> rtn = std::make_shared<T>();
-			rtn->m_self = rtn;
-			rtn->m_Entity = m_self;
-			rtn->initialize();
-			m_components.push_back(rtn);
+			//Shared<T> rtn;
+			/*if (std::is_same<T, RigidBody>::value && hasRigidBody)
+			{
+				throw Exception("Entity already has a rigidbody");
+				return nullptr;
+			}*/
+			//else
+			//{
+				//rtn = std::make_shared<T>();
+				Shared<T> rtn = std::make_shared<T>();
+				rtn->m_self = rtn;
+				rtn->m_Entity = m_self;
+				rtn->initialize();
+				m_components.push_back(rtn);
+			//}
+			
 			return rtn;
 		}
 
@@ -141,6 +153,8 @@ namespace ThomasTheTank
 		bool enabled = true; ///< Whether or not the entity is enabled.
 		void addRigidBody(Shared<PhysB::PhysRigidBody> body); ///< Function called to add rigidbody references to colliders
 		void removeRigidBody(); ///< Function called to remove rigidbody references from colliders
+		bool hasRigidBody = false; ///< Whether the entity has a rigidbody attached
+		Weak<RigidBody> m_body; ///< Link to the entity's rigidbody
 		Shared<Transform> Transform; ///< Pointer to transform component.
 		void initialize(); ///< Function called to trigger onInitialize.
 		void tick(); ///< Function called to trigger onTick.

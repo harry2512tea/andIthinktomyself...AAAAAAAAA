@@ -11,18 +11,24 @@
 
 namespace ThomasTheTank
 {
-
+	/**
+	* custom vector2 struct.
+	*/
 	struct vect2
 	{
 		vect2(int _x, int _y) { x = _x; y = _y; };
 		int x, y;
 	};
 
+	/**
+	* custom vector3 struct.
+	*/
 	struct vect3
 	{
 		vect3(int _x, int _y, int _z) { x = _x; y = _y; z = _z; };
 		int x, y, z;
 	};
+
 	/**
 	* Input manager struct
 	*/
@@ -107,9 +113,9 @@ namespace ThomasTheTank
 	private:
 		friend struct Core;
 
-		static Shared<Input> Initialise();
+		static Shared<Input> Initialise(); ///< generate an instance of the input class and return a pointer to it.
 
-		static Shared<Input> m_self; ///< the instance of the input class
+		static Shared<Input> m_self; ///< the instance of the input class.
 		static std::list<SDL_Keycode> keys; ///< List of all keys currently pressed.
 		static std::list<SDL_Keycode> keyDown; ///< List of all keys pressed this frame.
 		static std::list<SDL_Keycode> keyUp; ///< List of all keys released this frame.

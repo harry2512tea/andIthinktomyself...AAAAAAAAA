@@ -48,7 +48,19 @@ namespace ThomasTheTank
 		* \return Pointer to the new entity.
 		*/
 		Shared<Entity> addEntity();
+
+		/**
+		* Get a link to the physics world
+		* 
+		* \return Shared<PhysB::PhysicsWorld>
+		*/
 		Shared<PhysB::PhysicsWorld> getPhysics() { return m_Physics; };
+
+		/**
+		* get a link to the cache struct
+		* 
+		* \return Shared<Cache>
+		*/
 		Shared<Cache> getCache() { return m_cache; };
 		/**
 		* Get size of the window.
@@ -59,21 +71,21 @@ namespace ThomasTheTank
 		void getWindowSize(int* w, int* h) { SDL_GetWindowSize(m_window, w, h); };
 
 	private:
-		void eventManager();
+		void eventManager(); ///< Function that manages user input
 
-		ALCdevice* device;
-		ALCcontext* context;
+		ALCdevice* device; ///< Audio device
+		ALCcontext* context; ///< Audio context
 
-		Shared<PhysB::PhysicsWorld> m_Physics;
+		Shared<PhysB::PhysicsWorld> m_Physics; ///< Link to the physics world
 
 		Shared<Input> m_input; ///< Pointer to the input manager struct.
-		Shared<Cache> m_cache;
+		Shared<Cache> m_cache; ///< Pointer to the resource manager struct
 		SDL_Window* m_window; ///< The window of the program
 		SDL_GLContext m_context; ///< OpenGL context
 		std::list<Shared<Entity>> m_entities; ///< List of every entity in the scene
 		Shared<SceneTime> environment; ///< Pointer to the environment manager struct
 		bool m_running = false; ///< Current state of the program
 		Weak<Core> m_self; ///< Pointer to self
-		bool PhysMultiThreading = false;
+		bool PhysMultiThreading = false; /// Whether to use multithreading for physics calculations
 	};
 }

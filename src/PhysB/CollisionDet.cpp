@@ -86,6 +86,18 @@ namespace PhysB
 				{
 					collisionResponse(col);
 				}
+
+				if(col->Col1->isTrigger || col->Col2->isTrigger)
+				{
+					col->Col1->m_eventHandler.lock()->physTriggerEnter(col);
+					col->Col2->m_eventHandler.lock()->physTriggerEnter(col);
+				}
+				else
+				{
+					col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
+					col->Col2->m_eventHandler.lock()->physCollisionEnter(col);
+				}
+				
 				//col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
 				
 				//std::cout << col->point.x << " " << col->point.y << " " << col->point.z << std::endl;

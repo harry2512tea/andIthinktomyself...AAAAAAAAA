@@ -11,13 +11,19 @@ namespace ThomasTheTank
 
 	struct Model : Resource
 	{
+
+		/**
+		* Function to load a model from a specified file
+		* 
+		* \param _path STRING path to model file
+		*/
 		void LoadModel(const std::string _path);
 
 		void OnLoad();
 
 	private:
 		friend struct MeshRenderer;
-		Shared<rend::Model> m_model;
+		Shared<rend::Model> m_model; ///< link to the loaded model.
 	};
 }
 #endif // !THOMASTHETANK_MODEL_H

@@ -92,24 +92,39 @@ namespace ThomasTheTank
 		*/
 		mat4 getModel() { return generateModel(position, rotation, localScale); };
 
+		/**
+		* Get a pointer to the parent transform
+		* 
+		* \return Shared<Transform>
+		*/
 		Shared<Transform> getParent() { return Parent.lock(); };
 
+		/**
+		* Add a transform in the physics world.
+		*
+		* \return Shared<PhysB::Transform>
+		*/
 		Shared<PhysB::PhysTransform> addPhysicsTransform();
 
+		/**
+		* Get the corresponding transform in the physics world.
+		*
+		* \return Shared<PhysB::Transform>
+		*/
 		Shared<PhysB::PhysTransform> getPhysicsTransform() { return m_PhysTransform; };
 
 	private:
 		friend struct Transform;
 		friend struct BoxCollider;
 		friend struct RigidBody;
-		Weak<Transform> Parent;
-		std::list<Weak<Transform>> Children;
+		Weak<Transform> Parent; ///< link to the parent transform
+		std::list<Weak<Transform>> Children; ///< link to the children of the transform
 
-		mat4 generateModel(vec3 _position, vec3 _rotation, vec3 _scale);
+		mat4 generateModel(vec3 _position, vec3 _rotation, vec3 _scale); ///< Generate a model matrix
 		quat generateRotQuat(vec3 _rotation); ///< Convert Euler angles to a quaternion.
 		void onTick(); ///< Function called on every program tick.
-		void onLateTick();
-		void onInitialize();
+		void onLateTick(); ///< Function called at the end of every frame.
+		void onInitialize(); ///< Function called on creation of the class.
 
 		vec3 position = vec3(0.0f); ///< Global X, Y, Z location of the Entity.
 		vec3 rotation = vec3(0.0f); ///< Global Rotation of the entity in euler angles.
@@ -120,16 +135,16 @@ namespace ThomasTheTank
 		vec3 localRotation = vec3(0.0f); ///< Local Rotation of the entity in euler angles.
 		vec3 localScale = vec3(1.0f); ///< Local Scale of the entity.
 
-		mat4 rotationMat = mat4(1.0f);
-		mat4 translationMat = mat4(1.0f);
-		mat4 scaleMat = mat4(1.0f);
-		mat4 model = mat4(1.0f);
+		mat4 rotationMat = mat4(1.0f); ///< Rotaiton matrix of the transform.
+		mat4 translationMat = mat4(1.0f); ///< Translation matrix of the transform.
+		mat4 scaleMat = mat4(1.0f); ///< Scale matrix of the transform.
+		mat4 model = mat4(1.0f); ///< Model matrix of the transform.
 
-		mat4 getParentMatrix();
+		mat4 getParentMatrix(); ///< Get the model matrix of the parent transform
 
 		vec3 checkRoationValues(vec3 _rot); ///< Confine Euler angle rotation between 360 and -360 degrees.
 
-		Shared<PhysB::PhysTransform> m_PhysTransform;
+		Shared<PhysB::PhysTransform> m_PhysTransform; ///< link to the corresponding transform in the physics world
 	};
 }
 

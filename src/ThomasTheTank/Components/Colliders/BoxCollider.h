@@ -17,14 +17,17 @@ namespace ThomasTheTank
 	{
 
 	protected:
-		void onInitialize();
-		void onTick();
+		void onInitialize(); ///< Function called on creation of the collider
+		void onTick(); ///< Function called every frame
+		/*
+		* Function to set the rigidbody reference in the collider.
+		* 
+		* \param _body Shared<PhysB::PhysRigidBody> shared pointer reference to the physics library's rigidbody component.
+		*/
 		void onAddRigidBody(Shared<PhysB::PhysRigidBody> _body);
-		void onRemoveRigidBody();
-		vec3 size;
-		//Weak<Transform> m_Transform;
-		Weak<PhysB::PhysAABB> m_collider;
-		//vec3 m_rotation;
+		void onRemoveRigidBody(); ///< Function to remove the rigidbody reference in the collider.
+		vec3 size; ///< Size of the collider component.
+		Weak<PhysB::PhysAABB> m_collider; ///< Reference to the corresponding physics library's collider.
 	};
 }
 #endif // !THOMASTHETANK_BOXCOLLIDER_H

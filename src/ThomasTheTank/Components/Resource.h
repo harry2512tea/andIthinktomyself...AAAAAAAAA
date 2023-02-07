@@ -17,12 +17,17 @@ namespace ThomasTheTank
 
 	struct Resource
 	{
-		virtual void OnLoad() = 0;
+		virtual void OnLoad() = 0; ///< overwritable function called when loading an asset.
 
+		/**
+		* Function to return the path of a loaded asset
+		* 
+		* \return STRING
+		*/
 		std::string GetPath() const;
 	private:
 		friend struct Cache;
-		std::string m_path;
+		std::string m_path; ///< path of the loaded asset
 
 		void Load();
 	};

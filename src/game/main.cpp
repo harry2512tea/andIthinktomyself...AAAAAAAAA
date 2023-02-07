@@ -11,9 +11,11 @@ using namespace ThomasTheTank;
 struct Player : Component
 {
 	Shared<Transform> trans;
+	Shared<RigidBody> body;
 
 	void onInitialize()
 	{
+		body = getEntity()->getComponent<RigidBody>();
 		trans = getEntity()->getTransform();
 		//trans->setPosition(vec3(0.0f, 0.0f, -5.0f));
 	}
@@ -41,6 +43,11 @@ struct Player : Component
 		if (input->getKeyDown(Keys::F))
 		{
 			m_Entity.lock()->getComponent<RigidBody>()->AddForce(vec3(0.0f, -0.1f, 0.0f));
+		}
+
+		if (input->getKeyDown(Keys::SPACE))
+		{
+			body->setUseGravity(true);
 		}
 
 		if (input->getKeyDown(Keys::ESCAPE))
@@ -126,6 +133,8 @@ int main()
 	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/curuthers/curuthers.obj");
 	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
 
+	Shared<RigidBody> e_body = e->addComponent<RigidBody>();
+	e_body->setUseGravity(false);
 	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
@@ -136,11 +145,13 @@ int main()
 	curuthers2->SetModel(Curuthers);
 	curuthers2->SetTexture(CuruthersTexture);
 	
+	
+	//Shared<RigidBody> e_body2 = e->addComponent<RigidBody>();
 	e->addComponent<BoxCollider>();
 	e3->addComponent<BoxCollider>();
 
-	Shared<RigidBody> e_body = e->addComponent<RigidBody>();
-	e_body->setUseGravity(true);
+	
+	//e_body->setUseGravity(true);
 
 	//e->addComponent<AudioSource>();
 

@@ -83,6 +83,9 @@ namespace ThomasTheTank
 
 		m_body = m_Entity.lock()->getCore()->getPhysics()->AddRigidBody(m_trans->m_PhysTransform);
 
+		m_Entity.lock()->hasRigidBody = true;
+		m_Entity.lock()->m_body = std::dynamic_pointer_cast<RigidBody>(m_self.lock());
+
 		for (size_t I = 0; I < m_Entity.lock()->m_colliders.size(); I++)
 		{
 			m_Entity.lock()->m_colliders.at(I).lock()->AddRigidBody(m_body);
@@ -90,6 +93,7 @@ namespace ThomasTheTank
 	}
 	void RigidBody::onDestroy()
 	{
+		m_Entity.lock()->hasRigidBody = false;
 		for (size_t I = 0; I < m_Entity.lock()->m_colliders.size(); I++)
 		{
 			m_Entity.lock()->m_colliders.at(I).lock()->RemoveRigidBody();

@@ -11,13 +11,18 @@ namespace ThomasTheTank
 
 	struct Texture : Resource
 	{
+		/**
+		* Function to load a texture from a specified file
+		*
+		* \param _path STRING path to model file
+		*/
 		void LoadTexture(const std::string _path);
 
 		void OnLoad();
 
 	private:
 		friend struct MeshRenderer;
-		Shared<rend::Texture> m_texture;
+		Shared<rend::Texture> m_texture; ///< link to the loaded texture.
 	};
 }
 #endif 
