@@ -30,23 +30,23 @@ namespace ThomasTheTank
 	{
 	}
 
-	void Component::onCollisionEnter(Shared<CollisionInfo> collision)
+	void Component::onCollisionEnter(Shared<CollisionRet> collision)
 	{
 	}
 
-	void Component::onCollisionExit(Shared<CollisionInfo> collision)
+	void Component::onCollisionExit(Shared<CollisionRet> collision)
 	{
 	}
 
-	void Component::onCollisionStay(Shared<CollisionInfo> collision)
+	void Component::onCollisionStay(Shared<CollisionRet> collision)
 	{
 	}
 
-	void Component::onTriggerEnter(Shared<CollisionInfo> collision){}
+	void Component::onTriggerEnter(Shared<CollisionRet> collision){}
 
-	void Component::onTriggerExit(Shared<CollisionInfo> collision){}
+	void Component::onTriggerExit(Shared<CollisionRet> collision){}
 
-	void Component::onTriggerStay(Shared<CollisionInfo> collision){}
+	void Component::onTriggerStay(Shared<CollisionRet> collision){}
 
 	void Component::tick()
 	{
@@ -73,32 +73,32 @@ namespace ThomasTheTank
 		onDestroy();
 	}
 
-	void Component::collisionEnter(Shared<CollisionInfo> collision)
+	void Component::collisionEnter(Shared<CollisionRet> collision)
 	{
 		onCollisionEnter(collision);
 	}
 
-	void Component::collisionExit(Shared<CollisionInfo> collision)
+	void Component::collisionExit(Shared<CollisionRet> collision)
 	{
 		onCollisionExit(collision);
 	}
 
-	void Component::collisionStay(Shared<CollisionInfo> collision)
+	void Component::collisionStay(Shared<CollisionRet> collision)
 	{
 		onCollisionStay(collision);
 	}
 
-	void Component::triggerEnter(Shared<CollisionInfo> collision)
+	void Component::triggerEnter(Shared<CollisionRet> collision)
 	{
 		onTriggerEnter(collision);
 	}
 
-	void Component::triggerExit(Shared<CollisionInfo> collision)
+	void Component::triggerExit(Shared<CollisionRet> collision)
 	{
 		onTriggerExit(collision);
 	}
 
-	void Component::triggerStay(Shared<CollisionInfo> collision)
+	void Component::triggerStay(Shared<CollisionRet> collision)
 	{
 		onTriggerStay(collision);
 	}

@@ -24,10 +24,19 @@ namespace PhysB
 
 	struct Plane;
 
+	struct CollisionEvent;
+
 	struct CollisionPair
 	{
 		CollisionPair(Shared<PhysCollider> _Col1, Shared<PhysCollider> _Col2);
 		Shared<PhysCollider> Col1, Col2;
+	};
+
+	struct CollisionRet
+	{
+		Shared<CollisionEvent> Col1, Col2;
+		vec3 point;
+		vec3 normal;
 	};
 
 	struct CollisionInfo

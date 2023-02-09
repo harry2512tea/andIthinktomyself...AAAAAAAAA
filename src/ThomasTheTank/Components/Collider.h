@@ -49,37 +49,37 @@ namespace ThomasTheTank
 		* 
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionEnter(Shared<CollisionInfo> collision);
+		void physOnCollisionEnter(Shared<CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is exiting a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionExit(Shared<CollisionInfo> collision); 
+		void physOnCollisionExit(Shared<CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is still inside a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionStay(Shared<CollisionInfo> collision); 
+		void physOnCollisionStay(Shared<CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is entering a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerEnter(Shared<CollisionInfo> collision);
+		void physOnTriggerEnter(Shared<CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is exiting a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerExit(Shared<CollisionInfo> collision);
+		void physOnTriggerExit(Shared<CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is still inside a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerStay(Shared<CollisionInfo> collision);
+		void physOnTriggerStay(Shared<CollisionRet> collision);
 	};
 }
 #endif // !THOMASTHETANK_COLLIDER_H

@@ -11,25 +11,25 @@ namespace PhysB
 {
 	struct CollisionDet;
 	struct Collisions;
-	struct CollisionInfo;
+	struct CollisionRet;
 
 	struct CollisionEvent
 	{
 	private:
 		friend struct CollisionDet;
-		virtual void physOnCollisionEnter(Shared<CollisionInfo> collision);
-		virtual void physOnCollisionExit(Shared<CollisionInfo> collision);
-		virtual void physOnCollisionStay(Shared<CollisionInfo> collision);
-		void physCollisionEnter(Shared<CollisionInfo> collision);
-		void physCollisionExit(Shared<CollisionInfo> collision);
-		void physCollisionStay(Shared<CollisionInfo> collision);
+		virtual void physOnCollisionEnter(Shared<CollisionRet> collision);
+		virtual void physOnCollisionExit(Shared<CollisionRet> collision);
+		virtual void physOnCollisionStay(Shared<CollisionRet> collision);
+		void physCollisionEnter(Shared<CollisionRet> collision);
+		void physCollisionExit(Shared<CollisionRet> collision);
+		void physCollisionStay(Shared<CollisionRet> collision);
 
-		virtual void physOnTriggerEnter(Shared<CollisionInfo> collision);
-		virtual void physOnTriggerExit(Shared<CollisionInfo> collision);
-		virtual void physOnTriggerStay(Shared<CollisionInfo> collision);
-		void physTriggerEnter(Shared<CollisionInfo> collision);
-		void physTriggerExit(Shared<CollisionInfo> collision);
-		void physTriggerStay(Shared<CollisionInfo> collision);
+		virtual void physOnTriggerEnter(Shared<CollisionRet> collision);
+		virtual void physOnTriggerExit(Shared<CollisionRet> collision);
+		virtual void physOnTriggerStay(Shared<CollisionRet> collision);
+		void physTriggerEnter(Shared<CollisionRet> collision);
+		void physTriggerExit(Shared<CollisionRet> collision);
+		void physTriggerStay(Shared<CollisionRet> collision);
 	};
 
 }

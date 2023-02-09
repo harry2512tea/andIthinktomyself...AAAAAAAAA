@@ -87,15 +87,21 @@ namespace PhysB
 					collisionResponse(col);
 				}
 
+				Shared<CollisionRet> rtn = std::make_shared<CollisionRet>();
+				rtn->Col1 = col->Col1->m_eventHandler.lock();
+				rtn->Col2 = col->Col2->m_eventHandler.lock();
+				rtn->point = col->point;
+				rtn->normal = col->normal;
+
 				if(col->Col1->isTrigger || col->Col2->isTrigger)
 				{
-					col->Col1->m_eventHandler.lock()->physTriggerEnter(col);
-					col->Col2->m_eventHandler.lock()->physTriggerEnter(col);
+					col->Col1->m_eventHandler.lock()->physTriggerEnter(rtn);
+					col->Col2->m_eventHandler.lock()->physTriggerEnter(rtn);
 				}
 				else
 				{
-					col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
-					col->Col2->m_eventHandler.lock()->physCollisionEnter(col);
+					col->Col1->m_eventHandler.lock()->physCollisionEnter(rtn);
+					col->Col2->m_eventHandler.lock()->physCollisionEnter(rtn);
 				}
 				
 				//col->Col1->m_eventHandler.lock()->physCollisionEnter(col);
