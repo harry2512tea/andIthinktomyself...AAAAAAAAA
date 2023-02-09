@@ -27,6 +27,8 @@ namespace ThomasTheTank
 	void MeshRenderer::onDisplay()
 	{
 		mat4 model = getEntity()->getTransform()->getModel();
+		mat4 scaleMat = mat4();
+		model *= glm::scale(scaleMat, scale);
 		m_Renderer.shader(&m_Shader);
 		m_Renderer.modelMat(model);
 		m_Renderer.model(m_Model->m_model.get());

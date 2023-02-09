@@ -2,6 +2,7 @@
 #define THOMASTHETANK_MESHRENDERER_H
 
 #include "../Component.h"
+#include "../Wrapping/ThomasMath.h"
 #include <rend/rend.h>
 #include <memory>
 #include <string>
@@ -34,10 +35,14 @@ namespace ThomasTheTank
 		* \param STRING _path Path to model file.
 		*/
 		void SetModel(Shared<Model> _Model);
+
+		void setScale(vec3 _scale) { scale = _scale; };
+		vec3 getScale() { return scale; };
 	private:
 		void onInitialize(){}; ///< Function called on the creation of the component.
 		void onDisplay(); ///< Function called on the render tick of the program.
 
+		vec3 scale = vec3(1.0f);
 		Shared<Model> m_Model; ///< Model to render.
 		rend::Shader m_Shader; ///< Shader to use.
 		Shared<Texture> m_Texture; ///< Texture to use.

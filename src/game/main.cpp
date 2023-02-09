@@ -128,22 +128,28 @@ int main()
 	Shared<Entity> e2 = core->addEntity();
 	Shared<Entity> e3 = core->addEntity();
 
-	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -10.0f));
+	e->getTransform()->setPosition(vec3(0.0f, 0.5f, -8.0f));
+	e->getTransform()->setRotation(vec3(0.0f, 90.0f, 30.0f));
 	e3->getTransform()->setPosition(vec3(0.0f, -5.0f, -10.0f));
-	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/curuthers/curuthers.obj");
-	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/curuthers/Whiskers_diffuse.jpg");
+	e3->getTransform()->setRotation(vec3(0.0f, 0.0f, 0.0f));
+	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/RocksShortFlat_Obj/RockShortFlat_A.obj");
+	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/RocksShortFlat_Obj/ShortFlatRock_Rough1-Diffuse.png");
+
+	Shared<Model> Ship = core->getCache()->load<Model>("../data/h2f2obj/f.obj");
+	Shared<Texture> ShipTexture = core->getCache()->load<Texture>("../data/h2f2obj/mat.png");
 
 	Shared<RigidBody> e_body = e->addComponent<RigidBody>();
 	e_body->setUseGravity(false);
 	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
 	//e->addComponent<Test>();
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
-	curuthers->SetModel(Curuthers);
-	curuthers->SetTexture(CuruthersTexture);
+	curuthers->SetModel(Ship);
+	curuthers->SetTexture(ShipTexture);
 
 	Shared<MeshRenderer> curuthers2 = e3->addComponent<MeshRenderer>();
 	curuthers2->SetModel(Curuthers);
 	curuthers2->SetTexture(CuruthersTexture);
+	curuthers2->setScale(vec3(1.0f, 0.7f, 1.0f));
 	
 	
 	//Shared<RigidBody> e_body2 = e->addComponent<RigidBody>();

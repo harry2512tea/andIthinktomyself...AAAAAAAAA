@@ -70,7 +70,7 @@ namespace ThomasTheTank
 		quat _rotationQuat = generateRotQuat(_rotation);
 
 		translationMat = glm::translate(translationMat, _position);
-		rotationMat = mat4_cast(_rotationQuat);
+		rotationMat = mat4_cast(generateRotQuat(localRotation));
 		scaleMat = glm::scale(scaleMat, _scale);
 		
 		_model = (translationMat * rotationMat * scaleMat);

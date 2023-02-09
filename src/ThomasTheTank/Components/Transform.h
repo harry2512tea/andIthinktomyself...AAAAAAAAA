@@ -90,7 +90,7 @@ namespace ThomasTheTank
 		* 
 		* \return MAT4 The model's transformation matrix.
 		*/
-		mat4 getModel() { return generateModel(position, rotation, localScale); };
+		mat4 getModel() { return generateModel(position, localRotation, localScale); };
 
 		/**
 		* Get a pointer to the parent transform

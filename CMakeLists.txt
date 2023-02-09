@@ -65,8 +65,6 @@ add_library(ThomasTheTank
 src/ThomasTheTank/ThomasTheTank.h
 src/ThomasTheTank/Core.cpp
 src/ThomasTheTank/Core.h
-src/ThomasTheTank/Physics.h
-src/ThomasTheTank/Physics.cpp
 src/ThomasTheTank/Entity.h
 src/ThomasTheTank/Entity.cpp
 src/ThomasTheTank/Component.h

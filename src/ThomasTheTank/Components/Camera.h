@@ -38,7 +38,7 @@ namespace ThomasTheTank
 		/**
 		* Set the main camera of the scene.
 		*
-		* \param sSared pointer to the new main camera.
+		* \param Shared pointer to the new main camera.
 		*/
 		void setMainCam(Shared<Camera> newMain) { mainCam = newMain; };
 	private:
