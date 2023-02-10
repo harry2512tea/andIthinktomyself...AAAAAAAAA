@@ -3,6 +3,7 @@
 
 void Player::onInitialize()
 {
+	getEntity()->addComponent<BoxCollider>();
 	transform = getEntity()->getTransform();
 	lives = 3;
 	score = 0;
@@ -26,11 +27,6 @@ void Player::onTick()
 	{
 		transform->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 	}
-
-	/*if (input->getKeyDown(Keys::SPACE))
-	{
-		body->setUseGravity(true);
-	}*/
 
 	score += SceneTime::DeltaTime() * 1000;
 }

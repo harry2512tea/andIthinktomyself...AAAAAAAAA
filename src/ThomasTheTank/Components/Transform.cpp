@@ -39,6 +39,17 @@ namespace ThomasTheTank
 		rotationQuat = generateRotQuat(localRotation);
 	}
 
+	void Transform::translate(vec3 translation)
+	{
+		position += translation; 
+		localPosition += translation; 
+
+		if (m_PhysTransform)
+		{
+			m_PhysTransform->setPosition(position);
+		}
+	}
+
 	Shared<PhysB::PhysTransform> Transform::addPhysicsTransform()
 	{
 		Shared<PhysB::PhysTransform> temp;

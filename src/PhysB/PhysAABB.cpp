@@ -50,7 +50,7 @@ namespace PhysB
 		points.clear();
 		for (size_t I = 0; I < initialPoints.size(); I++)
 		{
-			points.push_back(initialPoints.at(I) * getSize());
+			points.push_back(initialPoints.at(I) * getSize() + m_trans->getPosition());
 		}
 	}
 }

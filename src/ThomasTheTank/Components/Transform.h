@@ -49,7 +49,7 @@ namespace ThomasTheTank
 		*
 		* \param VEC3 translation How far to translate the object.
 		*/
-		void translate(vec3 translation) { position += translation; localPosition += translation; };
+		void translate(vec3 translation);
 
 		/**
 		* Get the local position of the object.

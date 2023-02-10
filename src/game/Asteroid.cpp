@@ -19,7 +19,7 @@ void Asteroid::onInitialize()
 	body->setUseGravity(false);
 	std::srand(time(NULL));
 	float force = rand() % 4 + 1;
-	body->AddForce(vec3(0.0f, -1.0f, 0.0f) * force);
+	body->AddForce(vec3(0.0f, -1.0f, 0.0f));
 }
 
 void Asteroid::onTick()
@@ -29,5 +29,5 @@ void Asteroid::onTick()
 void Asteroid::onCollisionEnter(Shared<PhysB::CollisionRet> collision)
 {
 	transform->setPosition(originalPos);
-	body->setVelocity(vec3(0.0f));
+	//body->setVelocity(vec3(0.0f));
 }

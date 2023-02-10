@@ -84,38 +84,24 @@ int main()
 	Shared<Entity> e2 = core->addEntity();
 	Shared<Entity> e3 = core->addEntity();
 
-	e->getTransform()->setPosition(vec3(0.0f, 0.5f, -8.0f));
-	e->getTransform()->setRotation(vec3(90.0f, 0.0f, 0.0f));
-	e3->getTransform()->setPosition(vec3(0.0f, 8.0f, -18.0f));
+	e->getTransform()->setPosition(vec3(0.0f, 0.0f, -18.0f));
+	e->getTransform()->setRotation(vec3(90.0f, 180.0f, 0.0f));
+	e3->getTransform()->setPosition(vec3(0.0f, 16.0f, -18.0f));
 	e3->getTransform()->setRotation(vec3(0.0f, 0.0f, 0.0f));
-	//Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/RocksShortFlat_Obj/RockShortFlat_A.obj");
-	//Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/RocksShortFlat_Obj/ShortFlatRock_Rough1-Diffuse.png");
+
 
 	Shared<Model> Ship = core->getCache()->load<Model>("../data/h2f2obj/f.obj");
 	Shared<Texture> ShipTexture = core->getCache()->load<Texture>("../data/h2f2obj/mat.png");
 
-	//Shared<RigidBody> e_body = e->addComponent<RigidBody>();
-	//e_body->setUseGravity(false);
-	e->addComponent<Player>(); //std::cout << "_onTick" << std::endl;
-	//e->addComponent<Test>();
+
+	e->addComponent<Player>();
+
 	Shared<MeshRenderer> curuthers = e->addComponent<MeshRenderer>();
 	curuthers->SetModel(Ship);
 	curuthers->SetTexture(ShipTexture);
 
 	e3->addComponent<Asteroid>();
-	/*curuthers2->SetModel(Curuthers);
-	curuthers2->SetTexture(CuruthersTexture);
-	curuthers2->setScale(vec3(0.7f, 0.7f, 0.7f));*/
-	
-	
-	//Shared<RigidBody> e_body2 = e->addComponent<RigidBody>();
-	e->addComponent<BoxCollider>();
-	//e3->addComponent<BoxCollider>();
 
-	
-	//e_body->setUseGravity(true);
-
-	//e->addComponent<AudioSource>();
 
 	Shared<Camera> cam = e2->addComponent<Camera>();
 	

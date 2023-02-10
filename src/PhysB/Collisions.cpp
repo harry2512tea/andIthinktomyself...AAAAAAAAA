@@ -120,7 +120,7 @@ namespace PhysB
 				for (size_t Plane = 0; Plane < Col2->Planes.size(); Plane++)
 				{
 					Col2->Planes.at(Plane)->getIntersect(ray, temp);
-					if (distance(col1Point, temp) < dist || dist == -1)
+					if (distance(Col1->points.at(Point), temp) < dist || dist == -1)
 					{
 						if (dot(temp - Col1->points.at(Point), -normalize(Col1->m_RigidBody.lock()->getVelocity())) > Epsilon)
 						{
@@ -128,9 +128,9 @@ namespace PhysB
 							ColliderPlane = Col2;
 							ColliderToMove = Col1;
 							collisionPlane = Col2->Planes.at(Plane);
-							collidingPoint = Col1->points.at(Point) + Col1->m_trans->getPosition();
+							collidingPoint = Col1->points.at(Point);
 							intersect = temp;
-							dist = distance(col1Point, temp);
+							dist = distance(Col1->points.at(Point), temp);
 						}
 					}
 				}
@@ -144,7 +144,7 @@ namespace PhysB
 				for (size_t Plane = 0; Plane < Col2->Planes.size(); Plane++)
 				{
 					Col2->Planes.at(Plane)->getIntersect(ray, temp);
-					if (distance(col1Point, temp) < dist || dist == -1)
+					if (distance(Col1->points.at(Point), temp) < dist || dist == -1)
 					{
 						if (dot(temp - Col1->points.at(Point), normalize(Col2->m_RigidBody.lock()->getVelocity())) > Epsilon)
 						{
@@ -152,9 +152,9 @@ namespace PhysB
 							ColliderPlane = Col2;
 							ColliderToMove = Col1;
 							collisionPlane = Col2->Planes.at(Plane);
-							collidingPoint = Col1->points.at(Point) + Col1->m_trans->getPosition();
+							collidingPoint = Col1->points.at(Point);
 							intersect = temp;
-							dist = distance(col1Point, temp);
+							dist = distance(Col1->points.at(Point), temp);
 						}
 					}
 				}
@@ -169,7 +169,7 @@ namespace PhysB
 				for (size_t Plane = 0; Plane < Col1->Planes.size(); Plane++)
 				{
 					Col1->Planes.at(Plane)->getIntersect(ray, temp);
-					if (distance(col2Point, temp) < dist || dist == -1)
+					if (distance(Col2->points.at(Point), temp) < dist || dist == -1)
 					{
 						if (dot(temp - Col1->points.at(Point), -normalize(Col2->m_RigidBody.lock()->getVelocity())) > Epsilon)
 						{
@@ -177,9 +177,9 @@ namespace PhysB
 							ColliderPlane = Col1;
 							ColliderToMove = Col2;
 							collisionPlane = Col1->Planes.at(Plane);
-							collidingPoint = Col2->points.at(Point) + Col2->m_trans->getPosition();
+							collidingPoint = Col2->points.at(Point);
 							intersect = temp;
-							dist = distance(col2Point, temp);
+							dist = distance(Col2->points.at(Point), temp);
 						}
 					}
 				}
@@ -193,7 +193,7 @@ namespace PhysB
 				for (size_t Plane = 0; Plane < Col1->Planes.size(); Plane++)
 				{
 					Col1->Planes.at(Plane)->getIntersect(ray, temp);
-					if (distance(col2Point, temp) < dist || dist == -1)
+					if (distance(Col2->points.at(Point), temp) < dist || dist == -1)
 					{
 						if (dot(temp - Col1->points.at(Point), normalize(Col1->m_RigidBody.lock()->getVelocity())) > Epsilon)
 						{
@@ -201,9 +201,9 @@ namespace PhysB
 							ColliderPlane = Col1;
 							ColliderToMove = Col2;
 							collisionPlane = Col1->Planes.at(Plane);
-							collidingPoint = Col2->points.at(Point) + Col2->m_trans->getPosition();
+							collidingPoint = Col2->points.at(Point);
 							intersect = temp;
-							dist = distance(col2Point, temp);
+							dist = distance(Col2->points.at(Point), temp);
 						}
 					}
 				}
