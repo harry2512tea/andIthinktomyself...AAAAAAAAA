@@ -129,8 +129,8 @@ int main()
 	Shared<Entity> e3 = core->addEntity();
 
 	e->getTransform()->setPosition(vec3(0.0f, 0.5f, -8.0f));
-	e->getTransform()->setRotation(vec3(0.0f, 90.0f, 30.0f));
-	e3->getTransform()->setPosition(vec3(0.0f, -5.0f, -10.0f));
+	e->getTransform()->setRotation(vec3(90.0f, 0.0f, 0.0f));
+	e3->getTransform()->setPosition(vec3(0.0f, -5.0f, -8.0f));
 	e3->getTransform()->setRotation(vec3(0.0f, 0.0f, 0.0f));
 	Shared<Model> Curuthers =  core->getCache()->load<Model>("../data/RocksShortFlat_Obj/RockShortFlat_A.obj");
 	Shared<Texture> CuruthersTexture = core->getCache()->load<Texture>("../data/RocksShortFlat_Obj/ShortFlatRock_Rough1-Diffuse.png");
@@ -149,7 +149,7 @@ int main()
 	Shared<MeshRenderer> curuthers2 = e3->addComponent<MeshRenderer>();
 	curuthers2->SetModel(Curuthers);
 	curuthers2->SetTexture(CuruthersTexture);
-	curuthers2->setScale(vec3(1.0f, 0.7f, 1.0f));
+	curuthers2->setScale(vec3(0.7f, 0.7f, 0.7f));
 	
 	
 	//Shared<RigidBody> e_body2 = e->addComponent<RigidBody>();

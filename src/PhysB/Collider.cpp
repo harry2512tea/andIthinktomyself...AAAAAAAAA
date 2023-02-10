@@ -2,6 +2,12 @@
 #include "PhysB/PhysTransform.h"
 namespace PhysB
 {
+	void PhysCollider::setSize(vec3 _size)
+	{
+		size = _size;
+		m_min = m_initialMin * _size;
+		m_max = m_initialMax * _size;
+	}
 	void PhysCollider::addRigidBody(Shared<PhysRigidBody> _body)
 	{
 		m_RigidBody = _body;
@@ -16,25 +22,29 @@ namespace PhysB
 
 	void PhysCollider::tick()
 	{
-		m_min = m_initialMin + m_trans->getPosition();
-		m_max = m_initialMax + m_trans->getPosition();
+		m_min = (m_initialMin * size) + m_trans->getPosition();
+		m_max = (m_initialMax * size) + m_trans->getPosition();
 		onTick();
 	}
 
-	Plane::Plane( vec3 max, vec3 min, vec3 P2)
+	Plane::Plane( vec3 _max, vec3 _min, vec3 _P2)
 	{
-		m_min = min;
-		m_max = max;
-		m_P2 = P2;
+		m_min = _min;
+		m_max = _max;
+		m_P2 = _P2;
 
+		min = m_min;
+		max = m_max;
+		C = m_P2;
+		UpdatePos(vec3(0.0f));
 		m_normal = calculateNormal();
 	}
 
-	void Plane::UpdatePos(vec3 newPos)
+	void Plane::UpdatePos(vec3 newPos, vec3 scale)
 	{
-		min = m_min + newPos;
-		max = m_max + newPos;
-		C = m_P2 + newPos;
+		min = m_min * scale + newPos;
+		max = m_max * scale + newPos;
+		C = m_P2 * scale + newPos;
 		m_normal = calculateNormal();
 	}
 

@@ -22,15 +22,20 @@ namespace PhysB
 		Planes.push_back(std::make_shared<Plane>(vec3(max.x, min.y, max.z), vec3(min.x, min.y, min.z), vec3(max.x, min.y, min.z)));
 
 		//corner points of the box
-		points.push_back(max);
-		points.push_back(vec3(min.x, max.y, max.z));
-		points.push_back(vec3(min.x, max.y, min.z));
-		points.push_back(vec3(max.x, max.y, min.z));
+		initialPoints.push_back(max);
+		initialPoints.push_back(vec3(min.x, max.y, max.z));
+		initialPoints.push_back(vec3(min.x, max.y, min.z));
+		initialPoints.push_back(vec3(max.x, max.y, min.z));
 
-		points.push_back(vec3(max.x, min.y, max.z));
-		points.push_back(vec3(min.x, min.y, max.z));
-		points.push_back(min);
-		points.push_back(vec3(max.x, min.y, min.z));
+		initialPoints.push_back(vec3(max.x, min.y, max.z));
+		initialPoints.push_back(vec3(min.x, min.y, max.z));
+		initialPoints.push_back(min);
+		initialPoints.push_back(vec3(max.x, min.y, min.z));
+
+		for (size_t I = 0; I < initialPoints.size(); I++)
+		{
+			points.push_back(initialPoints.at(I) * getSize());
+		}
 
 		colliderType = Box;
 
@@ -39,7 +44,13 @@ namespace PhysB
 	{
 		for (size_t I = 0; I < Planes.size(); I++)
 		{
-			Planes.at(I)->UpdatePos(m_trans->getPosition());
+			Planes.at(I)->UpdatePos(m_trans->getPosition(), getSize());
+		}
+
+		points.clear();
+		for (size_t I = 0; I < initialPoints.size(); I++)
+		{
+			points.push_back(initialPoints.at(I) * getSize());
 		}
 	}
 }

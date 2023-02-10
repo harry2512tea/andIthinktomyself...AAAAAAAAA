@@ -119,8 +119,8 @@ namespace PhysB
 		vec3 Col2Max = Col2->getMax();
 		vec3 Col2Min = Col2->getMin();*/
 
-		vec3 Col1S = Col1->getSize();
-		vec3 Col2S = Col2->getSize();
+		vec3 Col1S = Col1->getSize() * vec3(1.0f);
+		vec3 Col2S = Col2->getSize() * vec3(1.0f);
 		vec3 Col1Pos = Col1->m_trans->getPosition();
 		vec3 Col2Pos = Col2->m_trans->getPosition();
 

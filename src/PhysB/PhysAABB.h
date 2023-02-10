@@ -17,6 +17,7 @@ namespace PhysB
 		void onTick();
 		std::vector<Shared<Plane>> Planes;
 		std::vector<vec3> points;
+		std::vector<vec3> initialPoints;
 	};
 
 }

@@ -39,7 +39,7 @@ namespace PhysB
 	{
 		Plane( vec3 max, vec3 min, vec3 P2);
 		vec3 getNormal() { return m_normal; };
-		void UpdatePos(vec3 newPos);
+		void UpdatePos(vec3 newPos, vec3 scale = vec3(1.0f));
 		bool getIntersect(Shared<Ray> _ray, vec3& Intersect);
 	protected:
 		vec3 m_min, m_P2, m_max, m_normal;
@@ -55,7 +55,8 @@ namespace PhysB
 		ColType getType() { return colliderType; };
 		vec3 getMin() { return m_min; };
 		vec3 getMax() { return m_max; };
-		vec3 getSize() { return (m_max - m_min)/2.0f; };
+		vec3 getSize() { return (m_max - m_min); };
+		void setSize(vec3 _size);
 		void setMin(vec3(_min)) { m_min = _min; };
 		void setMax(vec3(_max)) { m_max = _max; };
 		void setEventHandler(Shared< CollisionEvent> _event) { m_eventHandler = _event; };
@@ -67,7 +68,8 @@ namespace PhysB
 
 	private:
 		vec3 m_initialMin = vec3(-0.5f), m_initialMax = vec3(0.5f);
-		vec3 m_min = vec3(-0.5f), m_max = vec3(0.5f);
+		vec3 m_min = vec3(-1.0f), m_max = vec3(1.0f);
+		vec3 size = vec3(2.0f);
 		int ID;
 	protected:
 		friend struct PhysicsWorld;
