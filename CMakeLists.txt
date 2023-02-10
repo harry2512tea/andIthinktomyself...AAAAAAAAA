@@ -112,12 +112,15 @@ target_link_libraries(ThomasTheTank
 SDL2
 rend
 OpenAL32
-
 PhysB
 )
 
 add_executable(game
   src/game/main.cpp
+  src/game/Player.cpp
+  src/game/Player.h
+  src/game/Asteroid.cpp
+  src/game/Asteroid.h
 )
 
 target_link_libraries(game 

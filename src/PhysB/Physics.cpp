@@ -52,6 +52,5 @@ namespace PhysB
 	{
 		collisonDetection->Tick();
 		m_time->tick(stepTime, multiThreaded);
-		//std::cout << "Physics World Tick" << std::endl;
 	}
 }

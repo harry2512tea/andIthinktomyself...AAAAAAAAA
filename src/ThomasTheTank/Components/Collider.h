@@ -5,6 +5,7 @@
 #include "../Component.h"
 #include <PhysB/PhysB.h>
 
+
 namespace ThomasTheTank
 {
 	struct Transform;
@@ -49,37 +50,37 @@ namespace ThomasTheTank
 		* 
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionEnter(Shared<CollisionRet> collision);
+		void physOnCollisionEnter(Shared<PhysB::CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is exiting a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionExit(Shared<CollisionRet> collision);
+		void physOnCollisionExit(Shared<PhysB::CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is still inside a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnCollisionStay(Shared<CollisionRet> collision);
+		void physOnCollisionStay(Shared<PhysB::CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is entering a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerEnter(Shared<CollisionRet> collision);
+		void physOnTriggerEnter(Shared<PhysB::CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is exiting a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerExit(Shared<CollisionRet> collision);
+		void physOnTriggerExit(Shared<PhysB::CollisionRet> collision);
 		/**
 		* Function called when the physics world detects the collider is still inside a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shraed pointer reference to collision information struct.
 		*/
-		void physOnTriggerStay(Shared<CollisionRet> collision);
+		void physOnTriggerStay(Shared<PhysB::CollisionRet> collision);
 	};
 }
 #endif // !THOMASTHETANK_COLLIDER_H

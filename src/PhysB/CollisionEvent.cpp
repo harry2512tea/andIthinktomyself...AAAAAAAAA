@@ -3,12 +3,12 @@
 
 namespace PhysB
 {
-	void CollisionEvent::physOnCollisionEnter(Shared<CollisionRet> collision)
+	/*void CollisionEvent::physOnCollisionEnter(Shared<CollisionRet> collision)
 	{}
 	void CollisionEvent::physOnCollisionExit(Shared<CollisionRet> collision)
 	{}
 	void CollisionEvent::physOnCollisionStay(Shared<CollisionRet> collision)
-	{}
+	{}*/
 
 	void CollisionEvent::physCollisionEnter(Shared<CollisionRet> collision)
 	{

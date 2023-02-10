@@ -30,23 +30,23 @@ namespace ThomasTheTank
 	{
 	}
 
-	void Component::onCollisionEnter(Shared<CollisionRet> collision)
+	void Component::onCollisionEnter(Shared<PhysB::CollisionRet> collision)
 	{
 	}
 
-	void Component::onCollisionExit(Shared<CollisionRet> collision)
+	void Component::onCollisionExit(Shared<PhysB::CollisionRet> collision)
 	{
 	}
 
-	void Component::onCollisionStay(Shared<CollisionRet> collision)
+	void Component::onCollisionStay(Shared<PhysB::CollisionRet> collision)
 	{
 	}
 
-	void Component::onTriggerEnter(Shared<CollisionRet> collision){}
+	void Component::onTriggerEnter(Shared<PhysB::CollisionRet> collision){}
 
-	void Component::onTriggerExit(Shared<CollisionRet> collision){}
+	void Component::onTriggerExit(Shared<PhysB::CollisionRet> collision){}
 
-	void Component::onTriggerStay(Shared<CollisionRet> collision){}
+	void Component::onTriggerStay(Shared<PhysB::CollisionRet> collision){}
 
 	void Component::tick()
 	{
@@ -73,32 +73,32 @@ namespace ThomasTheTank
 		onDestroy();
 	}
 
-	void Component::collisionEnter(Shared<CollisionRet> collision)
+	void Component::collisionEnter(Shared<PhysB::CollisionRet> collision)
 	{
 		onCollisionEnter(collision);
 	}
 
-	void Component::collisionExit(Shared<CollisionRet> collision)
+	void Component::collisionExit(Shared<PhysB::CollisionRet> collision)
 	{
 		onCollisionExit(collision);
 	}
 
-	void Component::collisionStay(Shared<CollisionRet> collision)
+	void Component::collisionStay(Shared<PhysB::CollisionRet> collision)
 	{
 		onCollisionStay(collision);
 	}
 
-	void Component::triggerEnter(Shared<CollisionRet> collision)
+	void Component::triggerEnter(Shared<PhysB::CollisionRet> collision)
 	{
 		onTriggerEnter(collision);
 	}
 
-	void Component::triggerExit(Shared<CollisionRet> collision)
+	void Component::triggerExit(Shared<PhysB::CollisionRet> collision)
 	{
 		onTriggerExit(collision);
 	}
 
-	void Component::triggerStay(Shared<CollisionRet> collision)
+	void Component::triggerStay(Shared<PhysB::CollisionRet> collision)
 	{
 		onTriggerStay(collision);
 	}

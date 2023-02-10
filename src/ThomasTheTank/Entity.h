@@ -161,12 +161,12 @@ namespace ThomasTheTank
 		void lateTick(); ///< Function called after tick and display functions.
 		void display(); ///< Function called to trigger onDisplay. 
 		void destroy(); ///< Function called to trigger onDestroy.
-		void collisionEnter(Shared<CollisionRet> collision); ///< Function called when entering colliders.
-		void collisionExit(Shared<CollisionRet> collision); ///< Function called when exiting colliders.
-		void collisionStay(Shared<CollisionRet> collision); ///< Function called while inside colliders.
-		void triggerEnter(Shared<CollisionRet> collision); ///< Function called when entering triggers.
-		void triggerExit(Shared<CollisionRet> collision); ///< Function called when exiting triggers.
-		void triggerStay(Shared<CollisionRet> collision); ///< Function called while inside triggers.
+		void collisionEnter(Shared<PhysB::CollisionRet> collision); ///< Function called when entering colliders.
+		void collisionExit(Shared<PhysB::CollisionRet> collision); ///< Function called when exiting colliders.
+		void collisionStay(Shared<PhysB::CollisionRet> collision); ///< Function called while inside colliders.
+		void triggerEnter(Shared<PhysB::CollisionRet> collision); ///< Function called when entering triggers.
+		void triggerExit(Shared<PhysB::CollisionRet> collision); ///< Function called when exiting triggers.
+		void triggerStay(Shared<PhysB::CollisionRet> collision); ///< Function called while inside triggers.
 		std::vector<Weak<Collider>>m_colliders; ///< List of all colliders attached to the entity.
 		std::list<Shared<Component>> m_components; ///< List of all components attached to the entity.
 		bool m_alive = true; ///< Current state of the entity.

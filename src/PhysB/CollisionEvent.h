@@ -17,9 +17,9 @@ namespace PhysB
 	{
 	private:
 		friend struct CollisionDet;
-		virtual void physOnCollisionEnter(Shared<CollisionRet> collision);
-		virtual void physOnCollisionExit(Shared<CollisionRet> collision);
-		virtual void physOnCollisionStay(Shared<CollisionRet> collision);
+		virtual void physOnCollisionEnter(Shared<CollisionRet> collision) = 0;
+		virtual void physOnCollisionExit(Shared<CollisionRet> collision) = 0;
+		virtual void physOnCollisionStay(Shared<CollisionRet> collision) = 0;
 		void physCollisionEnter(Shared<CollisionRet> collision);
 		void physCollisionExit(Shared<CollisionRet> collision);
 		void physCollisionStay(Shared<CollisionRet> collision);

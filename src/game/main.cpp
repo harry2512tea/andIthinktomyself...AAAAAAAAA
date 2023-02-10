@@ -66,58 +66,12 @@ struct Player : Component
 		//trans->rotate(vec3(inp.y, inp.x, 0.0f) * 20.0f * SceneTime::DeltaTime());
 	}
 
-	void onDisplay()
+	void onCollisionEnter(Shared<PhysB::CollisionRet> collision)
 	{
-		
+		std::cout << "Collision Enter" << std::endl;
 	}
 };
 
-struct Test : Component
-{
-	void onTick()
-	{
-		//Shared<Input> input = std::make_shared<Input>();
-		Shared<Transform> trans = getEntity()->getTransform();
-		if (input->getKey(Keys::W))
-		{
-			trans->translate(vec3(0.0f, 0.0f, -1.0f * SceneTime::DeltaTime()));
-			trans->setRotation(vec3(0.0f, 180.0f, 0.0f));
-		}
-		if (input->getKey(Keys::S))
-		{
-			trans->translate(vec3(0.0f, 0.0f, 1.0f * SceneTime::DeltaTime()));
-			trans->setRotation(vec3(0.0f, 0.0f, 0.0f));
-		}
-		if (input->getKey(Keys::D))
-		{
-			trans->translate(vec3(1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
-			trans->setRotation(vec3(0.0f, 90.0f, 0.0f));
-		}
-		if (input->getKey(Keys::A))
-		{
-			trans->translate(vec3(-1.0f * SceneTime::DeltaTime(), 0.0f, 0.0f));
-			trans->setRotation(vec3(0.0f, -90.0f, 0.0f));
-		}
-		if (input->getKey(Keys::F))
-		{
-			trans->rotate(vec3(0.0f, 1.0f, 0.0f));
-		}
-		if (input->getKey(Keys::G))
-		{
-			trans->rotate(vec3(0.0f, rotationSpeed, 0.0f));
-			rotationSpeed += 0.5f;
-		}
-		
-
-		rotationSpeed += 0.1f;
-	}
-
-	void onDisplay()
-	{}
-
-private:
-	float rotationSpeed = 0.1f;
-};
 
 int main()
 {

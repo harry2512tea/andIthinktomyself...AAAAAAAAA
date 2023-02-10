@@ -67,7 +67,7 @@ namespace PhysB
 				{
 					if (broadCollisionDetection(Colliders.at(C1), Colliders.at(C2)))
 					{
-						std::cout << "Broad Collision True" << std::endl;
+						//std::cout << "Broad Collision True" << std::endl;
 						Potentials.push_back(CollisionPair(Colliders.at(C1), Colliders.at(C2)));
 					}
 				}
@@ -79,7 +79,7 @@ namespace PhysB
 			Shared<CollisionInfo> col = narrowCollisionDetection(Potentials.at(I).Col1, Potentials.at(I).Col2);
 			if (col->colliding)
 			{
-				std::cout << "Narrow Collision True" << std::endl;
+				//std::cout << "Narrow Collision True" << std::endl;
 				Collision.push_back(col);
 				if ((!col->Col1->isTrigger && !col->Col2->isTrigger) &&
 					(col->Col1->isDynamic || col->Col2->isDynamic))

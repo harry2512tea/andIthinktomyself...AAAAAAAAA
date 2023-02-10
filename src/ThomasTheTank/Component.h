@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include <PhysB/PhysB.h>
 
 #define Shared std::shared_ptr
 #define Weak std::weak_ptr
@@ -13,7 +14,7 @@ namespace ThomasTheTank
 
 	struct Core;
 
-	struct CollisionRet;
+	//struct CollisionRet;
 	/**
 	* Base struct inherited by all components
 	*/
@@ -42,42 +43,42 @@ namespace ThomasTheTank
 		* 
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onCollisionEnter(Shared<CollisionRet> collision);
+		virtual void onCollisionEnter(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Overwritable function called when the entity exits a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onCollisionExit(Shared<CollisionRet> collision);
+		virtual void onCollisionExit(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Overwritable function called when the entity stays in a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onCollisionStay(Shared<CollisionRet> collision);
+		virtual void onCollisionStay(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Overwritable function called when the entity enters a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onTriggerEnter(Shared<CollisionRet> collision);
+		virtual void onTriggerEnter(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Overwritable function called when the entity exits a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onTriggerExit(Shared<CollisionRet> collision);
+		virtual void onTriggerExit(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Overwritable function called when the entity stays in a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		virtual void onTriggerStay(Shared<CollisionRet> collision);
+		virtual void onTriggerStay(Shared<PhysB::CollisionRet> collision);
 
 		void initialize(); ///< Function called to trigger onInitialize 
 		void tick(); ///< Function called to trigger onTick 
@@ -90,44 +91,44 @@ namespace ThomasTheTank
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void collisionEnter(Shared<CollisionRet> collision);
+		void collisionEnter(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Function called when the entity exits a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void collisionExit(Shared<CollisionRet> collision);
+		void collisionExit(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Function called when the entity stays in a collision.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void collisionStay(Shared<CollisionRet> collision);
+		void collisionStay(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Function called when the entity enters a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void triggerEnter(Shared<CollisionRet> collision);
+		void triggerEnter(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Function called when the entity exits a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void triggerExit(Shared<CollisionRet> collision);
+		void triggerExit(Shared<PhysB::CollisionRet> collision);
 
 		/**
 		* Function called when the entity stays in a trigger.
 		*
 		* \param collision Shared<CollisionInfo> Shared pointer to the collision information struct.
 		*/
-		void triggerStay(Shared<CollisionRet> collision);
+		void triggerStay(Shared<PhysB::CollisionRet> collision);
 
-		std::vector<Shared<CollisionRet>> colInfo;
+		std::vector<Shared<PhysB::CollisionRet>> colInfo;
 
 
 		bool m_alive = true; ///< Current state of the component

@@ -127,42 +127,42 @@ namespace ThomasTheTank
 			(*it)->destroy();
 		}
 	}
-	void Entity::collisionEnter(Shared<CollisionRet> collision)
+	void Entity::collisionEnter(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->collisionEnter(collision);
 		}
 	}
-	void Entity::collisionExit(Shared<CollisionRet> collision)
+	void Entity::collisionExit(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->collisionExit(collision);
 		}
 	}
-	void Entity::collisionStay(Shared<CollisionRet> collision)
+	void Entity::collisionStay(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->collisionStay(collision);
 		}
 	}
-	void Entity::triggerEnter(Shared<CollisionRet> collision)
+	void Entity::triggerEnter(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->triggerEnter(collision);
 		}
 	}
-	void Entity::triggerExit(Shared<CollisionRet> collision)
+	void Entity::triggerExit(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
 			(*it)->triggerExit(collision);
 		}
 	}
-	void Entity::triggerStay(Shared<CollisionRet> collision)
+	void Entity::triggerStay(Shared<PhysB::CollisionRet> collision)
 	{
 		for (std::list<Shared<Component>>::iterator it = m_components.begin(); it != m_components.end(); it++)
 		{
