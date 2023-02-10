@@ -14,6 +14,7 @@ void Asteroid::onInitialize()
 	renderer->SetTexture(texture);
 	renderer->setScale(vec3(0.7f));
 
+	getEntity()->addComponent<BoxCollider>();
 	body = getEntity()->addComponent<RigidBody>();
 	body->setUseGravity(false);
 	std::srand(time(NULL));

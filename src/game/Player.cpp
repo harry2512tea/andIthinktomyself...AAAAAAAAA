@@ -27,12 +27,18 @@ void Player::onTick()
 		transform->translate((((vec3(1.0f, 0.0f, 0.0f) * 2.0f /* * trans->getRotationQuat()*/) * SceneTime::DeltaTime())));
 	}
 
+	/*if (input->getKeyDown(Keys::SPACE))
+	{
+		body->setUseGravity(true);
+	}*/
+
 	score += SceneTime::DeltaTime() * 1000;
 }
 
 void Player::onCollisionEnter(Shared<PhysB::CollisionRet> collision)
 {
-	if (lives > 0)
+	std::cout << "Collision Enter" << std::endl;
+	/*if (lives > 0)
 	{
 		lives--;
 		transform->setPosition(vec3(0.0f, 0.0f, 0.0f));
@@ -41,5 +47,5 @@ void Player::onCollisionEnter(Shared<PhysB::CollisionRet> collision)
 	if (lives <= 0)
 	{
 		getCore()->stop();
-	}
+	}*/
 }
