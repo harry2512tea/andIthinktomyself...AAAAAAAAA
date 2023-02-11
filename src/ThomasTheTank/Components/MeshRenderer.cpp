@@ -5,7 +5,7 @@
 #include "Camera.h"
 #include "ThomasTheTank/Resources/Model.h"
 #include "ThomasTheTank/Resources/Texture.h"
-
+#include <iostream>
 
 namespace ThomasTheTank
 {
@@ -31,8 +31,27 @@ namespace ThomasTheTank
 		model *= glm::scale(scaleMat, scale);
 		m_Renderer.shader(&m_Shader);
 		m_Renderer.modelMat(model);
-		m_Renderer.model(m_Model->m_model.get());
-		m_Renderer.texture(m_Texture->m_texture.get());
+
+		if (m_Model)
+		{
+			m_Renderer.model(m_Model->m_model.get());
+		}
+		else
+		{
+			throw Exception("Model not found");
+		}
+
+		if (m_Texture)
+		{
+			m_Renderer.texture(m_Texture->m_texture.get());
+		}
+		else
+		{
+			throw Exception("Texture not found");
+		}
+		
+		
+		
 
 		m_Renderer.depthTest(true);
 		m_Renderer.backfaceCull(true);

@@ -15,7 +15,8 @@ namespace ThomasTheTank
 
 	struct BoxCollider : Collider
 	{
-
+		void setSize(vec3 _size);
+		vec3 getSize() { return size; };
 	protected:
 		void onInitialize(); ///< Function called on creation of the collider
 		void onTick(); ///< Function called every frame

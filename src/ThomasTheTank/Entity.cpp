@@ -39,7 +39,7 @@ namespace ThomasTheTank
 					std::cout << "Exception: " << e.what() << std::endl;
 					(*it)->enabled = false;
 				}
-				catch (std::exception& e)
+				catch (...)
 				{
 					std::cout << "An unknown exception was thrown" << std::endl;
 					(*it)->enabled = false;
@@ -63,7 +63,7 @@ namespace ThomasTheTank
 					std::cout << "Exception: " << e.what() << std::endl;
 					(*it)->enabled = false;
 				}
-				catch (std::exception& e)
+				catch (...)
 				{
 					std::cout << "An unknown exception was thrown" << std::endl;
 					(*it)->enabled = false;
@@ -87,7 +87,7 @@ namespace ThomasTheTank
 					std::cout << "Exception: " << e.what() << std::endl;
 					(*it)->enabled = false;
 				}
-				catch (std::exception& e)
+				catch (...)
 				{
 					std::cout << "An unknown exception was thrown" << std::endl;
 					(*it)->enabled = false;

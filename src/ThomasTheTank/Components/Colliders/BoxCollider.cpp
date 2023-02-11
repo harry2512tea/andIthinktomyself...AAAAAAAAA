@@ -27,15 +27,24 @@ namespace ThomasTheTank
 			m_collider.lock()->addRigidBody(m_body.lock());
 		}
 	}
+
 	void BoxCollider::onTick()
 	{
 	}
+
 	void BoxCollider::onAddRigidBody(Shared<PhysB::PhysRigidBody> _body)
 	{
 		m_collider.lock()->addRigidBody(_body);
 	}
+
 	void BoxCollider::onRemoveRigidBody()
 	{
 		m_collider.lock()->removeRigidBody();
+	}
+
+	void BoxCollider::setSize(vec3 _size)
+	{
+		size = _size;
+		m_collider.lock()->setSize(_size);
 	}
 }

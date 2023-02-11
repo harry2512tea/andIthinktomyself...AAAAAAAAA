@@ -178,7 +178,11 @@ namespace ThomasTheTank
 		}
 		localPosition = _pos;
 		position = _pos;
-		std::cout;
+
+		if (m_PhysTransform)
+		{
+			m_PhysTransform->setPosition(position);
+		}
 	}
 
 

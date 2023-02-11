@@ -55,7 +55,7 @@ namespace PhysB
 		ColType getType() { return colliderType; };
 		vec3 getMin() { return m_min; };
 		vec3 getMax() { return m_max; };
-		vec3 getSize() { return (m_max - m_min); };
+		vec3 getSize() { return size; };
 		void setSize(vec3 _size);
 		void setMin(vec3(_min)) { m_min = _min; };
 		void setMax(vec3(_max)) { m_max = _max; };

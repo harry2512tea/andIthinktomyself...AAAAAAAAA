@@ -52,7 +52,20 @@ namespace ThomasTheTank
 				Shared<T> rtn = std::make_shared<T>();
 				rtn->m_self = rtn;
 				rtn->m_Entity = m_self;
-				rtn->initialize();
+				try
+				{
+					rtn->initialize();
+				}
+				catch (Exception& e)
+				{
+					rtn->enabled = false;
+					std::cout << "Exception: " << e.what() << std::endl;
+				}
+				catch (...)
+				{
+					std::cout << "Unknown error occurred" << std::endl;
+					rtn->enabled = false;
+				}
 				m_components.push_back(rtn);
 			//}
 			

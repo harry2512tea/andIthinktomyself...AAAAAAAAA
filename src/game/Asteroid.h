@@ -9,8 +9,10 @@ struct Asteroid : Component
 	Shared<MeshRenderer> renderer;
 	Shared<Model> model;
 	Shared<Texture> texture;
+	Shared<BoxCollider> col;
 	vec3 originalPos;
 	vec3 dir;
+	float difficulty = 1;
 
 	void onInitialize();
 	void onTick();

@@ -38,21 +38,21 @@ namespace ThomasTheTank
 				}
 			}
 			Shared<T> rtn = std::make_shared<T>();
-			try
-			{
+			//try
+		//	{
 				rtn->m_path = _path;
 				rtn->Load();
 				m_resources.push_back(rtn);
 				return rtn;
-			}
-			catch (Exception& e)
+			//}
+			/*catch (Exception& e)
 			{
 				std::cout << "Exception: " << e.what() << std::endl;
 			}
 			catch (std::exception)
 			{
 				std::cout << "An unknown exception was thrown" << std::endl;
-			}
+			}*/
 		}
 
 	private:
